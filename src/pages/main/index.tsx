@@ -37,6 +37,7 @@ const Container = styled.div`
 				margin-left: 12px;
 			}
 			div#container__content {
+				margin-bottom: 64px;
 				div#container__content__item {
 					display: flex;
 					align-items: center;
@@ -44,8 +45,17 @@ const Container = styled.div`
 					width: 100%;
 					height: 52px;
 					&:hover {
+						img#icon {
+							fill-opacity:1;
+						}
+						span {
+							color: #ffffff;
+						}
 						cursor: pointer;
 						background-color: #cdcdcd;
+						span#cicle {
+							background-color: #ffd500;
+						}
 						span#menu__side {
 							background-color: #005ff8;
 						}
@@ -68,13 +78,35 @@ const Container = styled.div`
 						line-height: 24px;
 						display: flex;
 						align-items: center;
-						color: #ffffff;
+						color: rgba(255, 255, 255, 0.6);
 					}
-					input {
+					span#cicle {
 						width: 8px;
 						height: 8px;
 						position: absolute;
 						right: 22px;
+						background-color: transparent;
+						border-radius: 50%;
+					}
+				}
+			}
+			div#buttons{
+				margin-left:12px;
+				display: flex;
+				flex-direction: column;
+				button{
+					background-color: #005FF8;
+					padding: 13px 24px;
+					span{
+						font-family: 'SF Pro Display';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 148%;
+/* identical to box height, or 24px */
+
+
+color: #FFFFFF;
 					}
 				}
 			}
@@ -97,14 +129,17 @@ const Main = () => {
 						{items.map((item: IItem, index: number) => (
 							<div id="container__content__item" key={index}>
 								<span id="menu__side" />
-								<img src={item.img} alt={item.alt} />
+								<img id="icon" src={item.img} alt={item.alt} />
 								<span>{item.describe}</span>
-								<input type="radio" />
+								<span id="cicle" />
 							</div>
 						))}
 					</div>
-					<button>Добавить заказ</button>
-					<button>Оплата</button>
+					<div id="buttons">
+					<button><span>Добавить заказ</span></button>
+					<button><span>Оплата</span></button>
+					</div>
+				
 				</div>
 			</aside>
 		</Container>
