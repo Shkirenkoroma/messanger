@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import logo from "assets/png/logo.png";
 import { items } from "assets/constants";
-
+import plus from "assets/png/plus.png";
+import vector from "assets/png/Vector.png";
 interface IItem {
 	img: string;
 	alt: string;
@@ -30,11 +31,9 @@ const Container = styled.div`
 		max-width: 240px;
 		width: 100%;
 		div {
-			margin-top: 20px;
 			width: 100%;
 			img#logo {
-				margin-bottom: 32px;
-				margin-left: 12px;
+				margin:20px 0 32px 12px;
 			}
 			div#container__content {
 				margin-bottom: 64px;
@@ -95,17 +94,26 @@ const Container = styled.div`
 				display: flex;
 				flex-direction: column;
 				button{
+					max-width:200px;
+					width:100%;
 					background-color: #005FF8;
 					padding: 13px 24px;
+					display: flex;
+					align-items: center;
+					justify-content: space-around;
+					border-radius: 4px;
+					border: none;
+					margin-bottom: 32px;
+					&:hover{
+						cursor: pointer;
+					
+					}
 					span{
 						font-family: 'SF Pro Display';
 font-style: normal;
 font-weight: 500;
 font-size: 16px;
 line-height: 148%;
-/* identical to box height, or 24px */
-
-
 color: #FFFFFF;
 					}
 				}
@@ -136,10 +144,9 @@ const Main = () => {
 						))}
 					</div>
 					<div id="buttons">
-					<button><span>Добавить заказ</span></button>
-					<button><span>Оплата</span></button>
+					<button><span>Добавить заказ</span><img src={plus} alt="button"/></button>
+					<button><span>Оплата</span><img src={vector} alt="button"/></button>
 					</div>
-				
 				</div>
 			</aside>
 		</Container>
