@@ -8,7 +8,10 @@ import moment from "moment";
 import "moment/locale/ru";
 import { useEffect, useState } from "react";
 import { getAllCalls } from "common/api/helpers";
-import { transformPhoneNumber, transformTime } from "common/utils";
+import { transformPhoneNumber } from "common/utils";
+import incomecall from "assets/png/call.png";
+import outcall from "assets/png/outcall.png";
+import ReactAudioPlayer from "react-audio-player";
 
 interface IItem {
 	img: string;
@@ -94,7 +97,7 @@ const Container = styled.div`
 		}
 	}
 	main {
-		background-color: blue;
+		background-color: #eaf0fa;
 		height: calc(100vh - 65px);
 		width: 100%;
 
@@ -109,18 +112,29 @@ const Container = styled.div`
 			margin: 0 auto;
 			min-height: 600px;
 			height: 60%;
-			background-color: #f1f4f9;
+			background-color: #ffffff;
+			border-radius: 8px;
+			overflow-y: scroll;
+			table {
+				width: 100%;
+				height: calc(100vh - 10px);
+				border-collapse: collapse;
+				tr:hover {
+					background-color: #d4dff3;
+					cursor: pointer;
+					transition: ease background-color 700ms;
+				}
+				td {
+					text-align: center;
+					padding: 0;
+				}
+				td.errors {
+					color: #ea1a4f;
+				}
+			}
 			ul {
 				list-style-type: none;
 				display: flex;
-			}
-			ul.AllCalls {
-				display: flex;
-				flex-direction: column;
-				li.allcalls {
-					display: flex;
-					align-items: center;
-				}
 			}
 		}
 	}
@@ -201,6 +215,7 @@ const Container = styled.div`
 				margin-bottom: 32px;
 				&:hover {
 					cursor: pointer;
+					background-color: linear-gradient(to right, #ea1a4f 67%, #dee6f5 50%);
 				}
 				span {
 					font-family: "SF Pro Display";
@@ -221,7 +236,7 @@ const Main = () => {
 	useEffect(() => {
 		getAllCalls(setCallsArray);
 	}, []);
-	console.log(Array.isArray(callsArray));
+
 	console.log("callsArray", callsArray);
 	return (
 		<Container>
@@ -275,8 +290,8 @@ const Main = () => {
 							<input type="text" />
 							<select name="" id="">
 								<option value="">ИП Сидорова Александра Михайловна</option>
-								<option value=""></option>
-								<option value=""></option>
+								<option value="">ИП Сидорова Александра Михайловна</option>
+								<option value="">ИП Сидорова Александра Михайловна</option>
 							</select>
 							<select name="" id="">
 								<option value={face} data-img-src={face}></option>
@@ -300,31 +315,30 @@ const Main = () => {
 								<th>Длительность</th>
 							</tr>
 							{callsArray.map((call: any, index) => (
-								
 								<tr className="allcalls" key={index}>
-							<td>{call.in_out}</td>
-							<td>{call.date.split(' ')[1]}</td>
-							<td><img src={call.person_avatar} /></td>
-							<td>{transformPhoneNumber(call.partner_data.phone)}</td>
-							<td>{call.source}</td>
-							<td>{call.errors}</td>
-							<td>{moment(call.time*1000).format('mm:ss')}</td>
-						</tr>
-							
-						))}
+									<td>
+										{call.in_out ? (
+											<img src={incomecall} alt="incomecall" />
+										) : (
+											<img src={outcall} alt="icon" />
+										)}
+									</td>
+									<td>{call.date.split(" ")[1]}</td>
+									<td>
+										<img src={call.person_avatar} />
+									</td>
+									<td>{transformPhoneNumber(call.partner_data.phone)}</td>
+									<td>{call.source}</td>
+									<td className="errors">{call.errors}</td>
+									<td>{moment(call.time * 1000).format("mm:ss")}
+<ReactAudioPlayer
+  src={call.record}
+  autoPlay
+  controls
+/></td>
+								</tr>
+							))}
 						</table>
-						{/* <ul className="listingitems__list">
-							<li className="listingitems__list__type">Тип</li>
-							<li className="listingitems__list__time">Время</li>
-							<li className="listingitems__list__personal">Сотрудник</li>
-							<li className="listingitems__list__call">Звонок</li>
-							<li className="listingitems__list__creater">Источник</li>
-							<li className="listingitems__list__mark" >Оценка</li>
-							<li className="listingitems__list__duration">Длительность</li>
-						</ul> */}
-						
-					
-						
 					</section>
 				</main>
 			</div>

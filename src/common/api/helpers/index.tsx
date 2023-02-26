@@ -13,5 +13,4 @@ export const getAllCalls =  (setCallsArray:any) => {
 	} catch (error) {
 		console.log(error);
 	}
-  
 };
