@@ -8,6 +8,7 @@ import moment from "moment";
 import "moment/locale/ru";
 import { useEffect, useState } from "react";
 import { getAllCalls } from "common/api/helpers";
+import { transformPhoneNumber, transformTime } from "common/utils";
 
 interface IItem {
 	img: string;
@@ -304,10 +305,10 @@ const Main = () => {
 							<td>{call.in_out}</td>
 							<td>{call.date.split(' ')[1]}</td>
 							<td><img src={call.person_avatar} /></td>
-							<td>{call.partner_data.phone}</td>
+							<td>{transformPhoneNumber(call.partner_data.phone)}</td>
 							<td>{call.source}</td>
 							<td>{call.errors}</td>
-							<td>{call.time}</td>
+							<td>{moment(call.time*1000).format('mm:ss')}</td>
 						</tr>
 							
 						))}
