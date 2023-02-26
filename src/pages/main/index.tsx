@@ -3,6 +3,12 @@ import logo from "assets/png/logo.png";
 import { items } from "assets/constants";
 import plus from "assets/png/plus.png";
 import vector from "assets/png/Vector.png";
+import face from "assets/png/img.png";
+import moment from "moment";
+import "moment/locale/ru";
+import { useEffect } from "react";
+import axios from "axios";
+
 interface IItem {
 	img: string;
 	alt: string;
@@ -22,15 +28,93 @@ const Container = styled.div`
 	div.main {
 		width: 100%;
 	}
-	header {
+	div.header {
 		background-color: #ffffff;
 		height: 65px;
 		width: 100%;
+		div.header__content__date {
+			width: 30%;
+		}
+		div.header__content {
+			height: 65px;
+			max-width: 1440px;
+			background-color: #cdcdcd;
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			div.header__content__statistic {
+				display: flex;
+				max-width: 1200px;
+				width: 100%;
+				div.statisticitem {
+					margin-right: 56px;
+					width: 70%;
+				}
+				span.green {
+					margin-left: 5px;
+					color: #00a775;
+				}
+				span.yellow {
+					margin-left: 5px;
+					color: #ffb800;
+				}
+				span.red {
+					margin-left: 5px;
+					color: #ea1a4f;
+				}
+				div.green {
+					margin-top: 13px;
+					display: block;
+					border-radius: 5px;
+					max-width: 156px;
+					width: 100%;
+					height: 6px;
+					background: linear-gradient(to right, #00a775 65%, #dee6f5 50%);
+				}
+				div.yellow {
+					margin-top: 13px;
+					display: block;
+					border-radius: 5px;
+					max-width: 156px;
+					width: 100%;
+					height: 6px;
+					background: linear-gradient(to right, #ffb800 40%, #dee6f5 50%);
+				}
+				div.red {
+					margin-top: 13px;
+					display: block;
+					border-radius: 5px;
+					max-width: 156px;
+					width: 100%;
+					height: 6px;
+					background: linear-gradient(to right, #ea1a4f 67%, #dee6f5 50%);
+				}
+			}
+		}
 	}
 	main {
 		background-color: blue;
 		height: calc(100vh - 65px);
 		width: 100%;
+
+		section.sortingsection {
+			height: 135px;
+			background-color: #f1f4f9;
+			max-width: 1440px;
+			margin: 0 auto;
+		}
+		section.listingitems {
+			max-width: 1440px;
+			margin: 0 auto;
+			min-height:600px;
+			height:60%;
+			background-color: #f1f4f9;
+			ul{
+				list-style-type: none;
+				display: flex;
+
+			}
+		}
 	}
 	div {
 		width: 100%;
@@ -124,6 +208,14 @@ const Container = styled.div`
 `;
 
 const Main = () => {
+
+
+useEffect(()=>{
+const response = axios.post('https://api.skilla.ru/mango/getList', {Authorization:'testtoken'}).then((resp)=> resp.data());
+console.log('response', response)
+})
+
+
 	return (
 		<Container>
 			<div className="aside">
@@ -152,10 +244,54 @@ const Main = () => {
 				</div>
 			</div>
 			<div className="main">
-				<header>Header</header>
+				<div className="header">
+					<div className="header__content">
+						<div className="header__content__date">
+							{moment().locale("ru").format("LL")}
+						</div>
+						<div className="header__content__statistic">
+							<div className="statisticitem">
+								Новые звонки<span className="green">20 из 30 шт</span>
+								<br />
+								<div className="green" />
+							</div>
+							<div className="statisticitem">
+								Качество разговоров<span className="yellow">40%</span>
+								<div className="yellow" />
+							</div>
+							<div className="statisticitem">
+								Конверсия в заказ<span className="red">67%</span>
+								<div className="red" />
+							</div>
+						</div>
+						<div className="header__content__owncabinet">
+							<input type="text" />
+							<select name="" id="">
+								<option value="">ИП Сидорова Александра Михайловна</option>
+								<option value=""></option>
+								<option value=""></option>
+							</select>
+							<select name="" id="">
+								<option value={face} data-img-src={face}></option>
+								<option value=""></option>
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
 				<main>
-					<section>section one</section>
-					<section>section two</section>
+					<section className="sortingsection">section one</section>
+					<section className="listingitems">
+						<ul>
+							<li>Тип</li>
+							<li>Время</li>
+							<li>Сотрудник</li>
+							<li>Звонок</li>
+							<li>Источник</li>
+							<li>Оценка</li>
+							<li>Длительность</li>
+						</ul>
+					</section>
 				</main>
 			</div>
 		</Container>
