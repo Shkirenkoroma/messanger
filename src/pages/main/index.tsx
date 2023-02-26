@@ -113,6 +113,14 @@ const Container = styled.div`
 				list-style-type: none;
 				display: flex;
 			}
+			ul.AllCalls {
+				display: flex;
+				flex-direction: column;
+				li.allcalls {
+					display: flex;
+					align-items: center;
+				}
+			}
 		}
 	}
 	div {
@@ -280,20 +288,42 @@ const Main = () => {
 				<main>
 					<section className="sortingsection">section one</section>
 					<section className="listingitems">
-						<ul>
-							<li>Тип</li>
-							<li>Время</li>
-							<li>Сотрудник</li>
-							<li>Звонок</li>
-							<li>Источник</li>
-							<li>Оценка</li>
-							<li>Длительность</li>
-						</ul>
-						<ul>
-							{callsArray.map((call: any) => (
-								<li>{call.in_out}</li>
-							))}
-						</ul>
+						<table>
+							<tr>
+								<th>Тип</th>
+								<th>Время</th>
+								<th>Сотрудник</th>
+								<th>Звонок</th>
+								<th>Источник</th>
+								<th>Оценка</th>
+								<th>Длительность</th>
+							</tr>
+							{callsArray.map((call: any, index) => (
+								
+								<tr className="allcalls" key={index}>
+							<td>{call.in_out}</td>
+							<td>{call.date.split(' ')[1]}</td>
+							<td><img src={call.person_avatar} /></td>
+							<td>{call.partner_data.phone}</td>
+							<td>{call.source}</td>
+							<td>{call.errors}</td>
+							<td>{call.time}</td>
+						</tr>
+							
+						))}
+						</table>
+						{/* <ul className="listingitems__list">
+							<li className="listingitems__list__type">Тип</li>
+							<li className="listingitems__list__time">Время</li>
+							<li className="listingitems__list__personal">Сотрудник</li>
+							<li className="listingitems__list__call">Звонок</li>
+							<li className="listingitems__list__creater">Источник</li>
+							<li className="listingitems__list__mark" >Оценка</li>
+							<li className="listingitems__list__duration">Длительность</li>
+						</ul> */}
+						
+					
+						
 					</section>
 				</main>
 			</div>

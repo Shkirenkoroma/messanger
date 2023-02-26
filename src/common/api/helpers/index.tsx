@@ -4,7 +4,7 @@ export const getAllCalls =  (setCallsArray:any) => {
 	try {
 		const  response = axios({
 			method: "post",
-			url: "https://api.skilla.ru/mango/getList?date_start=2022-01-14&date_end=2022-02-22",
+			url: "https://api.skilla.ru/mango/getList",
 			headers: {
 				Authorization: "Bearer testtoken",
 			},
