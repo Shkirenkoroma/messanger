@@ -6,8 +6,8 @@ import vector from "assets/png/Vector.png";
 import face from "assets/png/img.png";
 import moment from "moment";
 import "moment/locale/ru";
-import { useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { getAllCalls } from "common/api/helpers";
 
 interface IItem {
 	img: string;
@@ -106,13 +106,12 @@ const Container = styled.div`
 		section.listingitems {
 			max-width: 1440px;
 			margin: 0 auto;
-			min-height:600px;
-			height:60%;
+			min-height: 600px;
+			height: 60%;
 			background-color: #f1f4f9;
-			ul{
+			ul {
 				list-style-type: none;
 				display: flex;
-
 			}
 		}
 	}
@@ -208,14 +207,13 @@ const Container = styled.div`
 `;
 
 const Main = () => {
+	const [callsArray, setCallsArray] = useState([]);
 
-
-useEffect(()=>{
-const response = axios.post('https://api.skilla.ru/mango/getList', {Authorization:'testtoken'}).then((resp)=> resp.data());
-console.log('response', response)
-})
-
-
+	useEffect(() => {
+		getAllCalls(setCallsArray);
+	}, []);
+	console.log(Array.isArray(callsArray));
+	console.log("callsArray", callsArray);
 	return (
 		<Container>
 			<div className="aside">
@@ -290,6 +288,11 @@ console.log('response', response)
 							<li>Источник</li>
 							<li>Оценка</li>
 							<li>Длительность</li>
+						</ul>
+						<ul>
+							{callsArray.map((call: any) => (
+								<li>{call.in_out}</li>
+							))}
 						</ul>
 					</section>
 				</main>
