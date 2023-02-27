@@ -1,25 +1,27 @@
 {
   "files": {
     "main.css": "/messanger/static/css/main.2f8c35d0.css",
-    "main.js": "/messanger/static/js/main.8685f17b.js",
+    "main.js": "/messanger/static/js/main.f3d2f72b.js",
     "static/media/settings.svg": "/messanger/static/media/settings.645ed464ffb5fe906747e3d6283829ef.svg",
     "static/media/results.svg": "/messanger/static/media/results.d19d51afd31cc931174118acc0868f0f.svg",
     "static/media/people.svg": "/messanger/static/media/people.c439ae9a8bd6c42e291b5bafda1a010a.svg",
     "static/media/calls.svg": "/messanger/static/media/calls.d6e0c99b67f5c611595395cec73802d7.svg",
     "static/media/data_base.svg": "/messanger/static/media/data_base.a4a9d38b37929f36fb4aeb468b74ddb4.svg",
     "index.html": "/messanger/index.html",
+    "static/media/basicsearch.svg": "/messanger/static/media/basicsearch.d6742e5e8865016f5788a2e510673957.svg",
     "static/media/perm_identity.svg": "/messanger/static/media/perm_identity.068724cac359898181e75084d90324a6.svg",
     "static/media/orders.svg": "/messanger/static/media/orders.9316970ecb0d0aba6695f18ad24b7d65.svg",
     "static/media/cases.svg": "/messanger/static/media/cases.ceb2f7e0f3f5f34f59de3f6a45061393.svg",
     "static/media/alert.svg": "/messanger/static/media/alert.954cd4eafca1b88b953c3a366198927c.svg",
     "static/media/messages.svg": "/messanger/static/media/messages.d7d714b98ed4e59701858f848559676c.svg",
     "static/media/documents.svg": "/messanger/static/media/documents.446d0d0ca10e444ef753e55d39eccaf0.svg",
+    "static/media/keyboard_arrow.svg": "/messanger/static/media/keyboard_arrow.1228128d84b1ac1b19b85ee51713b4cb.svg",
     "static/media/plus.svg": "/messanger/static/media/plus.2fe54abfc431e9a191d27cde10c52473.svg",
     "main.2f8c35d0.css.map": "/messanger/static/css/main.2f8c35d0.css.map",
-    "main.8685f17b.js.map": "/messanger/static/js/main.8685f17b.js.map"
+    "main.f3d2f72b.js.map": "/messanger/static/js/main.f3d2f72b.js.map"
   },
   "entrypoints": [
     "static/css/main.2f8c35d0.css",
-    "static/js/main.8685f17b.js"
+    "static/js/main.f3d2f72b.js"
   ]
 }
