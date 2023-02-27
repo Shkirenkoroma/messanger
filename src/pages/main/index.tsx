@@ -22,12 +22,11 @@ interface IItem {
 const Container = styled.div`
 	display: flex;
 	width: 100%;
+
 	div.aside {
 		max-width: 240px;
 		width: 100%;
 		background-color: #091336;
-		div.aside__container {
-		}
 	}
 	div.main {
 		width: 100%;
@@ -115,6 +114,7 @@ const Container = styled.div`
 			background-color: #ffffff;
 			border-radius: 8px;
 			overflow-y: scroll;
+
 			table {
 				width: 100%;
 				height: calc(100vh - 10px);
@@ -140,12 +140,15 @@ const Container = styled.div`
 	}
 	div {
 		width: 100%;
+
 		img.logo {
 			margin: 20px 0 32px 12px;
 		}
+
 		div.container__content {
 			margin-bottom: 64px;
 			position: relative;
+
 			div.container__content__item {
 				display: flex;
 				align-items: center;
@@ -155,6 +158,10 @@ const Container = styled.div`
 				&:hover {
 					span {
 						color: #ffffff;
+					}
+					img.icon {
+						filter: opacity(100%);
+						-webkit-filter: opacity(100%);
 					}
 					cursor: pointer;
 					background-color: #cdcdcd;
@@ -177,6 +184,10 @@ const Container = styled.div`
 				}
 				img {
 					margin-right: 13px;
+				}
+				.icon {
+					filter: opacity(56%);
+					-webkit-filter: opacity(56%);
 				}
 				span {
 					font-family: "SF Pro Display";
@@ -213,9 +224,18 @@ const Container = styled.div`
 				border-radius: 4px;
 				border: none;
 				margin-bottom: 32px;
+				margin-left: 8px;
+				background-image: linear-gradient(45deg, #cdcdcd 50%, transparent 50%);
+				background-position: 100%;
+				background-size: 400%;
+				transition: background 500ms ease-in-out;
+				img.attention {
+					position: relative;
+					left: 8px;
+				}
 				&:hover {
 					cursor: pointer;
-					background-color: linear-gradient(to right, #ea1a4f 67%, #dee6f5 50%);
+					background-position: 0;
 				}
 				span {
 					font-family: "SF Pro Display";
@@ -224,6 +244,9 @@ const Container = styled.div`
 					font-size: 16px;
 					line-height: 148%;
 					color: #ffffff;
+				}
+				span.sallary {
+					margin-left: 20px;
 				}
 			}
 		}
@@ -259,8 +282,8 @@ const Main = () => {
 							<img src={plus} alt="button" />
 						</button>
 						<button>
-							<span>Оплата</span>
-							<img src={vector} alt="button" />
+							<span className="sallary">Оплата</span>
+							<img className="attention" src={vector} alt="button" />
 						</button>
 					</div>
 				</div>
@@ -330,12 +353,10 @@ const Main = () => {
 									<td>{transformPhoneNumber(call.partner_data.phone)}</td>
 									<td>{call.source}</td>
 									<td className="errors">{call.errors}</td>
-									<td>{moment(call.time * 1000).format("mm:ss")}
-<ReactAudioPlayer
-  src={call.record}
-  autoPlay
-  controls
-/></td>
+									<td>
+										{moment(call.time * 1000).format("mm:ss")}
+										<ReactAudioPlayer src={call.record} autoPlay controls />
+									</td>
 								</tr>
 							))}
 						</table>
