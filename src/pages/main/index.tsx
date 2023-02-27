@@ -125,7 +125,6 @@ const Container = styled.div`
 					color: #899cb1;
 					&:hover {
 						cursor: pointer;
-						
 					}
 					option.employer {
 						font-family: "SF Pro Display";
@@ -137,12 +136,10 @@ const Container = styled.div`
 						width: 100%;
 						border: none;
 						-moz-appearance: none;
-					-webkit-appearance: none;
+						-webkit-appearance: none;
 					}
 				}
-				img.arrow{
-					
-
+				img.arrow {
 				}
 			}
 		}
@@ -382,11 +379,17 @@ const Main = () => {
 							<input className="header__content__input" type="text" />
 							<img src={basicsearch} alt="searchlogo" />
 							{/* <Select options={options}/> */}
-						
-							<select name="" id="" onClick={()=>setArrowState(!stateArrow)}>
-								<option className="employer" value="">ИП Сидорова Александра Михайловна</option>
-								<option className="employer" value="">ИП Жандармов Евгений Романович</option>
-								<option className="employer" value="">ИП Романов Сергей Владимирович</option>
+
+							<select name="" id="" onClick={() => setArrowState(!stateArrow)}>
+								<option className="employer" value="">
+									ИП Сидорова Александра Михайловна
+								</option>
+								<option className="employer" value="">
+									ИП Жандармов Евгений Романович
+								</option>
+								<option className="employer" value="">
+									ИП Романов Сергей Владимирович
+								</option>
 							</select>
 							<img className="arrow" src={keyboard_arrow} alt="arrow" />
 							<select name="" id="">
@@ -398,7 +401,21 @@ const Main = () => {
 					</div>
 				</div>
 				<main>
-					<section className="sortingsection">section one</section>
+					<section className="sortingsection">
+						<div className="sortingsection__firstsettings">
+							баланс
+							датапикер
+						</div>
+						<div className="sortingsection__secondsettings">
+							поиск
+							все типы
+							Все сотрудики
+							Все звонки
+							Все источники
+							Все оценки
+							Все ошибки
+						</div>
+					</section>
 					<section className="listingitems">
 						<table>
 							<tr>
