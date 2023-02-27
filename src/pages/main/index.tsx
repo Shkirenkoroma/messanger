@@ -12,7 +12,9 @@ import { transformPhoneNumber } from "common/utils";
 import incomecall from "assets/png/call.png";
 import outcall from "assets/png/outcall.png";
 import ReactAudioPlayer from "react-audio-player";
-
+import basicsearch from "assets/svg/basicsearch.svg";
+import keyboard_arrow from "assets/svg/keyboard_arrow.svg";
+import Select from "react-select";
 interface IItem {
 	img: string;
 	alt: string;
@@ -37,6 +39,12 @@ const Container = styled.div`
 		width: 100%;
 		div.header__content__date {
 			width: 30%;
+			color: #899cb1;
+			font-family: "SF Pro Display";
+			font-style: normal;
+			font-weight: 400;
+			font-size: 15px;
+			line-height: 148%;
 		}
 		div.header__content {
 			height: 65px;
@@ -52,6 +60,7 @@ const Container = styled.div`
 				div.statisticitem {
 					margin-right: 56px;
 					width: 70%;
+					color: #122945;
 				}
 				span.green {
 					margin-left: 5px;
@@ -91,6 +100,49 @@ const Container = styled.div`
 					width: 100%;
 					height: 6px;
 					background: linear-gradient(to right, #ea1a4f 67%, #dee6f5 50%);
+				}
+			}
+			div.header__content__owncabinet {
+				display: flex;
+				align-items: center;
+
+				.header__content__input {
+					border-radius: 3px;
+					outline: none;
+					padding: 0;
+					border: none;
+				}
+				select {
+					border: none;
+					-moz-appearance: none;
+					-webkit-appearance: none;
+					outline: none;
+					font-family: "SF Pro Display";
+					font-style: normal;
+					font-weight: 400;
+					font-size: 15px;
+					line-height: 140%;
+					color: #899cb1;
+					&:hover {
+						cursor: pointer;
+						
+					}
+					option.employer {
+						font-family: "SF Pro Display";
+						font-style: normal;
+						font-weight: 400;
+						font-size: 15px;
+						line-height: 140%;
+						color: #899cb1;
+						width: 100%;
+						border: none;
+						-moz-appearance: none;
+					-webkit-appearance: none;
+					}
+				}
+				img.arrow{
+					
+
 				}
 			}
 		}
@@ -266,10 +318,16 @@ const Container = styled.div`
 
 const Main = () => {
 	const [callsArray, setCallsArray] = useState([]);
-
+	const [stateArrow, setArrowState] = useState<boolean>(false);
 	useEffect(() => {
 		getAllCalls(setCallsArray);
 	}, []);
+
+	const options = [
+		{ value: "chocolate", label: "Chocolate" },
+		{ value: "strawberry", label: "Strawberry" },
+		{ value: "vanilla", label: "Vanilla" },
+	];
 
 	console.log("callsArray", callsArray);
 	return (
@@ -321,12 +379,16 @@ const Main = () => {
 							</div>
 						</div>
 						<div className="header__content__owncabinet">
-							<input type="text" />
-							<select name="" id="">
-								<option value="">ИП Сидорова Александра Михайловна</option>
-								<option value="">ИП Сидорова Александра Михайловна</option>
-								<option value="">ИП Сидорова Александра Михайловна</option>
+							<input className="header__content__input" type="text" />
+							<img src={basicsearch} alt="searchlogo" />
+							{/* <Select options={options}/> */}
+						
+							<select name="" id="" onClick={()=>setArrowState(!stateArrow)}>
+								<option className="employer" value="">ИП Сидорова Александра Михайловна</option>
+								<option className="employer" value="">ИП Жандармов Евгений Романович</option>
+								<option className="employer" value="">ИП Романов Сергей Владимирович</option>
 							</select>
+							<img className="arrow" src={keyboard_arrow} alt="arrow" />
 							<select name="" id="">
 								<option value={face} data-img-src={face}></option>
 								<option value=""></option>
