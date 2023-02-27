@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import logo from "assets/png/logo.png";
 import { items } from "assets/constants";
-import plus from "assets/png/plus.png";
-import vector from "assets/png/Vector.png";
+import plus from "assets/svg/plus.svg";
+import vector from "assets/svg/alert.svg";
 import face from "assets/png/img.png";
 import moment from "moment";
 import "moment/locale/ru";
@@ -140,7 +140,6 @@ const Container = styled.div`
 	}
 	div {
 		width: 100%;
-
 		img.logo {
 			margin: 20px 0 32px 12px;
 		}
@@ -229,14 +228,26 @@ const Container = styled.div`
 				background-position: 100%;
 				background-size: 400%;
 				transition: background 500ms ease-in-out;
-				img.attention {
+
+				img.button__attention {
 					position: relative;
 					left: 8px;
 				}
 				&:hover {
 					cursor: pointer;
 					background-position: 0;
+					img.button__attention {
+						filter: invert(75%);
+						-webkit-filter: invert(75%);
+						transition: ease filter 800ms;
+					}
+					img.button__plus {
+						filter: invert(75%);
+						-webkit-filter: invert(75%);
+						transition: ease filter 800ms;
+					}
 				}
+
 				span {
 					font-family: "SF Pro Display";
 					font-style: normal;
@@ -279,11 +290,11 @@ const Main = () => {
 					<div className="buttons">
 						<button>
 							<span>Добавить заказ</span>
-							<img src={plus} alt="button" />
+							<img className="button__plus" src={plus} alt="button" />
 						</button>
 						<button>
 							<span className="sallary">Оплата</span>
-							<img className="attention" src={vector} alt="button" />
+							<img className="button__attention" src={vector} alt="button" />
 						</button>
 					</div>
 				</div>
