@@ -17,7 +17,7 @@
 		"noEmit": true,
 		"jsx": "react-jsx"
 	},
-	"include": ["src"],
+	"include": ["src", "tailwind.config.js", "work.js"],
 	"typeRoots": ["node_modules/@types", "src/types"],
 	"types": [
 		"jest",

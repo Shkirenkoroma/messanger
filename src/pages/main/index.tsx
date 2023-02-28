@@ -14,7 +14,9 @@ import outcall from "assets/png/outcall.png";
 import ReactAudioPlayer from "react-audio-player";
 import basicsearch from "assets/svg/basicsearch.svg";
 import keyboard_arrow from "assets/svg/keyboard_arrow.svg";
-import Select from "react-select";
+import { Selectrum } from "components/dropdown/imdex";
+import { Selectrumtwo } from "components/dropdown/imdex";
+
 interface IItem {
 	img: string;
 	alt: string;
@@ -49,7 +51,7 @@ const Container = styled.div`
 		div.header__content {
 			height: 65px;
 			max-width: 1440px;
-			background-color: #cdcdcd;
+			background-color: #ffffff;
 			margin: 0 auto;
 			display: flex;
 			align-items: center;
@@ -105,7 +107,86 @@ const Container = styled.div`
 			div.header__content__owncabinet {
 				display: flex;
 				align-items: center;
+				.select-box {
+					display: flex;
+					width: 135px;
+					flex-direction: column;
+					margin-right: -30px;
+				}
 
+				.select-box .options-container {
+					color: #f5f6fa;
+					max-height: 0;
+					width: 100%;
+					opacity: 0;
+					transition: all 0.4s;
+					border-radius: 8px;
+					order: 1;
+					display: flex;
+					flex-direction: column;
+				}
+
+				.selected {
+					border-radius: 8px;
+					position: relative;
+					order: 0;
+					color: #cdcdcd;
+					cursor: pointer;
+					font-family: "Poppins";
+					font-style: normal;
+					font-weight: 500;
+					font-size: 16px;
+					line-height: 24px;
+				}
+
+				.selected::after {
+					content: "";
+					background: url("img/arrow-down.svg");
+					background-size: contain;
+					background-repeat: no-repeat;
+					position: absolute;
+					height: 100%;
+					width: 24px;
+					right: 10px;
+				}
+
+				.select-box .options-container.active {
+					opacity: 1;
+				}
+
+				.select-box .options-container.active + .selected::after {
+					transform: rotateX(180deg);
+				}
+
+				.select-box .option,
+				.selected {
+					cursor: pointer;
+				}
+
+				.selected:hover {
+					color: #ff6e30;
+					transition: color 600ms;
+				}
+
+				.select-box a {
+					cursor: pointer;
+					color: #cdcdcd;
+					cursor: pointer;
+					font-family: "Poppins";
+					font-style: normal;
+					font-weight: 500;
+					font-size: 16px;
+					line-height: 24px;
+				}
+
+				.select-box a:hover {
+					color: #ff6e30;
+					transition: color 600ms;
+				}
+
+				.select-box .option .radio {
+					display: none;
+				}
 				.header__content__input {
 					border-radius: 3px;
 					outline: none;
@@ -123,6 +204,7 @@ const Container = styled.div`
 					font-size: 15px;
 					line-height: 140%;
 					color: #899cb1;
+					margin-left: 30px;
 					&:hover {
 						cursor: pointer;
 					}
@@ -133,13 +215,16 @@ const Container = styled.div`
 						font-size: 15px;
 						line-height: 140%;
 						color: #899cb1;
+
 						width: 100%;
 						border: none;
 						-moz-appearance: none;
 						-webkit-appearance: none;
 					}
 				}
-				img.arrow {
+				img.arrow__active {
+					transform: rotate(180deg);
+					transition: ease-out transform 400ms;
 				}
 			}
 		}
@@ -151,7 +236,7 @@ const Container = styled.div`
 
 		section.sortingsection {
 			height: 135px;
-			background-color: #f1f4f9;
+			background-color: #eaf0fa;
 			max-width: 1440px;
 			margin: 0 auto;
 		}
@@ -163,7 +248,6 @@ const Container = styled.div`
 			background-color: #ffffff;
 			border-radius: 8px;
 			overflow-y: scroll;
-
 			table {
 				width: 100%;
 				height: calc(100vh - 10px);
@@ -277,7 +361,6 @@ const Container = styled.div`
 				background-position: 100%;
 				background-size: 400%;
 				transition: background 500ms ease-in-out;
-
 				img.button__attention {
 					position: relative;
 					left: 8px;
@@ -296,7 +379,6 @@ const Container = styled.div`
 						transition: ease filter 800ms;
 					}
 				}
-
 				span {
 					font-family: "SF Pro Display";
 					font-style: normal;
@@ -320,13 +402,6 @@ const Main = () => {
 		getAllCalls(setCallsArray);
 	}, []);
 
-	const options = [
-		{ value: "chocolate", label: "Chocolate" },
-		{ value: "strawberry", label: "Strawberry" },
-		{ value: "vanilla", label: "Vanilla" },
-	];
-
-	console.log("callsArray", callsArray);
 	return (
 		<Container>
 			<div className="aside">
@@ -376,13 +451,16 @@ const Main = () => {
 							</div>
 						</div>
 						<div className="header__content__owncabinet">
-							<input className="header__content__input" type="text" />
+							<input
+								className="header__content__input"
+								type="text"
+								placeholder="Поиск..."
+							/>
 							<img src={basicsearch} alt="searchlogo" />
-							{/* <Select options={options}/> */}
-
-							<select name="" id="" onClick={() => setArrowState(!stateArrow)}>
+							<Selectrum />
+							{/* <select name="" id="" onClick={() => setArrowState(!stateArrow)}>
 								<option className="employer" value="">
-									ИП Сидорова Александра Михайловна
+									Все организации
 								</option>
 								<option className="employer" value="">
 									ИП Жандармов Евгений Романович
@@ -390,29 +468,28 @@ const Main = () => {
 								<option className="employer" value="">
 									ИП Романов Сергей Владимирович
 								</option>
-							</select>
-							<img className="arrow" src={keyboard_arrow} alt="arrow" />
-							<select name="" id="">
+							</select> */}
+							{/* <img
+								className={stateArrow ? "arrow__active" : "arrow"}
+								src={keyboard_arrow}
+								alt="arrow"
+							/> */}
+							<Selectrumtwo />
+							{/* <select name="" id="">
 								<option value={face} data-img-src={face}></option>
 								<option value=""></option>
 								<option value=""></option>
-							</select>
+							</select> */}
 						</div>
 					</div>
 				</div>
 				<main>
 					<section className="sortingsection">
 						<div className="sortingsection__firstsettings">
-							баланс
-							датапикер
+							баланс датапикер
 						</div>
 						<div className="sortingsection__secondsettings">
-							поиск
-							все типы
-							Все сотрудики
-							Все звонки
-							Все источники
-							Все оценки
+							поиск все типы Все сотрудики Все звонки Все источники Все оценки
 							Все ошибки
 						</div>
 					</section>
