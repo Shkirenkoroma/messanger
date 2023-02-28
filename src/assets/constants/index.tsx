@@ -21,3 +21,57 @@ export const items = [
 	{ img: data_base, alt: "data_base", describe: "База знаний" },
 	{ img: settings, alt: "settings", describe: "Настройка" },
 ];
+
+export const allTypes = [
+	{ value: "фото", label: "фото" },
+	{
+		value: "ИП Романов Сергей Владимирович",
+		label: "ИП Романов Сергей Владимирович",
+	},
+	{ value: "Все организации", label: "Все организации" },
+];
+
+export const allEmployer = [
+	{ value: "фото", label: "фото" },
+	{
+		value: "ИП Романов Сергей Владимирович",
+		label: "ИП Романов Сергей Владимирович",
+	},
+	{ value: "Все организации", label: "Все организации" },
+];
+
+export const allCalls = [
+	{ value: "фото", label: "фото" },
+	{
+		value: "ИП Романов Сергей Владимирович",
+		label: "ИП Романов Сергей Владимирович",
+	},
+	{ value: "Все организации", label: "Все организации" },
+];
+
+export const Allsourses = [
+	{ value: "фото", label: "фото" },
+	{
+		value: "ИП Романов Сергей Владимирович",
+		label: "ИП Романов Сергей Владимирович",
+	},
+	{ value: "Все организации", label: "Все организации" },
+];
+
+export const AllEstimates = [
+	{ value: "фото", label: "фото" },
+	{
+		value: "ИП Романов Сергей Владимирович",
+		label: "ИП Романов Сергей Владимирович",
+	},
+	{ value: "Все организации", label: "Все организации" },
+];
+
+export const AllMistakes = [
+	{ value: "фото", label: "фото" },
+	{
+		value: "ИП Романов Сергей Владимирович",
+		label: "ИП Романов Сергей Владимирович",
+	},
+	{ value: "Все организации", label: "Все организации" },
+];

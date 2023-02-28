@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import logo from "assets/png/logo.png";
-import { items } from "assets/constants";
+import { allTypes, items } from "assets/constants";
 import plus from "assets/svg/plus.svg";
+import plusanother from "assets/svg/plusanother.svg";
 import vector from "assets/svg/alert.svg";
 import face from "assets/png/img.png";
 import moment from "moment";
@@ -14,7 +15,7 @@ import outcall from "assets/png/outcall.png";
 import ReactAudioPlayer from "react-audio-player";
 import basicsearch from "assets/svg/basicsearch.svg";
 import keyboard_arrow from "assets/svg/keyboard_arrow.svg";
-import { Selectrum } from "components/dropdown/imdex";
+import { Selectrum, SelectSorting } from "components/dropdown/imdex";
 import { Selectrumtwo } from "components/dropdown/imdex";
 
 interface IItem {
@@ -107,86 +108,7 @@ const Container = styled.div`
 			div.header__content__owncabinet {
 				display: flex;
 				align-items: center;
-				.select-box {
-					display: flex;
-					width: 135px;
-					flex-direction: column;
-					margin-right: -30px;
-				}
 
-				.select-box .options-container {
-					color: #f5f6fa;
-					max-height: 0;
-					width: 100%;
-					opacity: 0;
-					transition: all 0.4s;
-					border-radius: 8px;
-					order: 1;
-					display: flex;
-					flex-direction: column;
-				}
-
-				.selected {
-					border-radius: 8px;
-					position: relative;
-					order: 0;
-					color: #cdcdcd;
-					cursor: pointer;
-					font-family: "Poppins";
-					font-style: normal;
-					font-weight: 500;
-					font-size: 16px;
-					line-height: 24px;
-				}
-
-				.selected::after {
-					content: "";
-					background: url("img/arrow-down.svg");
-					background-size: contain;
-					background-repeat: no-repeat;
-					position: absolute;
-					height: 100%;
-					width: 24px;
-					right: 10px;
-				}
-
-				.select-box .options-container.active {
-					opacity: 1;
-				}
-
-				.select-box .options-container.active + .selected::after {
-					transform: rotateX(180deg);
-				}
-
-				.select-box .option,
-				.selected {
-					cursor: pointer;
-				}
-
-				.selected:hover {
-					color: #ff6e30;
-					transition: color 600ms;
-				}
-
-				.select-box a {
-					cursor: pointer;
-					color: #cdcdcd;
-					cursor: pointer;
-					font-family: "Poppins";
-					font-style: normal;
-					font-weight: 500;
-					font-size: 16px;
-					line-height: 24px;
-				}
-
-				.select-box a:hover {
-					color: #ff6e30;
-					transition: color 600ms;
-				}
-
-				.select-box .option .radio {
-					display: none;
-				}
 				.header__content__input {
 					border-radius: 3px;
 					outline: none;
@@ -215,7 +137,6 @@ const Container = styled.div`
 						font-size: 15px;
 						line-height: 140%;
 						color: #899cb1;
-
 						width: 100%;
 						border: none;
 						-moz-appearance: none;
@@ -233,12 +154,45 @@ const Container = styled.div`
 		background-color: #eaf0fa;
 		height: calc(100vh - 65px);
 		width: 100%;
-
 		section.sortingsection {
 			height: 135px;
 			background-color: #eaf0fa;
 			max-width: 1440px;
 			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 30px;
+			justify-content: center;
+			.sortingsection__firstsettings {
+				display: flex;
+				justify-content: flex-end;
+			}
+			.sortingsection__secondsettings{
+				display: flex;
+				justify-content: flex-end;
+			
+			}
+			.sortingsection__firstsettings__content {
+				max-width: 350px;
+				width: 94%;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				display: flex;
+				.sortingsection__firstsettings__balance {
+					display: flex;
+					align-items: center;
+					width: 100%;
+					justify-content: space-between;
+					max-width: 150px;
+					background-color: #ffffff;
+					padding: 10px 12px;
+					border-radius: 50px;
+					span.price::after {
+						content: "₽";
+					}
+				}
+			}
 		}
 		section.listingitems {
 			max-width: 1440px;
@@ -276,11 +230,9 @@ const Container = styled.div`
 		img.logo {
 			margin: 20px 0 32px 12px;
 		}
-
 		div.container__content {
 			margin-bottom: 64px;
 			position: relative;
-
 			div.container__content__item {
 				display: flex;
 				align-items: center;
@@ -398,6 +350,7 @@ const Container = styled.div`
 const Main = () => {
 	const [callsArray, setCallsArray] = useState([]);
 	const [stateArrow, setArrowState] = useState<boolean>(false);
+	const [price, setPrice] = useState<number>(272);
 	useEffect(() => {
 		getAllCalls(setCallsArray);
 	}, []);
@@ -486,11 +439,26 @@ const Main = () => {
 				<main>
 					<section className="sortingsection">
 						<div className="sortingsection__firstsettings">
-							баланс датапикер
+							<div className="sortingsection__firstsettings__content">
+								<div className="sortingsection__firstsettings__balance">
+									<span className="balancestring">Баланс:</span>
+									{price} <span className="price" />
+									<img
+										className="plusanother"
+										src={plusanother}
+										alt="plusanother"
+									/>
+								</div>
+								датапикер
+							</div>
 						</div>
 						<div className="sortingsection__secondsettings">
-							поиск все типы Все сотрудики Все звонки Все источники Все оценки
-							Все ошибки
+						<SelectSorting/>
+						<SelectSorting/>
+						<SelectSorting/>
+						<SelectSorting/>
+						<SelectSorting/>
+						<SelectSorting/>
 						</div>
 					</section>
 					<section className="listingitems">
