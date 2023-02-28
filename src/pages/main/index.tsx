@@ -114,6 +114,11 @@ const Container = styled.div`
 					outline: none;
 					padding: 0;
 					border: none;
+					font-family: "SF Pro Display";
+					font-style: normal;
+					font-weight: 400;
+					font-size: 15px;
+					color:#818080;
 				}
 				select {
 					border: none;
@@ -167,10 +172,9 @@ const Container = styled.div`
 				display: flex;
 				justify-content: flex-end;
 			}
-			.sortingsection__secondsettings{
+			.sortingsection__secondsettings {
 				display: flex;
 				justify-content: flex-end;
-			
 			}
 			.sortingsection__firstsettings__content {
 				max-width: 350px;
@@ -188,6 +192,26 @@ const Container = styled.div`
 					background-color: #ffffff;
 					padding: 10px 12px;
 					border-radius: 50px;
+					&:hover {
+						background-color: rgb(222, 224, 228);
+						cursor: pointer;
+						transition: ease background-color 700ms;
+					}
+					.balancestring {
+						color: #899cb1;
+					}
+					span.price {
+						margin-left: -15px;
+						font-weight: 700;
+					}
+					img.plusanother {
+					}
+					img.plusanother:hover {
+						cursor: pointer;
+						filter: invert(97%);
+						-webkit-filter: invert(97%);
+						transition: ease filter 400ms;
+					}
 					span.price::after {
 						content: "₽";
 					}
@@ -442,8 +466,9 @@ const Main = () => {
 							<div className="sortingsection__firstsettings__content">
 								<div className="sortingsection__firstsettings__balance">
 									<span className="balancestring">Баланс:</span>
-									{price} <span className="price" />
+									<span className="price">{price}</span>
 									<img
+										onClick={() => setPrice(price + 1)}
 										className="plusanother"
 										src={plusanother}
 										alt="plusanother"
@@ -453,16 +478,17 @@ const Main = () => {
 							</div>
 						</div>
 						<div className="sortingsection__secondsettings">
-						<SelectSorting/>
-						<SelectSorting/>
-						<SelectSorting/>
-						<SelectSorting/>
-						<SelectSorting/>
-						<SelectSorting/>
+							<SelectSorting />
+							<SelectSorting />
+							<SelectSorting />
+							<SelectSorting />
+							<SelectSorting />
+							<SelectSorting />
 						</div>
 					</section>
 					<section className="listingitems">
 						<table>
+							
 							<tr>
 								<th>Тип</th>
 								<th>Время</th>

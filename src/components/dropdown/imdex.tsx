@@ -11,6 +11,8 @@ export const Selectrum: React.FC = () => (
 			defaultValue="Все организации"
 			style={{ width: 300 }}
 			onChange={handleChange}
+		
+		
 			options={[
 				{
 					value: "ИП Жандармов Евгений Романович",
