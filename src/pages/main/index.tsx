@@ -4,7 +4,7 @@ import { allTypes, items } from "assets/constants";
 import plus from "assets/svg/plus.svg";
 import plusanother from "assets/svg/plusanother.svg";
 import vector from "assets/svg/alert.svg";
-import face from "assets/png/img.png";
+import face from "assets/png/face.png";
 import moment from "moment";
 import "moment/locale/ru";
 import { FC, useEffect, useState } from "react";
@@ -16,7 +16,10 @@ import ReactAudioPlayer from "react-audio-player";
 import basicsearch from "assets/svg/basicsearch.svg";
 import keyboard_arrow from "assets/svg/keyboard_arrow.svg";
 import Dropdown from "components/dropdown/imdex";
+import DropdownOwner from "components/dropdown/imdex";
 // import { Selectrumtwo } from "components/dropdown/imdex";
+import { HiChevronDown } from "react-icons/hi2";
+import exit from "assets/svg/exit.svg"
 
 interface IItem {
 	img: string;
@@ -108,6 +111,72 @@ const Container = styled.div`
 			div.header__content__owncabinet {
 				display: flex;
 				align-items: center;
+				div.roomOwner {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					width: 25%;
+					.roomOwner__dashboard {
+						width: 368px;
+						height: 734px;
+						background-color: transparent;
+					border-radius: 5px;
+						position: absolute;
+						top: 65px;
+						right: 100px;
+						background-color: #ffffff;
+						.roomOwner__dashboard__container{
+padding: 20px 32px;
+.roomOwner__dashboard__name{
+	font-family: 'SF Pro Display';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 124%;
+display:flex;
+justify-content: space-between;
+color: #122945;
+width:100%;
+}
+
+.roomOwner__dashboard__subname{
+	font-family: 'SF Pro Display';
+	align-items: center;
+	display: flex;
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 124%;
+color: #5E7793;
+margin-top:6px;
+.dot{
+	display: inline-block;
+	border-radius: 50px;
+	width:4px;
+	height:4px;
+	background-color:#5E7793 ;
+	margin:0 8px;
+}
+}
+
+
+
+						}
+					}
+					.roomOwner__dashboard__active {
+						display: none;
+					}
+					.arrow {
+						width: 55px;
+					}
+					.arrow__active {
+						transform: rotate(180deg);
+						width: 55px;
+					}
+					&:hover {
+						cursor: pointer;
+					}
+				}
 
 				.header__content__input {
 					border-radius: 3px;
@@ -118,7 +187,7 @@ const Container = styled.div`
 					font-style: normal;
 					font-weight: 400;
 					font-size: 15px;
-					color:#818080;
+					color: #818080;
 					width: 30%;
 				}
 				select {
@@ -372,11 +441,13 @@ const Container = styled.div`
 	}
 `;
 
-const Main:FC = ():JSX.Element => {
+const Main: FC = (): JSX.Element => {
 	const [callsArray, setCallsArray] = useState([]);
 	const [stateArrow, setArrowState] = useState<boolean>(false);
 	const [price, setPrice] = useState<number>(272);
-	const [selected, setSelected] = useState<string>('Все организации')
+	const [selected, setSelected] = useState<string>("Все организации");
+	const [stateRoom, setStateRoom] = useState<boolean>(false);
+
 	useEffect(() => {
 		getAllCalls(setCallsArray);
 	}, []);
@@ -436,7 +507,12 @@ const Main:FC = ():JSX.Element => {
 								placeholder="Поиск..."
 							/>
 							<img src={basicsearch} alt="searchlogo" />
-							<Dropdown selected={selected} setSelected={setSelected} stateArrow={stateArrow} setArrowState={setArrowState}/>
+							<Dropdown
+								selected={selected}
+								setSelected={setSelected}
+								stateArrow={stateArrow}
+								setArrowState={setArrowState}
+							/>
 							{/* <Selectrum /> */}
 							{/* <select name="" id="" onClick={() => setArrowState(!stateArrow)}>
 								<option className="employer" value="">
@@ -460,6 +536,73 @@ const Main:FC = ():JSX.Element => {
 								<option value=""></option>
 								<option value=""></option>
 							</select> */}
+							<div
+								className="roomOwner"
+								onClick={() => setStateRoom(!stateRoom)}
+							>
+								<div
+									className={
+										stateRoom
+											? "roomOwner__dashboard__active"
+											: "roomOwner__dashboard"
+									}
+								>
+									<div className="roomOwner__dashboard__container">
+										<div className="roomOwner__dashboard__name">
+											<span className="fullname">Упоров Кирилл</span>
+											<img src={exit} alt="exit" />
+										</div>
+										<div className="roomOwner__dashboard__subname">
+											Директор
+											<span className="dot" />
+											Санкт-Петербург
+										</div>
+										<div className="roomOwner__dashboard__mobilephone">
+											<img src="" alt="phoneicon" />
+											8(800)333-17-21
+										</div>
+										<div className="roomOwner__dashboard__mail">
+											<img src="" alt="mailicon" />
+											hi@skilla.ru
+										</div>
+										<div className="roomOwner__dashboard__operation">
+											Операторы
+										</div>
+										<ul>
+											<li>
+												<img src="" alt="" />
+												Мирон Батонов
+											</li>
+											<li>
+												<img src="" alt="" />
+												Алексей Ильин
+											</li>
+											<li>
+												<img src="" alt="" />
+												Милана Константинопольская
+											</li>
+										</ul>
+										<div className="roomOwner__dashboard__logists">Логисты</div>
+										<ul>
+											<li>Александра Сизых</li>
+											<li>Илья Алексеев</li>
+											<li>Владимир Петров</li>
+										</ul>
+										<div className="roomOwner__dashboard__salescontrol">
+											Бухгалтеры
+										</div>
+										<ul>
+											<li>Полина Калинина</li>
+											<li>Наталья Натальева</li>
+											<li>Константин Вадимович</li>
+										</ul>
+									</div>
+								</div>
+								<img src={face} alt="facelogo" />
+								<HiChevronDown
+									className={stateRoom ? "arrow" : "arrow__active"}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -498,17 +641,17 @@ const Main:FC = ():JSX.Element => {
 							<div className="headertable__items">Оценка</div>
 							<div className="headertable__items">Длительность</div>
 						</div> */}
-						<table>
+					<table>
 						<tr>
-								<th>Тип</th>
-								<th>Время</th>
-								<th>Сотрудник</th>
-								<th>Звонок</th>
-								<th>Источник</th>
-								<th>Оценка</th>
-								<th>Длительность</th>
-							</tr>
-						</table>
+							<th>Тип</th>
+							<th>Время</th>
+							<th>Сотрудник</th>
+							<th>Звонок</th>
+							<th>Источник</th>
+							<th>Оценка</th>
+							<th>Длительность</th>
+						</tr>
+					</table>
 					<section className="listingitems">
 						<table>
 							{callsArray.map((call: any, index) => (

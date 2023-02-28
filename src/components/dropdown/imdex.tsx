@@ -80,7 +80,7 @@ const DropdownItem = styled.div`
 		align-items: center;
 		justify-content: space-between;
 		cursor: pointer;
-		width: 70%;
+		width: 80%;
 		position: relative;
 		span.selectedData {
 			color: #899cb1;
@@ -105,7 +105,7 @@ const DropdownItem = styled.div`
 		box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
 		font-weight: 500;
 		color: #333;
-		width: 70%;
+		width: 80%;
 
 		.dropdown-item {
 			width: 100%;
@@ -123,7 +123,7 @@ const DropdownItem = styled.div`
 	}
 `;
 
-const Dropdown = ({
+export const Dropdown = ({
 	selected,
 	setSelected,
 	stateArrow,
@@ -181,4 +181,65 @@ const Dropdown = ({
 	);
 };
 
-export default Dropdown;
+
+
+
+const DropdownOwner = ({
+	selected,
+	setSelected,
+	stateArrow,
+	setArrowState,
+}: any): JSX.Element => {
+	const [isActive, setIsActive] = useState(false);
+	console.log("isActive", isActive);
+	return (
+		<DropdownItem className="dropdown">
+			<div
+				className="dropdown-btn"
+				onClick={() => {
+					setIsActive(!isActive);
+					setArrowState(!stateArrow);
+				}}
+			>
+				<span className="selectedData">{selected}</span>
+				<HiChevronDown className={stateArrow ? "chevron__active" : "chevron"} />
+			</div>
+			{!!isActive && (
+				<div className="dropdown-content">
+					<div
+						onClick={(e: any) => {
+							setSelected(e.target.textContent);
+							setIsActive(false);
+							setArrowState(!stateArrow);
+						}}
+						className="dropdown-item"
+					>
+						Все организации
+					</div>
+					<div
+						onClick={(e: any) => {
+							setSelected(e.target.textContent);
+							setIsActive(false);
+							setArrowState(!stateArrow);
+						}}
+						className="dropdown-item"
+					>
+						ИП Романов Сергей Владимирович
+					</div>
+					<div
+						onClick={(e: any) => {
+							setSelected(e.target.textContent);
+							setIsActive(false);
+							setArrowState(!stateArrow);
+						}}
+						className="dropdown-item"
+					>
+						ИП Жандармов Евгений Романович
+					</div>
+				</div>
+			)}
+		</DropdownItem>
+	);
+};
+
+export default DropdownOwner;
