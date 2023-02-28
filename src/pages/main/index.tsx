@@ -7,7 +7,7 @@ import vector from "assets/svg/alert.svg";
 import face from "assets/png/img.png";
 import moment from "moment";
 import "moment/locale/ru";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { getAllCalls } from "common/api/helpers";
 import { transformPhoneNumber } from "common/utils";
 import incomecall from "assets/png/call.png";
@@ -15,8 +15,8 @@ import outcall from "assets/png/outcall.png";
 import ReactAudioPlayer from "react-audio-player";
 import basicsearch from "assets/svg/basicsearch.svg";
 import keyboard_arrow from "assets/svg/keyboard_arrow.svg";
-import { Selectrum, SelectSorting } from "components/dropdown/imdex";
-import { Selectrumtwo } from "components/dropdown/imdex";
+import Dropdown from "components/dropdown/imdex";
+// import { Selectrumtwo } from "components/dropdown/imdex";
 
 interface IItem {
 	img: string;
@@ -119,6 +119,7 @@ const Container = styled.div`
 					font-weight: 400;
 					font-size: 15px;
 					color:#818080;
+					width: 30%;
 				}
 				select {
 					border: none;
@@ -371,10 +372,11 @@ const Container = styled.div`
 	}
 `;
 
-const Main = () => {
+const Main:FC = ():JSX.Element => {
 	const [callsArray, setCallsArray] = useState([]);
 	const [stateArrow, setArrowState] = useState<boolean>(false);
 	const [price, setPrice] = useState<number>(272);
+	const [selected, setSelected] = useState<string>('Все организации')
 	useEffect(() => {
 		getAllCalls(setCallsArray);
 	}, []);
@@ -434,7 +436,12 @@ const Main = () => {
 								placeholder="Поиск..."
 							/>
 							<img src={basicsearch} alt="searchlogo" />
-							<Selectrum />
+
+<Dropdown selected={selected} setSelected={setSelected}/>
+
+
+
+							{/* <Selectrum /> */}
 							{/* <select name="" id="" onClick={() => setArrowState(!stateArrow)}>
 								<option className="employer" value="">
 									Все организации
@@ -451,7 +458,7 @@ const Main = () => {
 								src={keyboard_arrow}
 								alt="arrow"
 							/> */}
-							<Selectrumtwo />
+							{/* <Selectrumtwo /> */}
 							{/* <select name="" id="">
 								<option value={face} data-img-src={face}></option>
 								<option value=""></option>
@@ -478,12 +485,12 @@ const Main = () => {
 							</div>
 						</div>
 						<div className="sortingsection__secondsettings">
+							{/* <SelectSorting />
 							<SelectSorting />
 							<SelectSorting />
 							<SelectSorting />
 							<SelectSorting />
-							<SelectSorting />
-							<SelectSorting />
+							<SelectSorting /> */}
 						</div>
 					</section>
 					<section className="listingitems">
