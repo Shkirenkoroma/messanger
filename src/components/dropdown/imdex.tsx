@@ -70,7 +70,7 @@ const DropdownItem = styled.div`
 	margin: 100px auto;
 	position: relative;
 	margin-left: 100px;
-	
+
 	.dropdown-btn {
 		padding: 15px 20px;
 		background: #fff;
@@ -82,14 +82,18 @@ const DropdownItem = styled.div`
 		cursor: pointer;
 		width: 70%;
 		position: relative;
-		span.selectedData{
-			color:#899CB1;
-	 		right:0;
-		
+		span.selectedData {
+			color: #899cb1;
+			right: 0;
 		}
-		.chevron{
+		.chevron {
 			position: absolute;
-			right:5px;
+			right: 5px;
+		}
+		.chevron__active {
+			transform: rotate(180deg);
+			position: absolute;
+			right: 5px;
 		}
 	}
 	.dropdown-content {
@@ -102,31 +106,42 @@ const DropdownItem = styled.div`
 		font-weight: 500;
 		color: #333;
 		width: 70%;
-		
+
 		.dropdown-item {
-			width:100%;
+			width: 100%;
 			padding: 10px;
 			cursor: pointer;
 			transition: all 0.4s;
 			text-align: start;
-color:#899CB1;
+			color: #899cb1;
 			&:hover {
-				background: #DEEAFE;
-				
-				color:#005FF8;
+				background: #deeafe;
+
+				color: #005ff8;
 			}
 		}
 	}
 `;
 
-const Dropdown = ({ selected, setSelected }: any): JSX.Element => {
+const Dropdown = ({
+	selected,
+	setSelected,
+	stateArrow,
+	setArrowState,
+}: any): JSX.Element => {
 	const [isActive, setIsActive] = useState(false);
 	console.log("isActive", isActive);
 	return (
 		<DropdownItem className="dropdown">
-			<div className="dropdown-btn" onClick={() => setIsActive(!isActive)}>
+			<div
+				className="dropdown-btn"
+				onClick={() => {
+					setIsActive(!isActive);
+					setArrowState(!stateArrow);
+				}}
+			>
 				<span className="selectedData">{selected}</span>
-			<HiChevronDown className="chevron"/>
+				<HiChevronDown className={stateArrow ? "chevron__active" : "chevron"} />
 			</div>
 			{!!isActive && (
 				<div className="dropdown-content">
@@ -134,9 +149,9 @@ const Dropdown = ({ selected, setSelected }: any): JSX.Element => {
 						onClick={(e: any) => {
 							setSelected(e.target.textContent);
 							setIsActive(false);
+							setArrowState(!stateArrow);
 						}}
 						className="dropdown-item"
-					
 					>
 						Все организации
 					</div>
@@ -144,6 +159,7 @@ const Dropdown = ({ selected, setSelected }: any): JSX.Element => {
 						onClick={(e: any) => {
 							setSelected(e.target.textContent);
 							setIsActive(false);
+							setArrowState(!stateArrow);
 						}}
 						className="dropdown-item"
 					>
@@ -153,10 +169,11 @@ const Dropdown = ({ selected, setSelected }: any): JSX.Element => {
 						onClick={(e: any) => {
 							setSelected(e.target.textContent);
 							setIsActive(false);
+							setArrowState(!stateArrow);
 						}}
 						className="dropdown-item"
 					>
-							ИП Жандармов Евгений Романович
+						ИП Жандармов Евгений Романович
 					</div>
 				</div>
 			)}

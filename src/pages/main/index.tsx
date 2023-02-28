@@ -436,11 +436,7 @@ const Main:FC = ():JSX.Element => {
 								placeholder="Поиск..."
 							/>
 							<img src={basicsearch} alt="searchlogo" />
-
-<Dropdown selected={selected} setSelected={setSelected}/>
-
-
-
+							<Dropdown selected={selected} setSelected={setSelected} stateArrow={stateArrow} setArrowState={setArrowState}/>
 							{/* <Selectrum /> */}
 							{/* <select name="" id="" onClick={() => setArrowState(!stateArrow)}>
 								<option className="employer" value="">
@@ -493,10 +489,17 @@ const Main:FC = ():JSX.Element => {
 							<SelectSorting /> */}
 						</div>
 					</section>
-					<section className="listingitems">
+					{/* <div className="headertable">
+							<div className="headertable__items">Тип</div>
+							<div className="headertable__items">Время</div>
+							<div className="headertable__items">Сотрудник</div>
+							<div className="headertable__items">Звонок</div>
+							<div className="headertable__items">Источник</div>
+							<div className="headertable__items">Оценка</div>
+							<div className="headertable__items">Длительность</div>
+						</div> */}
 						<table>
-							
-							<tr>
+						<tr>
 								<th>Тип</th>
 								<th>Время</th>
 								<th>Сотрудник</th>
@@ -505,6 +508,9 @@ const Main:FC = ():JSX.Element => {
 								<th>Оценка</th>
 								<th>Длительность</th>
 							</tr>
+						</table>
+					<section className="listingitems">
+						<table>
 							{callsArray.map((call: any, index) => (
 								<tr className="allcalls" key={index}>
 									<td>
@@ -523,7 +529,7 @@ const Main:FC = ():JSX.Element => {
 									<td className="errors">{call.errors}</td>
 									<td>
 										{moment(call.time * 1000).format("mm:ss")}
-										<ReactAudioPlayer src={call.record} autoPlay controls />
+										{/* <ReactAudioPlayer src={call.record} autoPlay controls /> */}
 									</td>
 								</tr>
 							))}
