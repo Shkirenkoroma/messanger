@@ -1,14 +1,16 @@
 {
   "files": {
     "main.css": "/messanger/static/css/main.78fa65b5.css",
-    "main.js": "/messanger/static/js/main.19b276af.js",
+    "main.js": "/messanger/static/js/main.ff750136.js",
     "static/media/settings.svg": "/messanger/static/media/settings.645ed464ffb5fe906747e3d6283829ef.svg",
     "static/media/results.svg": "/messanger/static/media/results.d19d51afd31cc931174118acc0868f0f.svg",
+    "static/media/callers.svg": "/messanger/static/media/callers.cc3019b8cff6a9470aa863b33949774a.svg",
     "static/media/people.svg": "/messanger/static/media/people.c439ae9a8bd6c42e291b5bafda1a010a.svg",
     "static/media/calls.svg": "/messanger/static/media/calls.d6e0c99b67f5c611595395cec73802d7.svg",
     "static/media/data_base.svg": "/messanger/static/media/data_base.a4a9d38b37929f36fb4aeb468b74ddb4.svg",
     "index.html": "/messanger/index.html",
     "static/media/basicsearch.svg": "/messanger/static/media/basicsearch.d6742e5e8865016f5788a2e510673957.svg",
+    "static/media/mail_outline.svg": "/messanger/static/media/mail_outline.5f314c339f6357278ec390612860d5fb.svg",
     "static/media/perm_identity.svg": "/messanger/static/media/perm_identity.068724cac359898181e75084d90324a6.svg",
     "static/media/orders.svg": "/messanger/static/media/orders.9316970ecb0d0aba6695f18ad24b7d65.svg",
     "static/media/cases.svg": "/messanger/static/media/cases.ceb2f7e0f3f5f34f59de3f6a45061393.svg",
@@ -17,12 +19,13 @@
     "static/media/documents.svg": "/messanger/static/media/documents.446d0d0ca10e444ef753e55d39eccaf0.svg",
     "static/media/plus.svg": "/messanger/static/media/plus.2fe54abfc431e9a191d27cde10c52473.svg",
     "static/media/plusanother.svg": "/messanger/static/media/plusanother.ac57f88465192d74e26bd1132a1382ae.svg",
+    "static/media/entrance.svg": "/messanger/static/media/entrance.712e394cdc04f0eadb95e52ef636bf65.svg",
     "static/media/exit.svg": "/messanger/static/media/exit.39c1d3e775556ebe651393c4761fd025.svg",
     "main.78fa65b5.css.map": "/messanger/static/css/main.78fa65b5.css.map",
-    "main.19b276af.js.map": "/messanger/static/js/main.19b276af.js.map"
+    "main.ff750136.js.map": "/messanger/static/js/main.ff750136.js.map"
   },
   "entrypoints": [
     "static/css/main.78fa65b5.css",
-    "static/js/main.19b276af.js"
+    "static/js/main.ff750136.js"
   ]
 }
