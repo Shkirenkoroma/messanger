@@ -14,10 +14,7 @@ import incomecall from "assets/png/call.png";
 import outcall from "assets/png/outcall.png";
 import ReactAudioPlayer from "react-audio-player";
 import basicsearch from "assets/svg/basicsearch.svg";
-import keyboard_arrow from "assets/svg/keyboard_arrow.svg";
-import {Dropdown} from "components/dropdown/imdex";
-// import DropdownOwner from "components/dropdown/imdex";
-// import { Selectrumtwo } from "components/dropdown/imdex";
+import { Dropdown } from "components/dropdown/imdex";
 import { HiChevronDown } from "react-icons/hi2";
 import exit from "assets/svg/exit.svg";
 import callers from "assets/svg/callers.svg";
@@ -25,6 +22,10 @@ import mail_outline from "assets/svg/mail_outline.svg";
 import avatar from "assets/png/avatar.png";
 import entrance from "assets/svg/entrance.svg";
 import { DatePicker } from "components/datepicker";
+import leftarrow from "assets/svg/datepicker/arrow_left.svg"
+import rightarrow from "assets/svg/datepicker/arrow_right.svg"
+import iconcalendar from "assets/svg/datepicker/icon-calendar.svg"
+
 interface IItem {
 	img: string;
 	alt: string;
@@ -127,7 +128,7 @@ const Container = styled.div`
 						background-color: transparent;
 						border-radius: 5px;
 						position: absolute;
-						left:-288px;
+						left: -288px;
 						top: 65px;
 						background-color: #ffffff;
 						.roomOwner__dashboard__container {
@@ -148,7 +149,6 @@ const Container = styled.div`
 									transition: ease filter 200ms;
 								}
 							}
-
 							.roomOwner__dashboard__subname {
 								font-family: "SF Pro Display";
 								align-items: center;
@@ -168,7 +168,6 @@ const Container = styled.div`
 									margin: 0 8px;
 								}
 							}
-
 							.roomOwner__dashboard__mobilephone {
 								font-family: "SF Pro Display";
 								align-items: center;
@@ -423,6 +422,24 @@ const Container = styled.div`
 				align-items: center;
 				justify-content: space-between;
 				display: flex;
+				.datapicker{
+					margin-left:60px;
+						display:flex;
+						.centericons{
+							display: flex;
+						}
+						.rightarrow{
+							position: relative;
+    left: -35px;
+						}
+						img{
+							position: relative;
+							left:8px;
+						}
+						&:hover{
+							cursor: pointer;
+						}
+					}
 				.sortingsection__firstsettings__balance {
 					display: flex;
 					align-items: center;
@@ -432,6 +449,7 @@ const Container = styled.div`
 					background-color: #ffffff;
 					padding: 10px 12px;
 					border-radius: 50px;
+					
 					&:hover {
 						background-color: rgb(222, 224, 228);
 						cursor: pointer;
@@ -617,6 +635,7 @@ const Main: FC = (): JSX.Element => {
 	const [price, setPrice] = useState<number>(272);
 	const [selected, setSelected] = useState<string>("Все организации");
 	const [stateRoom, setStateRoom] = useState<boolean>(false);
+	const [stateDatePicker, setStateDatePicker] = useState<string>("3 дня");
 
 	useEffect(() => {
 		getAllCalls(setCallsArray);
@@ -690,8 +709,8 @@ const Main: FC = (): JSX.Element => {
 								<div
 									className={
 										stateRoom
-											? "roomOwner__dashboard__active"
-											: "roomOwner__dashboard"
+											?"roomOwner__dashboard" 
+											: "roomOwner__dashboard__active"
 									}
 								>
 									<div className="roomOwner__dashboard__container">
@@ -811,7 +830,7 @@ const Main: FC = (): JSX.Element => {
 								</div>
 								<img src={face} alt="facelogo" />
 								<HiChevronDown
-									className={stateRoom ? "arrow" : "arrow__active"}
+									className={stateRoom ?"arrow__active"  : "arrow"}
 								/>
 							</div>
 						</div>
@@ -832,11 +851,15 @@ const Main: FC = (): JSX.Element => {
 									/>
 								</div>
 								<div className="datapicker">
-								<DatePicker />
-									<img src="" alt="" />
-									<img src="" alt="" />
-									<img src="" alt="" />
-							
+									<img src={leftarrow} alt="leftarrow" />
+									<div className="centericons">
+									<img src={iconcalendar} alt="iconcalendar" />
+									<DatePicker
+										stateDatePicker={stateDatePicker}
+										setStateDatePicker={setStateDatePicker}
+									/>
+									</div>
+									<img className="rightarrow" src={rightarrow} alt="rightarrow" />
 								</div>
 							</div>
 						</div>
