@@ -184,62 +184,62 @@ export const Dropdown = ({
 
 
 
-const DropdownOwner = ({
-	selected,
-	setSelected,
-	stateArrow,
-	setArrowState,
-}: any): JSX.Element => {
-	const [isActive, setIsActive] = useState(false);
-	console.log("isActive", isActive);
-	return (
-		<DropdownItem className="dropdown">
-			<div
-				className="dropdown-btn"
-				onClick={() => {
-					setIsActive(!isActive);
-					setArrowState(!stateArrow);
-				}}
-			>
-				<span className="selectedData">{selected}</span>
-				<HiChevronDown className={stateArrow ? "chevron__active" : "chevron"} />
-			</div>
-			{!!isActive && (
-				<div className="dropdown-content">
-					<div
-						onClick={(e: any) => {
-							setSelected(e.target.textContent);
-							setIsActive(false);
-							setArrowState(!stateArrow);
-						}}
-						className="dropdown-item"
-					>
-						Все организации
-					</div>
-					<div
-						onClick={(e: any) => {
-							setSelected(e.target.textContent);
-							setIsActive(false);
-							setArrowState(!stateArrow);
-						}}
-						className="dropdown-item"
-					>
-						ИП Романов Сергей Владимирович
-					</div>
-					<div
-						onClick={(e: any) => {
-							setSelected(e.target.textContent);
-							setIsActive(false);
-							setArrowState(!stateArrow);
-						}}
-						className="dropdown-item"
-					>
-						ИП Жандармов Евгений Романович
-					</div>
-				</div>
-			)}
-		</DropdownItem>
-	);
-};
+// const DropdownOwner = ({
+// 	selected,
+// 	setSelected,
+// 	stateArrow,
+// 	setArrowState,
+// }: any): JSX.Element => {
+// 	const [isActive, setIsActive] = useState(false);
+// 	console.log("isActive", isActive);
+// 	return (
+// 		<DropdownItem className="dropdown">
+// 			<div
+// 				className="dropdown-btn"
+// 				onClick={() => {
+// 					setIsActive(!isActive);
+// 					setArrowState(!stateArrow);
+// 				}}
+// 			>
+// 				<span className="selectedData">{selected}</span>
+// 				<HiChevronDown className={stateArrow ? "chevron__active" : "chevron"} />
+// 			</div>
+// 			{!!isActive && (
+// 				<div className="dropdown-content">
+// 					<div
+// 						onClick={(e: any) => {
+// 							setSelected(e.target.textContent);
+// 							setIsActive(false);
+// 							setArrowState(!stateArrow);
+// 						}}
+// 						className="dropdown-item"
+// 					>
+// 						Все организации
+// 					</div>
+// 					<div
+// 						onClick={(e: any) => {
+// 							setSelected(e.target.textContent);
+// 							setIsActive(false);
+// 							setArrowState(!stateArrow);
+// 						}}
+// 						className="dropdown-item"
+// 					>
+// 						ИП Романов Сергей Владимирович
+// 					</div>
+// 					<div
+// 						onClick={(e: any) => {
+// 							setSelected(e.target.textContent);
+// 							setIsActive(false);
+// 							setArrowState(!stateArrow);
+// 						}}
+// 						className="dropdown-item"
+// 					>
+// 						ИП Жандармов Евгений Романович
+// 					</div>
+// 				</div>
+// 			)}
+// 		</DropdownItem>
+// 	);
+// };
 
-export default DropdownOwner;
+// export default DropdownOwner;

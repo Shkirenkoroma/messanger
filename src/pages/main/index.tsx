@@ -15,8 +15,8 @@ import outcall from "assets/png/outcall.png";
 import ReactAudioPlayer from "react-audio-player";
 import basicsearch from "assets/svg/basicsearch.svg";
 import keyboard_arrow from "assets/svg/keyboard_arrow.svg";
-import Dropdown from "components/dropdown/imdex";
-import DropdownOwner from "components/dropdown/imdex";
+import {Dropdown} from "components/dropdown/imdex";
+// import DropdownOwner from "components/dropdown/imdex";
 // import { Selectrumtwo } from "components/dropdown/imdex";
 import { HiChevronDown } from "react-icons/hi2";
 import exit from "assets/svg/exit.svg";
@@ -24,6 +24,7 @@ import callers from "assets/svg/callers.svg";
 import mail_outline from "assets/svg/mail_outline.svg";
 import avatar from "assets/png/avatar.png";
 import entrance from "assets/svg/entrance.svg";
+import { DatePicker } from "components/datepicker";
 interface IItem {
 	img: string;
 	alt: string;
@@ -119,14 +120,15 @@ const Container = styled.div`
 					align-items: center;
 					justify-content: space-between;
 					width: 25%;
+					position: relative;
 					.roomOwner__dashboard {
 						width: 368px;
 						height: 734px;
 						background-color: transparent;
 						border-radius: 5px;
 						position: absolute;
+						left:-288px;
 						top: 65px;
-						right: 100px;
 						background-color: #ffffff;
 						.roomOwner__dashboard__container {
 							padding: 20px 32px;
@@ -829,7 +831,13 @@ const Main: FC = (): JSX.Element => {
 										alt="plusanother"
 									/>
 								</div>
-								датапикер
+								<div className="datapicker">
+								<DatePicker />
+									<img src="" alt="" />
+									<img src="" alt="" />
+									<img src="" alt="" />
+							
+								</div>
 							</div>
 						</div>
 						<div className="sortingsection__secondsettings"></div>
