@@ -101,7 +101,7 @@ export const DatePicker = ({
 						}}
 						className="dropdown-item"
 					>
-						Неделя (год)
+						Неделя
 					</div>
 					<div
 						onClick={(e: any) => {
