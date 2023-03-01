@@ -19,8 +19,11 @@ import Dropdown from "components/dropdown/imdex";
 import DropdownOwner from "components/dropdown/imdex";
 // import { Selectrumtwo } from "components/dropdown/imdex";
 import { HiChevronDown } from "react-icons/hi2";
-import exit from "assets/svg/exit.svg"
-
+import exit from "assets/svg/exit.svg";
+import callers from "assets/svg/callers.svg";
+import mail_outline from "assets/svg/mail_outline.svg";
+import avatar from "assets/png/avatar.png";
+import entrance from "assets/svg/entrance.svg";
 interface IItem {
 	img: string;
 	alt: string;
@@ -120,47 +123,213 @@ const Container = styled.div`
 						width: 368px;
 						height: 734px;
 						background-color: transparent;
-					border-radius: 5px;
+						border-radius: 5px;
 						position: absolute;
 						top: 65px;
 						right: 100px;
 						background-color: #ffffff;
-						.roomOwner__dashboard__container{
-padding: 20px 32px;
-.roomOwner__dashboard__name{
-	font-family: 'SF Pro Display';
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 124%;
-display:flex;
-justify-content: space-between;
-color: #122945;
-width:100%;
-}
+						.roomOwner__dashboard__container {
+							padding: 20px 32px;
+							.roomOwner__dashboard__name {
+								font-family: "SF Pro Display";
+								font-style: normal;
+								font-weight: 500;
+								font-size: 18px;
+								line-height: 124%;
+								display: flex;
+								justify-content: space-between;
+								color: #122945;
+								width: 96%;
+								img.exit:hover {
+									filter: hue-rotate(120deg);
+									-webkit-filter: hue-rotate(120deg);
+									transition: ease filter 200ms;
+								}
+							}
 
-.roomOwner__dashboard__subname{
-	font-family: 'SF Pro Display';
-	align-items: center;
-	display: flex;
-font-style: normal;
-font-weight: 400;
-font-size: 15px;
-line-height: 124%;
-color: #5E7793;
-margin-top:6px;
-.dot{
-	display: inline-block;
-	border-radius: 50px;
-	width:4px;
-	height:4px;
-	background-color:#5E7793 ;
-	margin:0 8px;
-}
-}
+							.roomOwner__dashboard__subname {
+								font-family: "SF Pro Display";
+								align-items: center;
+								display: flex;
+								font-style: normal;
+								font-weight: 400;
+								font-size: 15px;
+								line-height: 124%;
+								color: #5e7793;
+								margin-top: 6px;
+								.dot {
+									display: inline-block;
+									border-radius: 50px;
+									width: 4px;
+									height: 4px;
+									background-color: #5e7793;
+									margin: 0 8px;
+								}
+							}
 
+							.roomOwner__dashboard__mobilephone {
+								font-family: "SF Pro Display";
+								align-items: center;
+								display: flex;
+								font-style: normal;
+								font-weight: 400;
+								font-size: 15px;
+								line-height: 124%;
+								color: #5e7793;
+								margin-top: 6px;
+								img {
+									margin-right: 12px;
+								}
+							}
+							.roomOwner__dashboard__mail {
+								font-family: "SF Pro Display";
+								align-items: center;
+								display: flex;
+								font-style: normal;
+								font-weight: 400;
+								font-size: 15px;
+								line-height: 124%;
+								color: #5e7793;
+								margin-top: 6px;
+								margin-bottom: 16px;
 
+								img {
+									margin-right: 12px;
+								}
+							}
+							hr {
+								background-color: #eaf0fa;
+								height: 1px;
+							}
+							.roomOwner__dashboard__operation {
+								font-family: "SF Pro Display";
+								font-style: normal;
+								font-weight: 400;
+								font-size: 15px;
+								line-height: 124%;
+								display: flex;
+								align-items: center;
+								color: #5e7793;
+								margin-top: 16px;
+							}
+							.roomOwner__dashboard__logists {
+								font-family: "SF Pro Display";
+								font-style: normal;
+								font-weight: 400;
+								font-size: 15px;
+								line-height: 124%;
+								display: flex;
+								align-items: center;
+								color: #5e7793;
+								margin-top: 16px;
+							}
+							.roomOwner__dashboard__logisticitems {
+								display: flex;
+								align-items: center;
+								margin-top: 16px;
+								font-family: "SF Pro Display";
+								font-style: normal;
+								font-weight: 400;
+								font-size: 15px;
+								line-height: 124%;
+								display: flex;
+								align-items: center;
+								color: #005ff8;
+								position: relative;
+								&:hover {
+									background-color: #deeafe;
+									transition: ease background-color 800ms;
+									color: #0000f4;
+									img.entrance {
+										filter: hue-rotate(160deg);
+										-webkit-filter: hue-rotate(160deg);
+										transition: ease filter 200ms;
+									}
+								}
+								img {
+									margin-right: 15px;
+								}
+								img.entrance {
+									position: absolute;
+									right: 0;
+								}
+							}
+							.roomOwner__dashboard__salescontrol {
+								font-family: "SF Pro Display";
+								font-style: normal;
+								font-weight: 400;
+								font-size: 15px;
+								line-height: 124%;
+								display: flex;
+								align-items: center;
+								color: #5e7793;
+								margin-top: 16px;
+							}
+							.roomOwner__dashboard__salescontrol-item {
+								display: flex;
+								align-items: center;
+								display: flex;
+								align-items: center;
+								margin-top: 16px;
+								font-family: "SF Pro Display";
+								font-style: normal;
+								font-weight: 400;
+								font-size: 15px;
+								line-height: 124%;
+								display: flex;
+								align-items: center;
+								color: #005ff8;
+								position: relative;
 
+								img {
+									margin-right: 15px;
+								}
+								img.entrance {
+									position: absolute;
+									right: 0;
+								}
+								&:hover {
+									background-color: #deeafe;
+									transition: ease background-color 800ms;
+									color: #0000f4;
+									img.entrance {
+										filter: hue-rotate(160deg);
+										-webkit-filter: hue-rotate(160deg);
+										transition: ease filter 200ms;
+									}
+								}
+							}
+						}
+						.roomOwner__dashboard__personal {
+							display: flex;
+							align-items: center;
+							font-family: "SF Pro Display";
+							font-style: normal;
+							font-weight: 400;
+							font-size: 15px;
+							line-height: 124%;
+							display: flex;
+							align-items: center;
+							color: #005ff8;
+							margin-top: 10px;
+							position: relative;
+							&:hover {
+								background-color: #deeafe;
+								transition: ease background-color 800ms;
+								color: #0000f4;
+								img.entrance {
+									filter: hue-rotate(160deg);
+									-webkit-filter: hue-rotate(160deg);
+									transition: ease filter 200ms;
+								}
+							}
+							img {
+								margin-right: 12px;
+							}
+							img.entrance {
+								position: absolute;
+								right: 0;
+							}
 						}
 					}
 					.roomOwner__dashboard__active {
@@ -177,7 +346,6 @@ margin-top:6px;
 						cursor: pointer;
 					}
 				}
-
 				.header__content__input {
 					border-radius: 3px;
 					outline: none;
@@ -513,29 +681,6 @@ const Main: FC = (): JSX.Element => {
 								stateArrow={stateArrow}
 								setArrowState={setArrowState}
 							/>
-							{/* <Selectrum /> */}
-							{/* <select name="" id="" onClick={() => setArrowState(!stateArrow)}>
-								<option className="employer" value="">
-									Все организации
-								</option>
-								<option className="employer" value="">
-									ИП Жандармов Евгений Романович
-								</option>
-								<option className="employer" value="">
-									ИП Романов Сергей Владимирович
-								</option>
-							</select> */}
-							{/* <img
-								className={stateArrow ? "arrow__active" : "arrow"}
-								src={keyboard_arrow}
-								alt="arrow"
-							/> */}
-							{/* <Selectrumtwo /> */}
-							{/* <select name="" id="">
-								<option value={face} data-img-src={face}></option>
-								<option value=""></option>
-								<option value=""></option>
-							</select> */}
 							<div
 								className="roomOwner"
 								onClick={() => setStateRoom(!stateRoom)}
@@ -550,7 +695,7 @@ const Main: FC = (): JSX.Element => {
 									<div className="roomOwner__dashboard__container">
 										<div className="roomOwner__dashboard__name">
 											<span className="fullname">Упоров Кирилл</span>
-											<img src={exit} alt="exit" />
+											<img className="exit" src={exit} alt="exit" />
 										</div>
 										<div className="roomOwner__dashboard__subname">
 											Директор
@@ -558,43 +703,107 @@ const Main: FC = (): JSX.Element => {
 											Санкт-Петербург
 										</div>
 										<div className="roomOwner__dashboard__mobilephone">
-											<img src="" alt="phoneicon" />
+											<img src={callers} alt="phoneicon" />
 											8(800)333-17-21
 										</div>
 										<div className="roomOwner__dashboard__mail">
-											<img src="" alt="mailicon" />
+											<img src={mail_outline} alt="mailicon" />
 											hi@skilla.ru
 										</div>
+										<hr />
 										<div className="roomOwner__dashboard__operation">
 											Операторы
 										</div>
 										<ul>
-											<li>
-												<img src="" alt="" />
-												Мирон Батонов
+											<li className="roomOwner__dashboard__personal">
+												<img src={avatar} alt="avatar" />
+												Мирона Батонова
+												<img
+													className="entrance"
+													src={entrance}
+													alt="entrance"
+												/>
 											</li>
-											<li>
-												<img src="" alt="" />
-												Алексей Ильин
+											<li className="roomOwner__dashboard__personal">
+												<img src={avatar} alt="avatar" />
+												Александра Ильина
+												<img
+													className="entrance"
+													src={entrance}
+													alt="entrance"
+												/>
 											</li>
-											<li>
-												<img src="" alt="" />
+											<li className="roomOwner__dashboard__personal">
+												<img src={avatar} alt="avatar" />
 												Милана Константинопольская
+												<img
+													className="entrance"
+													src={entrance}
+													alt="entrance"
+												/>
 											</li>
 										</ul>
 										<div className="roomOwner__dashboard__logists">Логисты</div>
 										<ul>
-											<li>Александра Сизых</li>
-											<li>Илья Алексеев</li>
-											<li>Владимир Петров</li>
+											<li className="roomOwner__dashboard__logisticitems">
+												<img src={avatar} alt="avatar" />
+												Александра Сизых
+												<img
+													className="entrance"
+													src={entrance}
+													alt="entrance"
+												/>
+											</li>
+											<li className="roomOwner__dashboard__logisticitems">
+												<img src={avatar} alt="avatar" />
+												Ольга Алексеевна
+												<img
+													className="entrance"
+													src={entrance}
+													alt="entrance"
+												/>
+											</li>
+											<li className="roomOwner__dashboard__logisticitems">
+												<img src={avatar} alt="avatar" />
+												Людмила Петровна
+												<img
+													className="entrance"
+													src={entrance}
+													alt="entrance"
+												/>
+											</li>
 										</ul>
 										<div className="roomOwner__dashboard__salescontrol">
 											Бухгалтеры
 										</div>
 										<ul>
-											<li>Полина Калинина</li>
-											<li>Наталья Натальева</li>
-											<li>Константин Вадимович</li>
+											<li className="roomOwner__dashboard__salescontrol-item">
+												<img src={avatar} alt="avatar" />
+												Полина Калинина
+												<img
+													className="entrance"
+													src={entrance}
+													alt="entrance"
+												/>
+											</li>
+											<li className="roomOwner__dashboard__salescontrol-item">
+												<img src={avatar} alt="avatar" />
+												Наталья Владимировна
+												<img
+													className="entrance"
+													src={entrance}
+													alt="entrance"
+												/>
+											</li>
+											<li className="roomOwner__dashboard__salescontrol-item">
+												<img src={avatar} alt="avatar" />
+												Алла Олеговна
+												<img
+													className="entrance"
+													src={entrance}
+													alt="entrance"
+												/>
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -623,24 +832,8 @@ const Main: FC = (): JSX.Element => {
 								датапикер
 							</div>
 						</div>
-						<div className="sortingsection__secondsettings">
-							{/* <SelectSorting />
-							<SelectSorting />
-							<SelectSorting />
-							<SelectSorting />
-							<SelectSorting />
-							<SelectSorting /> */}
-						</div>
+						<div className="sortingsection__secondsettings"></div>
 					</section>
-					{/* <div className="headertable">
-							<div className="headertable__items">Тип</div>
-							<div className="headertable__items">Время</div>
-							<div className="headertable__items">Сотрудник</div>
-							<div className="headertable__items">Звонок</div>
-							<div className="headertable__items">Источник</div>
-							<div className="headertable__items">Оценка</div>
-							<div className="headertable__items">Длительность</div>
-						</div> */}
 					<table>
 						<tr>
 							<th>Тип</th>
