@@ -1,45 +1,46 @@
+import Datepickertofrom from "components/datepickerCustom";
 import { useState } from "react";
 import styled from "styled-components";
 
 const DatePickerItem = styled.div`
 	position: relative;
+	width: 40px;
 	.dropdown-btn {
-		padding: 15px 20px;
-		background: transparent;
-		font-weight: bold;
-		color: #333;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		cursor: pointer;
-		position: relative;
-		span.selectedData {
-			color: #899cb1;
-		position: absolute;
-      left:14px;
-		}
+		width: 50px;
 	}
+	.selectedData {
+		font-family: "SF Pro Display";
+		font-style: normal;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 16px;
+		text-align: center;
+		color: #005ff8;
+	}
+
 	.dropdown-content {
+		background-color: #ffffff;
 		position: absolute;
-		left: 0;
-		top: 110%;
-		padding: 10px;
-		background: #fff;
-		box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
-		font-weight: 500;
-		color: #333;
-		width: 152px;
-		left: -75px;
+		width: 185px;
+		text-align: left;
+		right: -35px;
+		top: 25px;
+		padding: 10px 10px;
+		border-radius: 5px;
+
 		.dropdown-item {
-			max-width: 500px;
-			width: 133px;
-			padding: 10px;
-			cursor: pointer;
-			transition: all 0.4s;
-			text-align: start;
+			font-family: "SF Pro Display";
+			font-style: normal;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 28px;
+			display: flex;
+			align-items: center;
 			color: #899cb1;
+			width: 100%;
 			&:hover {
-				background: #deeafe;
+				background-color: #deeafe;
+				transition: ease background-color 500ms;
 				color: #005ff8;
 			}
 		}
@@ -49,19 +50,12 @@ const DatePickerItem = styled.div`
 export const DatePicker = ({
 	stateDatePicker,
 	setStateDatePicker,
+	isActive,
+	setIsActive,
 }: any): JSX.Element => {
-	const [isActive, setIsActive] = useState(false);
-	console.log("isActive", isActive);
 	return (
-		<DatePickerItem>
-			<div
-				className="dropdown-btn"
-				onClick={() => {
-					setIsActive(!isActive);
-				}}
-			>
-				<span className="selectedData">{stateDatePicker}</span>
-			</div>
+		<DatePickerItem style={{width:"50px", textAlign:"center"}}>
+			<div className="selectedData">{stateDatePicker}</div>
 			{!!isActive && (
 				<div className="dropdown-content">
 					<div
@@ -100,6 +94,15 @@ export const DatePicker = ({
 					>
 						Год
 					</div>
+					<div
+						onClick={(e: any) => {
+							setStateDatePicker(e.target.textContent);
+							setIsActive(false);
+						}}
+						className="dropdown-item"
+					>
+					</div>
+					<Datepickertofrom/>
 				</div>
 			)}
 		</DatePickerItem>

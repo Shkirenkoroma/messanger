@@ -22,9 +22,10 @@ import mail_outline from "assets/svg/mail_outline.svg";
 import avatar from "assets/png/avatar.png";
 import entrance from "assets/svg/entrance.svg";
 import { DatePicker } from "components/datepicker";
-import leftarrow from "assets/svg/datepicker/arrow_left.svg"
-import rightarrow from "assets/svg/datepicker/arrow_right.svg"
-import iconcalendar from "assets/svg/datepicker/icon-calendar.svg"
+import leftarrow from "assets/svg/datepicker/arrow_left.svg";
+import rightarrow from "assets/svg/datepicker/arrow_right.svg";
+import iconcalendar from "assets/svg/datepicker/icon-calendar.svg";
+import Datepickertofrom from "components/datepickerCustom";
 
 interface IItem {
 	img: string;
@@ -131,6 +132,7 @@ const Container = styled.div`
 						left: -288px;
 						top: 65px;
 						background-color: #ffffff;
+						z-index: 1;
 						.roomOwner__dashboard__container {
 							padding: 20px 32px;
 							.roomOwner__dashboard__name {
@@ -281,7 +283,6 @@ const Container = styled.div`
 								align-items: center;
 								color: #005ff8;
 								position: relative;
-
 								img {
 									margin-right: 15px;
 								}
@@ -422,24 +423,29 @@ const Container = styled.div`
 				align-items: center;
 				justify-content: space-between;
 				display: flex;
-				.datapicker{
-					margin-left:60px;
-						display:flex;
-						.centericons{
-							display: flex;
-						}
-						.rightarrow{
-							position: relative;
-    left: -35px;
-						}
-						img{
-							position: relative;
-							left:8px;
-						}
-						&:hover{
-							cursor: pointer;
+				.datapicker {
+					margin-left: 60px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					.leftarrow{
+						width:40px;
+					}
+					.rightarrow{
+						width:40px;
+					}
+					.centericons {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						.calendaricon{
+							width:20px;
 						}
 					}
+					&:hover {
+						cursor: pointer;
+					}
+				}
 				.sortingsection__firstsettings__balance {
 					display: flex;
 					align-items: center;
@@ -449,7 +455,7 @@ const Container = styled.div`
 					background-color: #ffffff;
 					padding: 10px 12px;
 					border-radius: 50px;
-					
+
 					&:hover {
 						background-color: rgb(222, 224, 228);
 						cursor: pointer;
@@ -459,7 +465,7 @@ const Container = styled.div`
 						color: #899cb1;
 					}
 					span.price {
-						margin-left: -15px;
+						
 						font-weight: 700;
 					}
 					img.plusanother {
@@ -636,6 +642,7 @@ const Main: FC = (): JSX.Element => {
 	const [selected, setSelected] = useState<string>("Все организации");
 	const [stateRoom, setStateRoom] = useState<boolean>(false);
 	const [stateDatePicker, setStateDatePicker] = useState<string>("3 дня");
+	const [isActive, setIsActive] = useState(false);
 
 	useEffect(() => {
 		getAllCalls(setCallsArray);
@@ -709,7 +716,7 @@ const Main: FC = (): JSX.Element => {
 								<div
 									className={
 										stateRoom
-											?"roomOwner__dashboard" 
+											? "roomOwner__dashboard"
 											: "roomOwner__dashboard__active"
 									}
 								>
@@ -830,7 +837,7 @@ const Main: FC = (): JSX.Element => {
 								</div>
 								<img src={face} alt="facelogo" />
 								<HiChevronDown
-									className={stateRoom ?"arrow__active"  : "arrow"}
+									className={stateRoom ? "arrow__active" : "arrow"}
 								/>
 							</div>
 						</div>
@@ -850,16 +857,33 @@ const Main: FC = (): JSX.Element => {
 										alt="plusanother"
 									/>
 								</div>
-								<div className="datapicker">
-									<img src={leftarrow} alt="leftarrow" />
-									<div className="centericons">
-									<img src={iconcalendar} alt="iconcalendar" />
-									<DatePicker
-										stateDatePicker={stateDatePicker}
-										setStateDatePicker={setStateDatePicker}
-									/>
+								<div className="datapicker" onClick={() => {
+					setIsActive(!isActive);
+				}}>
+					<Datepickertofrom/>
+									<div className="leftarrow">
+										<img src={leftarrow} alt="leftarrow" />
 									</div>
-									<img className="rightarrow" src={rightarrow} alt="rightarrow" />
+									<div className="centericons">
+										<div className="calendaricon">
+
+										<img src={iconcalendar} alt="iconcalendar" />
+
+										</div>
+										<DatePicker
+											stateDatePicker={stateDatePicker}
+											setStateDatePicker={setStateDatePicker}
+											isActive={isActive}
+											setIsActive={setIsActive}
+										/>
+									</div>
+									<div className="rightarrow">
+										<img
+											
+											src={rightarrow}
+											alt="rightarrow"
+										/>
+									</div>
 								</div>
 							</div>
 						</div>
