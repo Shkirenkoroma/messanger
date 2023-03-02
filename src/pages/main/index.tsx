@@ -25,7 +25,8 @@ import { DatePicker } from "components/datepicker";
 import leftarrow from "assets/svg/datepicker/arrow_left.svg";
 import rightarrow from "assets/svg/datepicker/arrow_right.svg";
 import iconcalendar from "assets/svg/datepicker/icon-calendar.svg";
-import Datepickertofrom from "components/datepickerCustom";
+import { DatePickers } from "components/datepickerCustom";
+// import Datepickertofrom from "components/datepickerCustom";
 
 interface IItem {
 	img: string;
@@ -428,6 +429,7 @@ const Container = styled.div`
 					display: flex;
 					align-items: center;
 					justify-content: center;
+					
 					.leftarrow{
 						width:40px;
 					}
@@ -857,10 +859,11 @@ const Main: FC = (): JSX.Element => {
 										alt="plusanother"
 									/>
 								</div>
-								<div className="datapicker" onClick={() => {
+								<div className="datapicker" onClick={(e) => {
+									
 					setIsActive(!isActive);
 				}}>
-					<Datepickertofrom/>
+					{/* <Datepickertofrom/> */}
 									<div className="leftarrow">
 										<img src={leftarrow} alt="leftarrow" />
 									</div>
@@ -869,6 +872,7 @@ const Main: FC = (): JSX.Element => {
 
 										<img src={iconcalendar} alt="iconcalendar" />
 
+										
 										</div>
 										<DatePicker
 											stateDatePicker={stateDatePicker}

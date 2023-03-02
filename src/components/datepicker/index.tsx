@@ -1,4 +1,5 @@
-import Datepickertofrom from "components/datepickerCustom";
+// import Datepickertofrom from "components/datepickerCustom";
+import { DatePickers } from "components/datepickerCustom";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -57,9 +58,10 @@ export const DatePicker = ({
 		<DatePickerItem style={{width:"50px", textAlign:"center"}}>
 			<div className="selectedData">{stateDatePicker}</div>
 			{!!isActive && (
-				<div className="dropdown-content">
+				<div className="dropdown-content" onClick={(e:any)=>{e.stopPropagation()}}>
 					<div
 						onClick={(e: any) => {
+							
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -69,6 +71,7 @@ export const DatePicker = ({
 					</div>
 					<div
 						onClick={(e: any) => {
+							
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -78,6 +81,7 @@ export const DatePicker = ({
 					</div>
 					<div
 						onClick={(e: any) => {
+						
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -87,6 +91,7 @@ export const DatePicker = ({
 					</div>
 					<div
 						onClick={(e: any) => {
+							
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -94,15 +99,9 @@ export const DatePicker = ({
 					>
 						Год
 					</div>
-					<div
-						onClick={(e: any) => {
-							setStateDatePicker(e.target.textContent);
-							setIsActive(false);
-						}}
-						className="dropdown-item"
-					>
-					</div>
-					<Datepickertofrom/>
+					
+				Указать даты
+					<DatePickers />
 				</div>
 			)}
 		</DatePickerItem>

@@ -1,0 +1,22 @@
+.date {
+	display: flex;
+}
+.date img {
+	position: relative;
+	right: 10px;
+}
+.react-datepicker__month {
+	width: 11% !important;
+}
+
+.react-datepicker__day-names {
+	width: 12% !important;
+}
+
+.react-datepicker__input-container:focus {
+	outline: none;
+}
+
+.react-datepicker-ignore-onclickoutside:focus {
+	outline: none;
+}
