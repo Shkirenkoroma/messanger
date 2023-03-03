@@ -1,134 +1,98 @@
-import { useState } from "react";
+import React, { FC, useState } from "react";
+// import { Select, Space } from "antd";
 import styled from "styled-components";
+import { HiChevronDown } from "react-icons/hi2";
 
 const Selector = styled.div`
+	width: 550px;
 	position: relative;
-	width: 40px;
+	margin-left: 100px;
+
 	.dropdown-btn {
-		width: 50px;
-	}
-	.selectedData {
-		font-family: "SF Pro Display";
-		font-style: normal;
-		font-weight: 700;
-		font-size: 14px;
-		line-height: 16px;
-		text-align: center;
-		color: #005ff8;
-	}
-	.selectedDataRange {
-		font-family: "SF Pro Display";
-		font-style: normal;
-		font-weight: 700;
-		font-size: 10px;
-		line-height: 20px;
-		text-align: center;
-		color: #005ff8;
-	}
-
-	.dropdown-content {
-		background-color: #ffffff;
-		position: absolute;
-		width: 185px;
-		text-align: left;
-		right: -35px;
-		top: 25px;
-		padding: 10px 10px;
-		border-radius: 5px;
-
-		.dropdown-item {
-			font-family: "SF Pro Display";
-			font-style: normal;
-			font-weight: 400;
-			font-size: 14px;
-			line-height: 28px;
-			display: flex;
-			align-items: center;
+		padding: 15px 20px;
+		background: #fff;
+		font-weight: bold;
+		color: #333;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		cursor: pointer;
+		width: 80%;
+		position: relative;
+		span.selectedData {
 			color: #899cb1;
+			right: 0;
+		}
+		.chevron {
+			position: absolute;
+			right: 5px;
+		}
+		.chevron__active {
+			transform: rotate(180deg);
+			position: absolute;
+			right: 5px;
+		}
+	}
+	.dropdown-content {
+		position: absolute;
+		left: 0;
+		top: 110%;
+		padding: 10px;
+		background: #fff;
+		box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+		font-weight: 500;
+		color: #333;
+		width: 80%;
+		.dropdown-item {
 			width: 100%;
+			padding: 10px;
+			cursor: pointer;
+			transition: all 0.4s;
+			text-align: start;
+			color: #899cb1;
 			&:hover {
-				background-color: #deeafe;
-				transition: ease background-color 500ms;
+				background: #deeafe;
 				color: #005ff8;
 			}
-		}
-		.stringdate {
-			font-family: "SF Pro Display";
-			font-style: normal;
-			font-weight: 400;
-			font-size: 14px;
-			line-height: 28px;
-			display: flex;
-			align-items: center;
-			color: #122945;
 		}
 	}
 `;
 
 export const Select = ({
-	stateDatePicker,
-	setStateDatePicker,
-	isActive,
-	setIsActive,
-	setTimeTo,
-	setTimeFrom,
-	timeFrom,
-	timeTo,
+	setAllItems,
+	allItems,
+	constants,
+	stateArrow,
+	setArrowState,
 }: any): JSX.Element => {
+	const [isActive, setIsActive] = useState(false);
+   
 	return (
-		<Selector style={{ width: "50px", textAlign: "center" }}>
-			<div>{stateDatePicker}</div>
+		<Selector className="dropdown">
+			<div
+				className="dropdown-btn"
+				onClick={() => {
+					setIsActive(!isActive);
+					setArrowState(!stateArrow);
+				}}
+			>
+				<span className="selectedData">{allItems}</span>
+				<HiChevronDown className={stateArrow ? "chevron__active" : "chevron"} />
+			</div>
 			{!!isActive && (
-				<div
-					className="dropdown-content"
-					onClick={(e: any) => {
-						e.stopPropagation();
-					}}
-				>
-					<div
-						onClick={(e: any) => {
-							setTimeTo("");
-							setTimeFrom("");
-							setStateDatePicker(e.target.textContent);
-							setIsActive(false);
-						}}
-						className="dropdown-item"
-					>
-						3 дня
-					</div>
-					<div
-						onClick={(e: any) => {
-							setTimeTo("");
-							setTimeFrom("");
-							setStateDatePicker(e.target.textContent);
-							setIsActive(false);
-						}}
-						className="dropdown-item"
-					>
-						Неделя
-					</div>
-					<div
-						onClick={(e: any) => {
-							setTimeTo("");
-							setTimeFrom("");
-							setStateDatePicker(e.target.textContent);
-							setIsActive(false);
-						}}
-						className="dropdown-item"
-					>
-						Месяц
-					</div>
-					<div
-						onClick={(e: any) => {
-							setTimeTo("");
-							setTimeFrom("");
-							setStateDatePicker(e.target.textContent);
-							setIsActive(false);
-						}}
-						className="dropdown-item"
-					>
-						Год
-					</div>
+				<div className="dropdown-content">
+					{constants.map((item: any) => (
+						<div
+							onClick={(e: any) => {
+								setAllItems(e.target.textContent);
+								setIsActive(false);
+								setArrowState(!stateArrow);
+							}}
+							className="dropdown-item"
+						>
+							{item.label}
+						</div>
+					))}
 				</div>
 			)}
 		</Selector>

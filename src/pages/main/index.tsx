@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import logo from "assets/png/logo.png";
-import { allTypes, items } from "assets/constants";
+import {
+	allCallsConstant,
+	allEMarksConstant,
+	allEmployersConstant,
+	allMistakesConstant,
+	allSourses,
+	allTypes,
+	allTypesConstant,
+	items,
+} from "assets/constants";
 import plus from "assets/svg/plus.svg";
 import plusanother from "assets/svg/plusanother.svg";
 import vector from "assets/svg/alert.svg";
@@ -25,8 +34,7 @@ import { DatePicker } from "components/datepicker";
 import leftarrow from "assets/svg/datepicker/arrow_left.svg";
 import rightarrow from "assets/svg/datepicker/arrow_right.svg";
 import iconcalendar from "assets/svg/datepicker/icon-calendar.svg";
-import { DatePickers } from "components/datepickerCustom";
-// import Datepickertofrom from "components/datepickerCustom";
+import { Select } from "components/select";
 
 interface IItem {
 	img: string;
@@ -641,11 +649,17 @@ const Main: FC = (): JSX.Element => {
 	const [stateArrow, setArrowState] = useState<boolean>(false);
 	const [price, setPrice] = useState<number>(272);
 	const [selected, setSelected] = useState<string>("Все организации");
+	const [allEmployers, setAllEmployers] = useState<string>("Все сотрудники");
+	const [allTypes, setAllTypes] = useState<string>("Все типы");
+	const [allCalls, setAllCalls] = useState<string>("Все звонки");
+	const [allSources, setAllSources] = useState<string>("Все источники");
+	const [allMarkes, setAllMarkes] = useState<string>("Все оценки");
+	const [allMistakes, setAllMistakes] = useState<string>("Все ошибки");
 	const [stateRoom, setStateRoom] = useState<boolean>(false);
 	const [stateDatePicker, setStateDatePicker] = useState<string>("3 дня");
 	const [isActive, setIsActive] = useState<boolean>(false);
-	const [timeFrom, setTimeFrom] = useState<string>('');
-	const [timeTo, setTimeTo] = useState<string>('');
+	const [timeFrom, setTimeFrom] = useState<string>("");
+	const [timeTo, setTimeTo] = useState<string>("");
 
 	useEffect(() => {
 		getAllCalls(setCallsArray);
@@ -863,9 +877,8 @@ const Main: FC = (): JSX.Element => {
 								<div
 									className="datapicker"
 									onClick={() => {
-										
-										setTimeFrom('')
-										setTimeTo('')
+										setTimeFrom("");
+										setTimeTo("");
 										setIsActive(!isActive);
 									}}
 								>
@@ -895,20 +908,42 @@ const Main: FC = (): JSX.Element => {
 							</div>
 						</div>
 						<div className="sortingsection__secondsettings">
+							<Select
+								allItems={allTypes}
+								setAllItems={setAllTypes}
+								constants={allTypesConstant}
+							/>
+							<Select
+								allItems={allEmployers}
+								setAllItems={setAllEmployers}
+								constants={allEmployersConstant}
+							/>
+							<Select
+								allItems={allCalls}
+								setAllItems={setAllCalls}
+								constants={allCallsConstant}
+							/>
+							<Select allItems={allSources}
+								setAllItems={setAllSources}
+								constants={allSourses}/>
+							<Select allItems={allMarkes}
+								setAllItems={setAllMarkes}
+								constants={allEMarksConstant} />
+							<Select allItems={allMistakes}
+								setAllItems={setAllMistakes} constants={allMistakesConstant}/>
 						</div>
 					</section>
-					
 					<section className="listingitems">
 						<table>
-						<tr>
-							<th>Тип</th>
-							<th>Время</th>
-							<th>Сотрудник</th>
-							<th>Звонок</th>
-							<th>Источник</th>
-							<th>Оценка</th>
-							<th>Длительность</th>
-						</tr>
+							<tr>
+								<th>Тип</th>
+								<th>Время</th>
+								<th>Сотрудник</th>
+								<th>Звонок</th>
+								<th>Источник</th>
+								<th>Оценка</th>
+								<th>Длительность</th>
+							</tr>
 							{callsArray.map((call: any, index) => (
 								<tr className="allcalls" key={index}>
 									<td>
