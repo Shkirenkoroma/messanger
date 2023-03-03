@@ -3,7 +3,10 @@
 }
 .date img {
 	position: relative;
-	right: 10px;
+	right: 5px;
+}
+.react-datepicker{
+	width:95% !important;
 }
 .react-datepicker__month {
 	width: 11% !important;
@@ -19,4 +22,10 @@
 
 .react-datepicker-ignore-onclickoutside:focus {
 	outline: none;
+}
+
+
+.react-datepicker__triangle{
+
+	transform: translate(155px, 0px) !important;
 }

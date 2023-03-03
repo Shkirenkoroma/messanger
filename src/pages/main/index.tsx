@@ -429,19 +429,19 @@ const Container = styled.div`
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					
-					.leftarrow{
-						width:40px;
+
+					.leftarrow {
+						width: 40px;
 					}
-					.rightarrow{
-						width:40px;
+					.rightarrow {
+						width: 40px;
 					}
 					.centericons {
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						.calendaricon{
-							width:20px;
+						.calendaricon {
+							width: 20px;
 						}
 					}
 					&:hover {
@@ -467,7 +467,6 @@ const Container = styled.div`
 						color: #899cb1;
 					}
 					span.price {
-						
 						font-weight: 700;
 					}
 					img.plusanother {
@@ -644,7 +643,9 @@ const Main: FC = (): JSX.Element => {
 	const [selected, setSelected] = useState<string>("Все организации");
 	const [stateRoom, setStateRoom] = useState<boolean>(false);
 	const [stateDatePicker, setStateDatePicker] = useState<string>("3 дня");
-	const [isActive, setIsActive] = useState(false);
+	const [isActive, setIsActive] = useState<boolean>(false);
+	const [timeFrom, setTimeFrom] = useState<boolean>(false);
+	const [timeTo, setTimeTo] = useState<boolean>(false);
 
 	useEffect(() => {
 		getAllCalls(setCallsArray);
@@ -859,34 +860,33 @@ const Main: FC = (): JSX.Element => {
 										alt="plusanother"
 									/>
 								</div>
-								<div className="datapicker" onClick={(e) => {
-									
-					setIsActive(!isActive);
-				}}>
-					{/* <Datepickertofrom/> */}
+								<div
+									className="datapicker"
+									onClick={(e) => {
+										setIsActive(!isActive);
+									}}
+								>
+									{/* <Datepickertofrom/> */}
 									<div className="leftarrow">
 										<img src={leftarrow} alt="leftarrow" />
 									</div>
 									<div className="centericons">
 										<div className="calendaricon">
-
-										<img src={iconcalendar} alt="iconcalendar" />
-
-										
+											<img src={iconcalendar} alt="iconcalendar" />
 										</div>
 										<DatePicker
 											stateDatePicker={stateDatePicker}
 											setStateDatePicker={setStateDatePicker}
 											isActive={isActive}
 											setIsActive={setIsActive}
+											setTimeFrom={setTimeFrom}
+											setTimeTo={setTimeTo}
+											timeTo={timeTo}
+											timeFrom={timeFrom}
 										/>
 									</div>
 									<div className="rightarrow">
-										<img
-											
-											src={rightarrow}
-											alt="rightarrow"
-										/>
+										<img src={rightarrow} alt="rightarrow" />
 									</div>
 								</div>
 							</div>

@@ -18,6 +18,15 @@ const DatePickerItem = styled.div`
 		text-align: center;
 		color: #005ff8;
 	}
+	.selectedDataRange {
+		font-family: "SF Pro Display";
+		font-style: normal;
+		font-weight: 700;
+		font-size: 10px;
+		line-height: 16px;
+		text-align: center;
+		color: #005ff8;
+	}
 
 	.dropdown-content {
 		background-color: #ffffff;
@@ -45,6 +54,21 @@ const DatePickerItem = styled.div`
 				color: #005ff8;
 			}
 		}
+		.stringdate{
+			font-family: 'SF Pro Display';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 28px;
+/* identical to box height, or 200% */
+
+display: flex;
+align-items: center;
+
+/* text/primary */
+
+color: #122945;
+		}
 	}
 `;
 
@@ -53,15 +77,20 @@ export const DatePicker = ({
 	setStateDatePicker,
 	isActive,
 	setIsActive,
+	setTimeTo,
+	setTimeFrom,
+	timeFrom,
+	timeTo
 }: any): JSX.Element => {
 	return (
-		<DatePickerItem style={{width:"50px", textAlign:"center"}}>
-			<div className="selectedData">{stateDatePicker}</div>
+		<DatePickerItem style={{width:"50px", textAlign:"center"}} >
+			<div className={ timeTo ? 'selectedDataRange':'selectedData'}>{timeTo ? (`${timeFrom} ${timeTo}`): (`${stateDatePicker}`)}</div>
 			{!!isActive && (
 				<div className="dropdown-content" onClick={(e:any)=>{e.stopPropagation()}}>
 					<div
 						onClick={(e: any) => {
-							
+							setTimeTo('')
+							setTimeFrom('')
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -71,7 +100,8 @@ export const DatePicker = ({
 					</div>
 					<div
 						onClick={(e: any) => {
-							
+							setTimeTo('')
+							setTimeFrom('')
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -81,7 +111,8 @@ export const DatePicker = ({
 					</div>
 					<div
 						onClick={(e: any) => {
-						
+							setTimeTo('')
+							setTimeFrom('')
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -91,7 +122,8 @@ export const DatePicker = ({
 					</div>
 					<div
 						onClick={(e: any) => {
-							
+							setTimeTo('')
+							setTimeFrom('')
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -100,10 +132,11 @@ export const DatePicker = ({
 						Год
 					</div>
 					
-				Указать даты
-					<DatePickers />
+				<span className="stringdate" onClick={(e:any)=>{e.stopPropagation()}}>Указать даты</span>
+			<DatePickers setStateDatePicker={setStateDatePicker} setIsActive={setIsActive} stateDatePicker={stateDatePicker} setTimeTo={setTimeTo}
+	setTimeFrom={setTimeFrom} timeTo={timeTo} timeFrom={timeFrom} />
 				</div>
 			)}
-		</DatePickerItem>
+		</DatePickerItem >
 	);
 };
