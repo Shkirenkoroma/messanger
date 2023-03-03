@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
 import calendar from "../../assets/svg/datepicker/icon-calendar.svg";
-import dateFormat, { masks } from "dateformat";
+import dateFormat from "dateformat";
 
 export const DatePickers = ({
 	setStateDatePicker,
@@ -16,15 +16,17 @@ export const DatePickers = ({
 }: any): JSX.Element => {
 	const [dateStart, setDateStart] = useState();
 	const [dateEnd, setDateEnd] = useState();
-
+	setTimeFrom(dateFormat(dateStart, "dd-mm-yyyy"));
+	setTimeTo(dateFormat(dateEnd, "dd-mm-yyyy"));
+useLayoutEffect(()=>{
+	setTimeFrom('');
+	setTimeTo('');
+}, [])	
 
 	
-	setTimeTo(dateFormat(dateEnd, "dd-mm-yyyy"));
-	setTimeFrom(dateFormat(dateStart, "dd-mm-yyyy"));
-	const onChangeHandler = (value: any) => {
-		
-		setDateStart(value[0]);
-		setDateEnd(value[1]);
+const onChangeHandler = (value: any) => {
+	setDateStart(value[0]);
+	setDateEnd(value[1]);
 	};
 	return (
 		<div className="date">

@@ -23,7 +23,7 @@ const DatePickerItem = styled.div`
 		font-style: normal;
 		font-weight: 700;
 		font-size: 10px;
-		line-height: 16px;
+		line-height:20px;
 		text-align: center;
 		color: #005ff8;
 	}
@@ -131,8 +131,8 @@ export const DatePicker = ({
 					>
 						Год
 					</div>
-					
-				<span className="stringdate" onClick={(e:any)=>{e.stopPropagation()}}>Указать даты</span>
+				<span className="stringdate" onClick={(e:any)=>{e.stopPropagation()
+				setIsActive(false)}}>Указать даты</span>
 			<DatePickers setStateDatePicker={setStateDatePicker} setIsActive={setIsActive} stateDatePicker={stateDatePicker} setTimeTo={setTimeTo}
 	setTimeFrom={setTimeFrom} timeTo={timeTo} timeFrom={timeFrom} />
 				</div>

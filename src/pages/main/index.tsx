@@ -644,8 +644,8 @@ const Main: FC = (): JSX.Element => {
 	const [stateRoom, setStateRoom] = useState<boolean>(false);
 	const [stateDatePicker, setStateDatePicker] = useState<string>("3 дня");
 	const [isActive, setIsActive] = useState<boolean>(false);
-	const [timeFrom, setTimeFrom] = useState<boolean>(false);
-	const [timeTo, setTimeTo] = useState<boolean>(false);
+	const [timeFrom, setTimeFrom] = useState<string>('');
+	const [timeTo, setTimeTo] = useState<string>('');
 
 	useEffect(() => {
 		getAllCalls(setCallsArray);
@@ -862,7 +862,10 @@ const Main: FC = (): JSX.Element => {
 								</div>
 								<div
 									className="datapicker"
-									onClick={(e) => {
+									onClick={() => {
+										
+										setTimeFrom('')
+										setTimeTo('')
 										setIsActive(!isActive);
 									}}
 								>
