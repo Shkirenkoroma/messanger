@@ -894,9 +894,12 @@ const Main: FC = (): JSX.Element => {
 								</div>
 							</div>
 						</div>
-						<div className="sortingsection__secondsettings"></div>
+						<div className="sortingsection__secondsettings">
+						</div>
 					</section>
-					<table>
+					
+					<section className="listingitems">
+						<table>
 						<tr>
 							<th>Тип</th>
 							<th>Время</th>
@@ -906,9 +909,6 @@ const Main: FC = (): JSX.Element => {
 							<th>Оценка</th>
 							<th>Длительность</th>
 						</tr>
-					</table>
-					<section className="listingitems">
-						<table>
 							{callsArray.map((call: any, index) => (
 								<tr className="allcalls" key={index}>
 									<td>
