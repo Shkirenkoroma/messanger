@@ -890,7 +890,16 @@ const Main: FC = (): JSX.Element => {
 										<div className="calendaricon">
 											<img src={iconcalendar} alt="iconcalendar" />
 										</div>
-										
+										<DatePicker
+											stateDatePicker={stateDatePicker}
+											setStateDatePicker={setStateDatePicker}
+											isActive={isActive}
+											setIsActive={setIsActive}
+											setTimeFrom={setTimeFrom}
+											setTimeTo={setTimeTo}
+											timeTo={timeTo}
+											timeFrom={timeFrom}
+										/>
 									</div>
 									<div className="rightarrow">
 										<img src={rightarrow} alt="rightarrow" />
