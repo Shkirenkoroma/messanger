@@ -49,7 +49,6 @@ export const allCalls = [
 	{ value: "Все организации", label: "Все организации" },
 ];
 
-
 export const AllEstimates = [
 	{ value: "фото", label: "фото" },
 	{
@@ -68,25 +67,20 @@ export const AllMistakes = [
 	{ value: "Все организации", label: "Все организации" },
 ];
 
-
-
-
-
-
 export const allTypesConstant = [
 	{ value: "Все типы", label: "Все типы" },
 	{ value: "Исходящие вызовы", label: "Исходящие вызовы" },
-	{ value: "Входящие вызовы" , label: "Входящие вызовы" },
+	{ value: "Входящие вызовы", label: "Входящие вызовы" },
 ];
 
 export const allEmployersConstant = [
-	{ value: "Все сотрудники" , label: "Все сотрудники" },
+	{ value: "Все сотрудники", label: "Все сотрудники" },
 	{ value: "Ольга Ивановна", label: "Ольга Ивановна" },
 	{ value: "Анастасия Валерьевна", label: "Анастасия Валерьевна" },
 ];
 
 export const allCallsConstant = [
-	{ value: "Все звонки" , label: "Все звонки" },
+	{ value: "Все звонки", label: "Все звонки" },
 	{ value: "Все клиенты", label: "Все клиенты" },
 	{ value: "Новые клиенты", label: "Новые клиенты" },
 	{ value: "Все исполнители", label: "Все исполнители" },
@@ -94,18 +88,16 @@ export const allCallsConstant = [
 	{ value: "Прочие звонки", label: "Прочие звонки" },
 ];
 
-
 export const allSourses = [
-	{ value: "Все источники" , label: "Все источники" },
-	{ value: "Google" , label: "Google" },
+	{ value: "Все источники", label: "Все источники" },
+	{ value: "Google", label: "Google" },
 	{ value: "Yandex", label: "Yandex" },
 	{ value: "Rabota.ru", label: "Rabota.ru" },
 	{ value: "Другие адреса", label: "Другие адреса" },
 ];
 
-
 export const allEMarksConstant = [
-	{ value: "Все оценки" , label: "Все оценки" },
+	{ value: "Все оценки", label: "Все оценки" },
 	{ value: "Распознать", label: "Распознать" },
 	{ value: "Скрипт не использован", label: "Скрипт не использован" },
 	{ value: "Плохо", label: "Плохо" },
@@ -113,9 +105,8 @@ export const allEMarksConstant = [
 	{ value: "Отлично", label: "Отлично" },
 ];
 
-
 export const allMistakesConstant = [
-	{ value: "Приветствие" , label: "Приветствие" },
+	{ value: "Приветствие", label: "Приветствие" },
 	{ value: "Имя", label: "Имя" },
 	{ value: "Цена", label: "Цена" },
 	{ value: "Скидка", label: "Скидка" },
@@ -123,5 +114,3 @@ export const allMistakesConstant = [
 	{ value: "Благодарность", label: "Благодарность" },
 	{ value: "Стоп-слова", label: "Стоп-слова" },
 ];
-
-

@@ -890,16 +890,7 @@ const Main: FC = (): JSX.Element => {
 										<div className="calendaricon">
 											<img src={iconcalendar} alt="iconcalendar" />
 										</div>
-										<DatePicker
-											stateDatePicker={stateDatePicker}
-											setStateDatePicker={setStateDatePicker}
-											isActive={isActive}
-											setIsActive={setIsActive}
-											setTimeFrom={setTimeFrom}
-											setTimeTo={setTimeTo}
-											timeTo={timeTo}
-											timeFrom={timeFrom}
-										/>
+										
 									</div>
 									<div className="rightarrow">
 										<img src={rightarrow} alt="rightarrow" />
@@ -912,25 +903,38 @@ const Main: FC = (): JSX.Element => {
 								allItems={allTypes}
 								setAllItems={setAllTypes}
 								constants={allTypesConstant}
+								className={"AllTypesSelect"}
 							/>
 							<Select
 								allItems={allEmployers}
 								setAllItems={setAllEmployers}
 								constants={allEmployersConstant}
+								className={"AllTypesSelect"}
 							/>
 							<Select
 								allItems={allCalls}
 								setAllItems={setAllCalls}
 								constants={allCallsConstant}
+								className={"AllTypesSelect"}
 							/>
-							<Select allItems={allSources}
+							<Select
+								allItems={allSources}
 								setAllItems={setAllSources}
-								constants={allSourses}/>
-							<Select allItems={allMarkes}
+								constants={allSourses}
+								className={"AllTypesSelect"}
+							/>
+							<Select
+								allItems={allMarkes}
 								setAllItems={setAllMarkes}
-								constants={allEMarksConstant} />
-							<Select allItems={allMistakes}
-								setAllItems={setAllMistakes} constants={allMistakesConstant}/>
+								constants={allEMarksConstant}
+								className={"AllTypesSelect"}
+							/>
+							<Select
+								allItems={allMistakes}
+								setAllItems={setAllMistakes}
+								constants={allMistakesConstant}
+								className={"AllTypesSelect"}
+							/>
 						</div>
 					</section>
 					<section className="listingitems">

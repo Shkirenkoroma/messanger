@@ -106,7 +106,7 @@ const DropdownItem = styled.div`
 		font-weight: 500;
 		color: #333;
 		width: 80%;
-
+		z-index: 1;
 		.dropdown-item {
 			width: 100%;
 			padding: 10px;

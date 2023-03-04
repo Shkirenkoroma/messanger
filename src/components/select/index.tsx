@@ -64,11 +64,12 @@ export const Select = ({
 	constants,
 	stateArrow,
 	setArrowState,
+   className
 }: any): JSX.Element => {
 	const [isActive, setIsActive] = useState(false);
-   
+
 	return (
-		<Selector className="dropdown">
+		<Selector className={className}>
 			<div
 				className="dropdown-btn"
 				onClick={() => {
