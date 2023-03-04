@@ -948,15 +948,7 @@ const Main: FC = (): JSX.Element => {
 					</section>
 					<section className="listingitems">
 						<table>
-							<tr>
-								<th>Тип</th>
-								<th>Время</th>
-								<th>Сотрудник</th>
-								<th>Звонок</th>
-								<th>Источник</th>
-								<th>Оценка</th>
-								<th>Длительность</th>
-							</tr>
+							
 							{callsArray.map((call: any, index) => (
 								<tr className="allcalls" key={index}>
 									<td>
