@@ -660,6 +660,14 @@ const Main: FC = (): JSX.Element => {
 	const [isActive, setIsActive] = useState<boolean>(false);
 	const [timeFrom, setTimeFrom] = useState<string>("");
 	const [timeTo, setTimeTo] = useState<string>("");
+	const [stateArrowType, setArrowStateType] = useState<boolean>(false);
+	const [stateArrowEmployers, setArrowStateEmployers] = useState<boolean>(false);
+	const [stateArrowCalls, setArrowStateCalls] = useState<boolean>(false);
+	const [stateArrowSources, setArrowStateSources] = useState<boolean>(false);
+	const [stateArrowMarkes, setArrowStateMarkes] = useState<boolean>(false);
+	const [stateArrowMistake, setArrowStateMistake] = useState<boolean>(false);
+	
+
 
 	useEffect(() => {
 		getAllCalls(setCallsArray);
@@ -912,38 +920,51 @@ const Main: FC = (): JSX.Element => {
 								allItems={allTypes}
 								setAllItems={setAllTypes}
 								constants={allTypesConstant}
-								className={"AllTypesSelect"}
+								className={"AllTypesClass"}
+								stateArrow={stateArrowType}
+								setArrowState={setArrowStateType}
 							/>
 							<Select
 								allItems={allEmployers}
 								setAllItems={setAllEmployers}
 								constants={allEmployersConstant}
-								className={"AllTypesSelect"}
+								className={"AllEmployersClass"}
+								stateArrow={stateArrowEmployers}
+								setArrowState={setArrowStateEmployers}
 							/>
 							<Select
 								allItems={allCalls}
 								setAllItems={setAllCalls}
 								constants={allCallsConstant}
-								className={"AllTypesSelect"}
+								className={"AllCallsClass"}
+								stateArrow={stateArrowCalls}
+								setArrowState={setArrowStateCalls}
 							/>
 							<Select
 								allItems={allSources}
 								setAllItems={setAllSources}
 								constants={allSourses}
-								className={"AllTypesSelect"}
+								className={"AllSourcesClass"}
+								stateArrow={stateArrowSources}
+								setArrowState={setArrowStateSources}
+							/>
+								<Select
+								allItems={allMistakes}
+								setAllItems={setAllMistakes}
+								constants={allMistakesConstant}
+								className={"AllMistakesClass"}
+								stateArrow={stateArrowMistake}
+								setArrowState={setArrowStateMistake}
 							/>
 							<Select
 								allItems={allMarkes}
 								setAllItems={setAllMarkes}
 								constants={allEMarksConstant}
-								className={"AllTypesSelect"}
+								className={"AllMarkesClass"}
+								stateArrow={stateArrowMarkes}
+								setArrowState={setArrowStateMarkes}
 							/>
-							<Select
-								allItems={allMistakes}
-								setAllItems={setAllMistakes}
-								constants={allMistakesConstant}
-								className={"AllTypesSelect"}
-							/>
+						
 						</div>
 					</section>
 					<section className="listingitems">

@@ -8,6 +8,9 @@ import perm_identity from "assets/svg/perm_identity.svg";
 import cases from "assets/svg/cases.svg";
 import data_base from "assets/svg/data_base.svg";
 import settings from "assets/svg/settings.svg";
+import badmark from "assets/svg/mark.svg";
+import markgrey from "assets/svg/markgrey.svg";
+import markgreen from "assets/svg/markgreen.svg";
 
 export const items = [
 	{ img: results, alt: "results", describe: "Итоги" },
@@ -100,9 +103,9 @@ export const allEMarksConstant = [
 	{ value: "Все оценки", label: "Все оценки" },
 	{ value: "Распознать", label: "Распознать" },
 	{ value: "Скрипт не использован", label: "Скрипт не использован" },
-	{ value: "Плохо", label: "Плохо" },
-	{ value: "Хорошо", label: "Хорошо" },
-	{ value: "Отлично", label: "Отлично" },
+	{ value: "Плохо", img: badmark, alt: "Плохо" },
+	{ value: "Хорошо", img: markgrey, alt: "Хорошо" },
+	{ value: "Отлично", img: markgreen, alt: "Отлично" },
 ];
 
 export const allMistakesConstant = [
