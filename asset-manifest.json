@@ -1,8 +1,11 @@
 {
   "files": {
     "main.css": "/messanger/static/css/main.f1963120.css",
-    "main.js": "/messanger/static/js/main.08981e62.js",
+    "main.js": "/messanger/static/js/main.b3a7d870.js",
+    "static/media/markgrey.svg": "/messanger/static/media/markgrey.d0c3c34905a8afed969a52fd65e41585.svg",
+    "static/media/markgreen.svg": "/messanger/static/media/markgreen.1ddd1968226b38d8a1a1d75a5965606f.svg",
     "static/media/settings.svg": "/messanger/static/media/settings.645ed464ffb5fe906747e3d6283829ef.svg",
+    "static/media/mark.svg": "/messanger/static/media/mark.e712509eec920abb62f6c2ec88a26e57.svg",
     "static/media/results.svg": "/messanger/static/media/results.d19d51afd31cc931174118acc0868f0f.svg",
     "static/media/callers.svg": "/messanger/static/media/callers.cc3019b8cff6a9470aa863b33949774a.svg",
     "static/media/people.svg": "/messanger/static/media/people.c439ae9a8bd6c42e291b5bafda1a010a.svg",
@@ -25,10 +28,10 @@
     "static/media/entrance.svg": "/messanger/static/media/entrance.712e394cdc04f0eadb95e52ef636bf65.svg",
     "static/media/exit.svg": "/messanger/static/media/exit.39c1d3e775556ebe651393c4761fd025.svg",
     "main.f1963120.css.map": "/messanger/static/css/main.f1963120.css.map",
-    "main.08981e62.js.map": "/messanger/static/js/main.08981e62.js.map"
+    "main.b3a7d870.js.map": "/messanger/static/js/main.b3a7d870.js.map"
   },
   "entrypoints": [
     "static/css/main.f1963120.css",
-    "static/js/main.08981e62.js"
+    "static/js/main.b3a7d870.js"
   ]
 }
