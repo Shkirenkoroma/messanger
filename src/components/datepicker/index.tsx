@@ -36,7 +36,7 @@ const DatePickerItem = styled.div`
 		top: 25px;
 		padding: 10px 10px;
 		border-radius: 5px;
-
+		z-index: 1;
 		.dropdown-item {
 			font-family: "SF Pro Display";
 			font-style: normal;

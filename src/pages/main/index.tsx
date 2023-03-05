@@ -424,6 +424,8 @@ const Container = styled.div`
 			.sortingsection__secondsettings {
 				display: flex;
 				justify-content: flex-end;
+				max-width: 795px;
+    margin-left: 645px
 			}
 			.sortingsection__firstsettings__content {
 				max-width: 350px;
@@ -495,7 +497,7 @@ const Container = styled.div`
 			max-width: 1440px;
 			margin: 0 auto;
 			min-height: 600px;
-			height: 60%;
+			height: calc(100vh - 250px);
 			background-color: #ffffff;
 			border-radius: 8px;
 			overflow-y: scroll;

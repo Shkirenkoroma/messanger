@@ -5,31 +5,31 @@ import { HiChevronDown } from "react-icons/hi2";
 const Selector = styled.div`
 	width: 550px;
 	position: relative;
-	margin-left: 100px;
+	
 	.AllTypesClass {
 		.dropdown-btn {
 			padding: 15px 20px;
-			/* background: #fff; */
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: end;
 			cursor: pointer;
-			width: 80%;
+			width: 100%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			left: 0;
-			top: 110%;
+			right:5px;
+			top: 42px;
+			width: 205px;
+			border-radius: 4px;
+			background-color: #ffffff;
 			padding: 10px;
-			background-color: red;
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
-			width: 80%;
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;
@@ -61,27 +61,27 @@ const Selector = styled.div`
 	.AllEmployersClass {
 		.dropdown-btn {
 			padding: 15px 20px;
-			/* background: #fff; */
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: end;
 			cursor: pointer;
-			width: 80%;
+			width: 100%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			left: 0;
-			top: 110%;
+			right:5px;
+			top: 42px;
+			width: 205px;
+			border-radius: 4px;
+			background-color: #ffffff;
 			padding: 10px;
-			background-color: red;
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
-			width: 80%;
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;
@@ -112,27 +112,28 @@ const Selector = styled.div`
 	.AllCallsClass {
 		.dropdown-btn {
 			padding: 15px 20px;
-			/* background: #fff; */
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: end;
 			cursor: pointer;
-			width: 80%;
+			width: 100%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			left: 0;
-			top: 110%;
+			right:5px;
+			top: 42px;
+			width: 205px;
+			border-radius: 4px;
+			background-color: #ffffff;
 			padding: 10px;
-			background-color: red;
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
-			width: 80%;
+			
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;
@@ -169,22 +170,24 @@ const Selector = styled.div`
 			color: #333;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: end;
 			cursor: pointer;
-			width: 80%;
+			width: 100%;
 			position: relative;
 		}
 
 		.dropdown-content {
-			position: absolute;
-			left: 0;
-			top: 110%;
+			position: absolute;	
+			right:5px;
+			top: 42px;
+			width: 205px;
+			border-radius: 4px;
+			background-color: #ffffff;
 			padding: 10px;
-			background-color: red;
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
-			width: 80%;
+		
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;
@@ -219,15 +222,15 @@ const Selector = styled.div`
 			color: #333;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: end;
 			cursor: pointer;
-			width: 80%;
+			width: 100%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			right: 30px;
+			right:5px;
 			top: 42px;
 			padding: 10px;
 			background-color: #ffffff;
@@ -269,27 +272,26 @@ const Selector = styled.div`
 	.AllMistakesClass {
 		.dropdown-btn {
 			padding: 15px 20px;
-			/* background: #fff; */
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: end;
 			cursor: pointer;
-			width: 80%;
+			width: 100%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			left: 0;
-			top: 110%;
+			right:5px;
+			width: 205px;
+			border-radius: 4px;
+			background-color: #ffffff;
 			padding: 10px;
-			background-color: red;
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
-			width: 80%;
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;
