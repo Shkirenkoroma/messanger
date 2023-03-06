@@ -30,6 +30,8 @@ const Selector = styled.div`
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
+			z-index: 1;
+			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;
@@ -82,6 +84,8 @@ const Selector = styled.div`
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
+			z-index: 1;
+			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;
@@ -133,7 +137,8 @@ const Selector = styled.div`
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
-			
+			z-index: 1;
+			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;
@@ -187,7 +192,8 @@ const Selector = styled.div`
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
-		
+			z-index: 1;
+			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;
@@ -238,6 +244,7 @@ const Selector = styled.div`
 			font-weight: 500;
 			width: 205px;
 			border-radius: 4px;
+			z-index: 1;
 			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
 				width: 100%;
@@ -292,6 +299,8 @@ const Selector = styled.div`
 			box-shadow: red;
 			font-weight: 500;
 			color: #333;
+			z-index: 1;
+			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
 				width: 100%;
 				padding: 10px;

@@ -35,6 +35,7 @@ import leftarrow from "assets/svg/datepicker/arrow_left.svg";
 import rightarrow from "assets/svg/datepicker/arrow_right.svg";
 import iconcalendar from "assets/svg/datepicker/icon-calendar.svg";
 import { Select } from "components/select";
+import phone from "assets/svg/Phone.svg";
 
 interface IItem {
 	img: string;
@@ -415,17 +416,17 @@ const Container = styled.div`
 			margin: 0 auto;
 			display: flex;
 			flex-direction: column;
-			gap: 30px;
 			justify-content: center;
 			.sortingsection__firstsettings {
 				display: flex;
 				justify-content: flex-end;
+				margin: 20px 0 14px 0;
 			}
 			.sortingsection__secondsettings {
 				display: flex;
 				justify-content: flex-end;
-				max-width: 795px;
-    margin-left: 645px
+				max-width: 1070px;
+				margin-left: 330px;
 			}
 			.sortingsection__firstsettings__content {
 				max-width: 350px;
@@ -505,7 +506,37 @@ const Container = styled.div`
 				width: 100%;
 				height: calc(100vh - 10px);
 				border-collapse: collapse;
-				tr:hover {
+				thead {
+					position: fixed;
+					background: #ffffff;
+					width: 100%;
+					max-width: 1425px;
+					height: 96px;
+					border-bottom: 1px solid #eaf0fa;
+					tr.titlerow {
+						height: 96px;
+						th {
+							border-bottom: none;
+						}
+					}
+				}
+				th.title {
+					font-family: "SF Pro Display";
+					font-style: normal;
+					font-weight: 400;
+					font-size: 14px;
+					line-height: 100%;
+					color: #899cb1;
+					padding: 20px 0;
+					border-bottom: 1px solid #eaf0fa;
+				}
+				img.kindofcall {
+					margin: 0 auto;
+				}
+				img.avatar {
+					margin: 0 auto;
+				}
+				tr.allcalls:hover {
 					background-color: #d4dff3;
 					cursor: pointer;
 					transition: ease background-color 700ms;
@@ -513,6 +544,14 @@ const Container = styled.div`
 				td {
 					text-align: center;
 					padding: 0;
+					font-family: "SF Pro Display";
+					font-style: normal;
+					font-weight: 400;
+					font-size: 14px;
+					line-height: 100%;
+					color: #899cb1;
+					padding: 25px 45px;
+					border-bottom: 1px solid #eaf0fa;
 				}
 				td.errors {
 					color: #ea1a4f;
@@ -663,13 +702,12 @@ const Main: FC = (): JSX.Element => {
 	const [timeFrom, setTimeFrom] = useState<string>("");
 	const [timeTo, setTimeTo] = useState<string>("");
 	const [stateArrowType, setArrowStateType] = useState<boolean>(false);
-	const [stateArrowEmployers, setArrowStateEmployers] = useState<boolean>(false);
+	const [stateArrowEmployers, setArrowStateEmployers] =
+		useState<boolean>(false);
 	const [stateArrowCalls, setArrowStateCalls] = useState<boolean>(false);
 	const [stateArrowSources, setArrowStateSources] = useState<boolean>(false);
 	const [stateArrowMarkes, setArrowStateMarkes] = useState<boolean>(false);
 	const [stateArrowMistake, setArrowStateMistake] = useState<boolean>(false);
-	
-
 
 	useEffect(() => {
 		getAllCalls(setCallsArray);
@@ -892,7 +930,6 @@ const Main: FC = (): JSX.Element => {
 										setIsActive(!isActive);
 									}}
 								>
-									{/* <Datepickertofrom/> */}
 									<div className="leftarrow">
 										<img src={leftarrow} alt="leftarrow" />
 									</div>
@@ -950,7 +987,7 @@ const Main: FC = (): JSX.Element => {
 								stateArrow={stateArrowSources}
 								setArrowState={setArrowStateSources}
 							/>
-								<Select
+							<Select
 								allItems={allMistakes}
 								setAllItems={setAllMistakes}
 								constants={allMistakesConstant}
@@ -966,32 +1003,56 @@ const Main: FC = (): JSX.Element => {
 								stateArrow={stateArrowMarkes}
 								setArrowState={setArrowStateMarkes}
 							/>
-						
 						</div>
 					</section>
 					<section className="listingitems">
 						<table>
-							<tr>
-								<th>Тип</th>
-								<th>Время</th>
-								<th>Сотрудник</th>
-								<th>Звонок</th>
-								<th>Источник</th>
-								<th>Оценка</th>
-								<th>Длительность</th>
-							</tr>
+							<thead>
+								<tr className="titlerow">
+									<th className="title" style={{ padding: "0 70px" }}>
+										Тип
+									</th>
+									<th className="title" style={{ padding: "0 76px" }}>
+										Время
+									</th>
+									<th className="title" style={{ padding: "0 62px" }}>
+										Сотрудник
+									</th>
+									<th className="title" style={{ padding: "0 115px" }}>
+										Звонок
+									</th>
+									<th className="title" style={{ padding: "0 58px" }}>
+										Источник
+									</th>
+									<th className="title" style={{ padding: "0 87px" }}>
+										Оценка
+									</th>
+									<th className="title" style={{ padding: "0 0 0 90px" }}>
+										Длительность
+									</th>
+								</tr>
+							</thead>
+
 							{callsArray.map((call: any, index) => (
 								<tr className="allcalls" key={index}>
 									<td>
 										{call.in_out ? (
-											<img src={incomecall} alt="incomecall" />
+											<img
+												className="kindofcall"
+												src={incomecall}
+												alt="incomecall"
+											/>
 										) : (
-											<img src={outcall} alt="icon" />
+											<img
+												className="kindofcall"
+												src={outcall}
+												alt="outcomecall"
+											/>
 										)}
 									</td>
 									<td>{call.date.split(" ")[1]}</td>
 									<td>
-										<img src={call.person_avatar} />
+										<img className="avatar" src={call.person_avatar} />
 									</td>
 									<td>{transformPhoneNumber(call.partner_data.phone)}</td>
 									<td>{call.source}</td>
