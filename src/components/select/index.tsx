@@ -5,23 +5,22 @@ import { HiChevronDown } from "react-icons/hi2";
 const Selector = styled.div`
 	width: 550px;
 	position: relative;
-	
 	.AllTypesClass {
 		.dropdown-btn {
-			padding: 15px 20px;
+			padding: 15px 0;
+			margin-left: 15px;
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
 			justify-content: end;
-			cursor: pointer;
-			width: 100%;
+			width: 80%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			right:5px;
+			right: -2px;
 			top: 42px;
 			width: 205px;
 			border-radius: 4px;
@@ -33,7 +32,7 @@ const Selector = styled.div`
 			z-index: 1;
 			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
-				width: 100%;
+				width: 91%;
 				padding: 10px;
 				cursor: pointer;
 				transition: all 0.4s;
@@ -48,34 +47,36 @@ const Selector = styled.div`
 		span.selectedData {
 			color: #899cb1;
 			right: 0;
+			cursor: pointer;
 		}
 		.chevron {
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 		.chevron__active {
 			transform: rotate(180deg);
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 	}
 
 	.AllEmployersClass {
+		margin-left: 15px;
 		.dropdown-btn {
-			padding: 15px 20px;
+			padding: 15px 0;
+			margin-left: 15px;
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
 			justify-content: end;
-			cursor: pointer;
-			width: 100%;
+			width: 80%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			right:5px;
+			right: -17px;
 			top: 42px;
 			width: 205px;
 			border-radius: 4px;
@@ -87,7 +88,7 @@ const Selector = styled.div`
 			z-index: 1;
 			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
-				width: 100%;
+				width: 91%;
 				padding: 10px;
 				cursor: pointer;
 				transition: all 0.4s;
@@ -102,33 +103,35 @@ const Selector = styled.div`
 		span.selectedData {
 			color: #899cb1;
 			right: 0;
+			cursor: pointer;
 		}
 		.chevron {
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 		.chevron__active {
 			transform: rotate(180deg);
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 	}
 	.AllCallsClass {
+		margin-left: 10px;
 		.dropdown-btn {
-			padding: 15px 20px;
+			padding: 15px 0;
+			margin-left: 15px;
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
 			justify-content: end;
-			cursor: pointer;
-			width: 100%;
+			width: 80%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			right:5px;
+			right: -10px;
 			top: 42px;
 			width: 205px;
 			border-radius: 4px;
@@ -140,7 +143,7 @@ const Selector = styled.div`
 			z-index: 1;
 			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
-				width: 100%;
+				width: 91%;
 				padding: 10px;
 				cursor: pointer;
 				transition: all 0.4s;
@@ -155,35 +158,36 @@ const Selector = styled.div`
 		span.selectedData {
 			color: #899cb1;
 			right: 0;
+			cursor: pointer;
 		}
 		.chevron {
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 		.chevron__active {
 			transform: rotate(180deg);
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 	}
 
 	.AllSourcesClass {
+		margin-left: 35px;
 		.dropdown-btn {
-			padding: 15px 20px;
-			/* background: #fff; */
+			padding: 15px 0;
+			margin-left: 15px;
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
 			justify-content: end;
-			cursor: pointer;
-			width: 100%;
+			width: 80%;
 			position: relative;
 		}
 
 		.dropdown-content {
-			position: absolute;	
-			right:5px;
+			position: absolute;
+			right: -40px;
 			top: 42px;
 			width: 205px;
 			border-radius: 4px;
@@ -195,7 +199,7 @@ const Selector = styled.div`
 			z-index: 1;
 			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
-				width: 100%;
+				width: 91%;
 				padding: 10px;
 				cursor: pointer;
 				transition: all 0.4s;
@@ -210,33 +214,35 @@ const Selector = styled.div`
 		span.selectedData {
 			color: #899cb1;
 			right: 0;
+			cursor: pointer;
 		}
 		.chevron {
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 		.chevron__active {
 			transform: rotate(180deg);
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 	}
 	.AllMarkesClass {
 		.dropdown-btn {
-			padding: 15px 20px;
+			padding: 15px 0;
+			margin-left: 55px;
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
 			justify-content: end;
-			cursor: pointer;
-			width: 100%;
+
+			width: 80%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			right:5px;
+			right: -40px;
 			top: 42px;
 			padding: 10px;
 			background-color: #ffffff;
@@ -247,7 +253,7 @@ const Selector = styled.div`
 			z-index: 1;
 			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
-				width: 100%;
+				width: 91%;
 				padding: 10px;
 				cursor: pointer;
 				transition: all 0.4s;
@@ -259,39 +265,42 @@ const Selector = styled.div`
 				}
 			}
 		}
-		span.red{
-			
+		span.red {
 		}
 		span.selectedData {
 			color: #899cb1;
 			right: 0;
+			cursor: pointer;
 		}
 		.chevron {
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 		.chevron__active {
 			transform: rotate(180deg);
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 	}
 	.AllMistakesClass {
 		.dropdown-btn {
-			padding: 15px 20px;
+			padding: 15px 0;
+			margin-left: 15px;
 			font-weight: bold;
 			color: #333;
 			display: flex;
 			align-items: center;
 			justify-content: end;
-			cursor: pointer;
-			width: 100%;
+			float: right;
+			margin-right: -12px;
+			width: 48%;
 			position: relative;
 		}
 
 		.dropdown-content {
 			position: absolute;
-			right:5px;
+			right: -35px;
+			top: 42px;
 			width: 205px;
 			border-radius: 4px;
 			background-color: #ffffff;
@@ -302,7 +311,7 @@ const Selector = styled.div`
 			z-index: 1;
 			box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
 			.dropdown-item {
-				width: 100%;
+				width: 91%;
 				padding: 10px;
 				cursor: pointer;
 				transition: all 0.4s;
@@ -317,15 +326,16 @@ const Selector = styled.div`
 		span.selectedData {
 			color: #899cb1;
 			right: 0;
+			cursor: pointer;
 		}
 		.chevron {
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 		.chevron__active {
 			transform: rotate(180deg);
 			position: absolute;
-			right: 5px;
+			right: -20px;
 		}
 	}
 `;
@@ -343,14 +353,16 @@ export const Select: FC<any> = ({
 	return (
 		<Selector>
 			<div className={className}>
-				<div
-					className="dropdown-btn"
-					onClick={() => {
-						setIsActive(!isActive);
-						setArrowState(!stateArrow);
-					}}
-				>
-					<span className="selectedData">{allItems}</span>
+				<div className="dropdown-btn">
+					<span
+						className="selectedData"
+						onClick={() => {
+							setIsActive(!isActive);
+							setArrowState(!stateArrow);
+						}}
+					>
+						{allItems}
+					</span>
 					<HiChevronDown
 						className={stateArrow ? "chevron__active" : "chevron"}
 					/>
@@ -369,8 +381,6 @@ export const Select: FC<any> = ({
 								{item.label}
 								<img src={item.img} alt={item.alt} />
 							</div>
-							
-
 						))}
 					</div>
 				)}
