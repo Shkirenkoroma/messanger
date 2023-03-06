@@ -17,7 +17,7 @@ import face from "assets/png/face.png";
 import moment from "moment";
 import "moment/locale/ru";
 import { FC, useEffect, useState } from "react";
-import { getAllCalls } from "common/api/helpers";
+import { getAllCalls, getRecord } from "common/api/helpers";
 import { transformPhoneNumber } from "common/utils";
 import incomecall from "assets/png/call.png";
 import outcall from "assets/png/outcall.png";
@@ -139,12 +139,17 @@ const Container = styled.div`
 						background-color: transparent;
 						border-radius: 5px;
 						position: absolute;
-						left: -288px;
-						top: 65px;
+						left: -285px;
+						top: 47px;
 						background-color: #ffffff;
 						z-index: 1;
+						box-shadow: 3px 3px 10px 6px rgb(0 0 0 / 6%);
 						.roomOwner__dashboard__container {
 							padding: 20px 32px;
+							box-sizing: border-box;
+							ul {
+								padding: 0;
+							}
 							.roomOwner__dashboard__name {
 								font-family: "SF Pro Display";
 								font-style: normal;
@@ -249,6 +254,7 @@ const Container = styled.div`
 								align-items: center;
 								color: #005ff8;
 								position: relative;
+
 								&:hover {
 									background-color: #deeafe;
 									transition: ease background-color 800ms;
@@ -427,6 +433,27 @@ const Container = styled.div`
 				justify-content: flex-end;
 				max-width: 1070px;
 				margin-left: 330px;
+				position: relative;
+				.header__content__input {
+					position: absolute;
+					left: -295px;
+					top: 15px;
+					background-color: transparent;
+					outline: none;
+					border: none;
+					::placeholder {
+						font-family: "SF Pro Display";
+						font-style: normal;
+						font-weight: 400;
+						font-size: 14px;
+						line-height: 140%;
+						color: #5e7793;
+					}
+				}
+				.searchlogo {
+					position: absolute;
+					left: -330px;
+				}
 			}
 			.sortingsection__firstsettings__content {
 				max-width: 350px;
@@ -510,7 +537,7 @@ const Container = styled.div`
 					position: fixed;
 					background: #ffffff;
 					width: 100%;
-					max-width: 1425px;
+					max-width: 1426px;
 					height: 96px;
 					border-bottom: 1px solid #eaf0fa;
 					tr.titlerow {
@@ -552,6 +579,11 @@ const Container = styled.div`
 					color: #899cb1;
 					padding: 25px 45px;
 					border-bottom: 1px solid #eaf0fa;
+					.audioplayer {
+						width: 352px;
+						height: 48px;
+						background-color: red;
+					}
 				}
 				td.errors {
 					color: #ea1a4f;
@@ -708,10 +740,21 @@ const Main: FC = (): JSX.Element => {
 	const [stateArrowSources, setArrowStateSources] = useState<boolean>(false);
 	const [stateArrowMarkes, setArrowStateMarkes] = useState<boolean>(false);
 	const [stateArrowMistake, setArrowStateMistake] = useState<boolean>(false);
+	const [isHovering, setIsHovering] = useState(false);
 
 	useEffect(() => {
 		getAllCalls(setCallsArray);
 	}, []);
+
+	const handleMouseOver = () => {
+		setIsHovering(true);
+		
+	};
+
+	const handleMouseOut = () => {
+		setIsHovering(false);
+	
+	};
 
 	return (
 		<Container>
@@ -955,6 +998,12 @@ const Main: FC = (): JSX.Element => {
 							</div>
 						</div>
 						<div className="sortingsection__secondsettings">
+							<input
+								className="header__content__input"
+								type="text"
+								placeholder="Поиск по звонкам"
+							/>
+							<img className="searchlogo" src={basicsearch} alt="searchlogo" />
 							<Select
 								allItems={allTypes}
 								setAllItems={setAllTypes}
@@ -1032,9 +1081,13 @@ const Main: FC = (): JSX.Element => {
 									</th>
 								</tr>
 							</thead>
-
 							{callsArray.map((call: any, index) => (
-								<tr className="allcalls" key={index}>
+								<tr
+									className="allcalls"
+									key={index}
+									onMouseOver={handleMouseOver}
+									onMouseOut={handleMouseOut}
+								>
 									<td>
 										{call.in_out ? (
 											<img
@@ -1057,9 +1110,10 @@ const Main: FC = (): JSX.Element => {
 									<td>{transformPhoneNumber(call.partner_data.phone)}</td>
 									<td>{call.source}</td>
 									<td className="errors">{call.errors}</td>
-									<td>
-										{moment(call.time * 1000).format("mm:ss")}
-										{/* <ReactAudioPlayer src={call.record} autoPlay controls /> */}
+									<td onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={()=>getRecord(call.record, call.partnership_id)}>
+										{!!isHovering && !!call.time ? (<ReactAudioPlayer src={call.record} autoPlay controls/>) : (`${moment(call.time * 1000).format("mm:ss")}`)}
+										
+										
 									</td>
 								</tr>
 							))}

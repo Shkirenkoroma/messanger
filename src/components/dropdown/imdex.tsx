@@ -22,7 +22,8 @@ const DropdownItem = styled.div`
 		position: relative;
 		span.selectedData {
 			color: #899cb1;
-			right: 0;
+			position: absolute;
+    right: 25px;
 		}
 		.chevron {
 			position: absolute;
@@ -35,18 +36,19 @@ const DropdownItem = styled.div`
 		}
 	}
 	.dropdown-content {
+		box-sizing: border-box;
 		position: absolute;
-		left: 0;
+		left: 7px;
 		top: 110%;
 		padding: 10px;
 		background: #fff;
 		box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
 		font-weight: 500;
 		color: #333;
-		width: 80%;
+		width: 90%;
 		z-index: 1;
 		.dropdown-item {
-			width: 100%;
+			width: 91%;
 			padding: 10px;
 			cursor: pointer;
 			transition: all 0.4s;
