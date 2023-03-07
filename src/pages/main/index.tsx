@@ -578,13 +578,55 @@ const Container = styled.div`
 					color: #899cb1;
 					padding: 25px 45px;
 					border-bottom: 1px solid #eaf0fa;
+					
 					.audioplayer {
 						width: 352px;
 						height: 48px;
 						background-color: red;
 					}
+					
 				}
-				td.player{
+				td.ceilKindCall{
+						/* padding: 25px 35px 25px 46px; */
+						padding:25px 0;
+						width:98px;
+					}
+					td.ceilDate{
+						/* padding:25px 34px 25px 64px; */
+						width:76px;
+						padding:25px 0;
+						text-align: end;
+					}
+					td.ceilAvatar{
+						/* padding: 25px 4px 25px 74px; */
+						width:119px;
+						padding:25px 0;
+						text-align: end;
+					}
+					td.ceilMobilePhone{
+						/* padding: 25px 1px 25px 70px; */
+					text-align: end;
+					width:137px;
+					padding:25px 0;
+					}
+					td.ceilSource{
+						/* padding: 25px 32px 25px 68px; */
+						width:150px;
+						padding:25px 0;
+					}
+					td.errors{
+						/* padding: 25px 75px 25px 0px; */
+						text-align: start;
+						width:163px;
+						padding:25px 0;
+					}
+					td.ceilPlayer{
+						/* padding: 25px 50px 25px 0px; */
+						width:250px;
+						text-align: center;
+						padding:25px 0;
+					}
+				td.player {
 					padding: 0;
 				}
 				td.errors {
@@ -1087,20 +1129,20 @@ const Main: FC = (): JSX.Element => {
 									<th className="title" style={{ padding: "0 60px" }}>
 										Звонок
 									</th>
-									<th className="title" style={{ padding: "0 0 0 180px" }}>
+									<th className="title" style={{ padding: "0 0 0 60px" }}>
 										Источник
 									</th>
-									<th className="title" style={{ padding: "0 0 0 87px" }}>
+									<th className="title" style={{ padding: "0 0 0 110px" }}>
 										Оценка
 									</th>
-									<th className="title" style={{ padding: "0 0 0 285px" }}>
+									<th className="title" style={{ padding: "0 0 0 280px" }}>
 										Длительность
 									</th>
 								</tr>
 							</thead>
 							{callsArray.map((call: any, id: any) => (
 								<tr className="allcalls" key={call.id}>
-									<td>
+									<td className="ceilKindCall">
 										{call.in_out ? (
 											<img
 												className="kindofcall"
@@ -1115,29 +1157,31 @@ const Main: FC = (): JSX.Element => {
 											/>
 										)}
 									</td>
-									<td>{call.date.split(" ")[1]}</td>
-									<td>
+									<td className="ceilDate">{call.date.split(" ")[1]}</td>
+									<td className="ceilAvatar">
 										<img className="avatar" src={call.person_avatar} />
 									</td>
-									<td>{transformPhoneNumber(call.partner_data.phone)}</td>
-									<td>{call.source}</td>
+									<td className="ceilMobilePhone">
+										{transformPhoneNumber(call.partner_data.phone)}
+									</td>
+									<td className="ceilSource">{call.source}</td>
 									<td className="errors">{call.errors}</td>
 									<td
+										className="ceilPlayer"
 										onMouseOver={() => {
 											console.log("ID", ID);
 											console.log("call.id", call.id);
 											setID(call.id);
 											if (!!call.time && ID == call.id) {
-												
 												getRecord(call.record, call.partnership_id, setUrl);
 												setActiveField(true);
 												console.log("activeField", activeField);
 											}
 										}}
 										onMouseOut={() => {
-											
-											setActiveField(false)
-											console.log('activeField', activeField)}}
+											setActiveField(false);
+											console.log("activeField", activeField);
+										}}
 									>
 										{activeField ? (
 											<ReactAudioPlayer
