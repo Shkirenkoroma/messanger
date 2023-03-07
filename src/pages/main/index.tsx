@@ -35,7 +35,8 @@ import leftarrow from "assets/svg/datepicker/arrow_left.svg";
 import rightarrow from "assets/svg/datepicker/arrow_right.svg";
 import iconcalendar from "assets/svg/datepicker/icon-calendar.svg";
 import { Select } from "components/select";
-import phone from "assets/svg/Phone.svg";
+import PlayerBar from "components/audioplayer";
+
 
 interface IItem {
 	img: string;
@@ -540,6 +541,7 @@ const Container = styled.div`
 					max-width: 1426px;
 					height: 96px;
 					border-bottom: 1px solid #eaf0fa;
+					z-index: 1;
 					tr.titlerow {
 						height: 96px;
 						th {
@@ -741,7 +743,7 @@ const Main: FC = (): JSX.Element => {
 	const [stateArrowMarkes, setArrowStateMarkes] = useState<boolean>(false);
 	const [stateArrowMistake, setArrowStateMistake] = useState<boolean>(false);
 	const [isHovering, setIsHovering] = useState(false);
-
+	const [url, setUrl] = useState('');
 	useEffect(() => {
 		getAllCalls(setCallsArray);
 	}, []);
@@ -755,6 +757,23 @@ const Main: FC = (): JSX.Element => {
 		setIsHovering(false);
 	
 	};
+
+
+
+// 	const handleStop = (recordedBlob) => {
+// 		const url = URL.createObjectURL(recordedBlob.blob);
+// 		setSrc(url) //setting the url in your state. A hook in this case btw
+// 	 }
+//   useEffect(()=>{
+// 	handlePlay()
+//   })
+  
+//   const handlePlay = () => {
+// 	  console.log('url in fn', url)
+// 		const tmp = new Audio(url); //passing your state (hook)
+// 		console.log('tmp', tmp)
+// 		tmp.play() //simple play of an audio element. 
+// 	 }
 
 	return (
 		<Container>
@@ -1110,10 +1129,10 @@ const Main: FC = (): JSX.Element => {
 									<td>{transformPhoneNumber(call.partner_data.phone)}</td>
 									<td>{call.source}</td>
 									<td className="errors">{call.errors}</td>
-									<td onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={()=>getRecord(call.record, call.partnership_id)}>
-										{!!isHovering && !!call.time ? (<ReactAudioPlayer src={call.record} autoPlay controls/>) : (`${moment(call.time * 1000).format("mm:ss")}`)}
-										
-										
+									<td >
+									<PlayerBar src={url} onClick={getRecord(call.record, call.partnership_id, setUrl)} />
+										<ReactAudioPlayer src={url} controls />  
+										{moment(call.time * 1000).format("mm:ss")}
 									</td>
 								</tr>
 							))}

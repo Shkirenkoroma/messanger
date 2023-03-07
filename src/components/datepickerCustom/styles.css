@@ -3,10 +3,9 @@
 }
 .date img {
 	position: relative;
-	right: 5px;
 }
-.react-datepicker{
-	width:95% !important;
+.react-datepicker {
+	width: 95% !important;
 }
 .react-datepicker__month {
 	width: 11% !important;
@@ -17,15 +16,22 @@
 }
 
 .react-datepicker__input-container:focus {
-	outline: none;
+	outline: none !important ;
+	border: none !important;
 }
 
+.react-datepicker-ignore-onclickoutside {
+	border: none !important;
+	outline: none !important ;
+}
 .react-datepicker-ignore-onclickoutside:focus {
-	outline: none;
+	border: none !important;
+	outline: none !important ;
 }
 
-
-.react-datepicker__triangle{
-
-	transform: translate(155px, 0px) !important;
+#dateStartEnd {
+	border: none !important;
+}
+.react-datepicker__triangle {
+	transform: translate(185px, 0px) !important;
 }
