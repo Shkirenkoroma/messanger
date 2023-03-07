@@ -35,8 +35,6 @@ import leftarrow from "assets/svg/datepicker/arrow_left.svg";
 import rightarrow from "assets/svg/datepicker/arrow_right.svg";
 import iconcalendar from "assets/svg/datepicker/icon-calendar.svg";
 import { Select } from "components/select";
-import PlayerBar from "components/audioplayer";
-
 
 interface IItem {
 	img: string;
@@ -143,7 +141,7 @@ const Container = styled.div`
 						left: -285px;
 						top: 47px;
 						background-color: #ffffff;
-						z-index: 1;
+						z-index: 2;
 						box-shadow: 3px 3px 10px 6px rgb(0 0 0 / 6%);
 						.roomOwner__dashboard__container {
 							padding: 20px 32px;
@@ -211,7 +209,6 @@ const Container = styled.div`
 								color: #5e7793;
 								margin-top: 6px;
 								margin-bottom: 16px;
-
 								img {
 									margin-right: 12px;
 								}
@@ -587,6 +584,9 @@ const Container = styled.div`
 						background-color: red;
 					}
 				}
+				td.player{
+					padding: 0;
+				}
 				td.errors {
 					color: #ea1a4f;
 				}
@@ -743,38 +743,36 @@ const Main: FC = (): JSX.Element => {
 	const [stateArrowMarkes, setArrowStateMarkes] = useState<boolean>(false);
 	const [stateArrowMistake, setArrowStateMistake] = useState<boolean>(false);
 	const [isHovering, setIsHovering] = useState(false);
-	const [url, setUrl] = useState('');
+	const [url, setUrl] = useState("");
+	const [activeField, setActiveField] = useState(false);
+	const [ID, setID] = useState("");
 	useEffect(() => {
 		getAllCalls(setCallsArray);
 	}, []);
 
-	const handleMouseOver = () => {
-		setIsHovering(true);
-		
-	};
+	// const handleMouseOver = () => {
+	// 	setIsHovering(true);
+	// };
 
-	const handleMouseOut = () => {
-		setIsHovering(false);
-	
-	};
+	// const handleMouseOut = () => {
+	// 	setIsHovering(false);
+	// };
 
+	// 	const handleStop = (recordedBlob) => {
+	// 		const url = URL.createObjectURL(recordedBlob.blob);
+	// 		setSrc(url) //setting the url in your state. A hook in this case btw
+	// 	 }
+	//   useEffect(()=>{
+	// 	handlePlay()
+	//   })
 
-
-// 	const handleStop = (recordedBlob) => {
-// 		const url = URL.createObjectURL(recordedBlob.blob);
-// 		setSrc(url) //setting the url in your state. A hook in this case btw
-// 	 }
-//   useEffect(()=>{
-// 	handlePlay()
-//   })
-  
-//   const handlePlay = () => {
-// 	  console.log('url in fn', url)
-// 		const tmp = new Audio(url); //passing your state (hook)
-// 		console.log('tmp', tmp)
-// 		tmp.play() //simple play of an audio element. 
-// 	 }
-
+	//   const handlePlay = () => {
+	// 	  console.log('url in fn', url)
+	// 		const tmp = new Audio(url); //passing your state (hook)
+	// 		console.log('tmp', tmp)
+	// 		tmp.play() //simple play of an audio element.
+	// 	 }
+	console.log("callsArray", callsArray);
 	return (
 		<Container>
 			<div className="aside">
@@ -1077,36 +1075,31 @@ const Main: FC = (): JSX.Element => {
 						<table>
 							<thead>
 								<tr className="titlerow">
-									<th className="title" style={{ padding: "0 70px" }}>
+									<th className="title" style={{ padding: "0 60px" }}>
 										Тип
 									</th>
-									<th className="title" style={{ padding: "0 76px" }}>
+									<th className="title" style={{ padding: "0 60px" }}>
 										Время
 									</th>
-									<th className="title" style={{ padding: "0 62px" }}>
+									<th className="title" style={{ padding: "0 60px" }}>
 										Сотрудник
 									</th>
-									<th className="title" style={{ padding: "0 115px" }}>
+									<th className="title" style={{ padding: "0 60px" }}>
 										Звонок
 									</th>
-									<th className="title" style={{ padding: "0 58px" }}>
+									<th className="title" style={{ padding: "0 0 0 180px" }}>
 										Источник
 									</th>
-									<th className="title" style={{ padding: "0 87px" }}>
+									<th className="title" style={{ padding: "0 0 0 87px" }}>
 										Оценка
 									</th>
-									<th className="title" style={{ padding: "0 0 0 90px" }}>
+									<th className="title" style={{ padding: "0 0 0 285px" }}>
 										Длительность
 									</th>
 								</tr>
 							</thead>
-							{callsArray.map((call: any, index) => (
-								<tr
-									className="allcalls"
-									key={index}
-									onMouseOver={handleMouseOver}
-									onMouseOut={handleMouseOut}
-								>
+							{callsArray.map((call: any, id: any) => (
+								<tr className="allcalls" key={call.id}>
 									<td>
 										{call.in_out ? (
 											<img
@@ -1129,10 +1122,32 @@ const Main: FC = (): JSX.Element => {
 									<td>{transformPhoneNumber(call.partner_data.phone)}</td>
 									<td>{call.source}</td>
 									<td className="errors">{call.errors}</td>
-									<td >
-									<PlayerBar src={url} onClick={getRecord(call.record, call.partnership_id, setUrl)} />
-										<ReactAudioPlayer src={url} controls />  
-										{moment(call.time * 1000).format("mm:ss")}
+									<td
+										onMouseOver={() => {
+											console.log("ID", ID);
+											console.log("call.id", call.id);
+											setID(call.id);
+											if (!!call.time && ID == call.id) {
+												
+												getRecord(call.record, call.partnership_id, setUrl);
+												setActiveField(true);
+												console.log("activeField", activeField);
+											}
+										}}
+										onMouseOut={() => {
+											
+											setActiveField(false)
+											console.log('activeField', activeField)}}
+									>
+										{activeField ? (
+											<ReactAudioPlayer
+												src={url}
+												controls
+												style={{ width: "245px", height: "34px" }}
+											/>
+										) : (
+											`${moment(call.time * 1000).format("mm:ss")}`
+										)}
 									</td>
 								</tr>
 							))}
