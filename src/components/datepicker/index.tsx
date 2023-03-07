@@ -1,3 +1,4 @@
+import { changeData, currentData } from "common/utils";
 import { DatePickers } from "components/datepickerCustom";
 import { useState } from "react";
 import styled from "styled-components";
@@ -88,8 +89,8 @@ export const DatePicker = ({
 				<div className="dropdown-content" onClick={(e:any)=>{e.stopPropagation()}}>
 					<div
 						onClick={(e: any) => {
-							setTimeTo('')
-							setTimeFrom('')
+							setTimeTo(currentData())
+							setTimeFrom(changeData(3))
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -99,8 +100,8 @@ export const DatePicker = ({
 					</div>
 					<div
 						onClick={(e: any) => {
-							setTimeTo('')
-							setTimeFrom('')
+							setTimeTo(currentData())
+							setTimeFrom(changeData(7))
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -110,8 +111,8 @@ export const DatePicker = ({
 					</div>
 					<div
 						onClick={(e: any) => {
-							setTimeTo('')
-							setTimeFrom('')
+							setTimeTo(currentData())
+							setTimeFrom(changeData(30))
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}
@@ -121,8 +122,8 @@ export const DatePicker = ({
 					</div>
 					<div
 						onClick={(e: any) => {
-							setTimeTo('')
-							setTimeFrom('')
+							setTimeTo(currentData())
+							setTimeFrom(changeData(365))
 							setStateDatePicker(e.target.textContent);
 							setIsActive(false);
 						}}

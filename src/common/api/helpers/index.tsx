@@ -4,12 +4,13 @@ export const getAllCalls = (setCallsArray: any, date_start:any, date_end:any, in
 	try {
 		const response = axios({
 			method: "post",
-			url: date_start ? (`https://api.skilla.ru/mango/getList?date_start=${date_start}&date_end=${date_end}&in_out=${in_out}`):(`https://api.skilla.ru/mango/getList`),
+			url:  `https://api.skilla.ru/mango/getList${in_out === null ? ('') : (`?date_start=${date_start}&date_end=${date_end}&in_out=${in_out}`)}`,
 			headers: {
 				Authorization: "Bearer testtoken",
 			},
 		}).then((res) => setCallsArray(res.data.results));
-		console.log('url', `https://api.skilla.ru/mango/getList?date_start=${date_start}&date_end=${date_end}&in_out=${in_out}` )
+		console.log('url', `https://api.skilla.ru/mango/getList${in_out === null ? ('') : (`?date_start=${date_start}&date_end=${date_end}&in_out=${in_out}`)}` );
+		console.log('adad', in_out)
 		return response;
 	} catch (error) {
 		console.log(error);

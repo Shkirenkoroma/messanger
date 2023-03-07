@@ -766,7 +766,7 @@ const Main: FC = (): JSX.Element => {
 	const [isActive, setIsActive] = useState<boolean>(false);
 	const [date_start, setDate_start] = useState<string>("");
 	const [date_end, setDate_end] = useState<string>("");
-	const [in_out, setIn_out] = useState<number>();
+	const [in_out, setIn_out] = useState<number | null>(null);
 	const [stateArrowType, setArrowStateType] = useState<boolean>(false);
 	const [stateArrowEmployers, setArrowStateEmployers] =
 		useState<boolean>(false);
@@ -783,20 +783,16 @@ const Main: FC = (): JSX.Element => {
 		getAllCalls(setCallsArray, date_start, date_end, in_out);
 	}, [date_start, date_end, in_out]);
 
- const handleKindCall = (allTypes:any) => {
-	 if(allTypes === "Входящие вызовы") {
-		 setIn_out(1)
-		 console.log('все верно, входящий', allTypes)
-		 console.log('все верно, вхофвфвфдящий', in_out)
-		} else if (allTypes === "Исходящие вызовы"){
-			setIn_out(0)
-			console.log('все верно, исходящие', allTypes)
-			console.log('все верно, вхофвфвфдящий', in_out)
-}
-
-
-		return
-	}
+	const handleKindCall = (allTypes: any) => {
+		if (allTypes === "Входящие вызовы") {
+			setIn_out(1);
+		} else if (allTypes === "Исходящие вызовы") {
+			setIn_out(0);
+		} else if(allTypes === "Все типы"){
+			console.log('allTypes', allTypes)
+			setIn_out(null);
+		}
+	};
 	// const handleMouseOver = () => {
 	// 	setIsHovering(true);
 	// };
@@ -1073,7 +1069,7 @@ const Main: FC = (): JSX.Element => {
 								constants={allTypesConstant}
 								className={"AllTypesClass"}
 								stateArrow={stateArrowType}
-								onClick={()=>handleKindCall(allTypes)}
+								onClick={() => handleKindCall(allTypes)}
 								setIn_out={setIn_out}
 								setArrowState={setArrowStateType}
 							/>
@@ -1151,16 +1147,18 @@ const Main: FC = (): JSX.Element => {
 									<td className="ceilKindCall">
 										{call.in_out ? (
 											<img
+											className="kindofcall"
+											src={outcall}
+											alt="outcomecall"
+										/>
+										) : (
+
+											<img
 												className="kindofcall"
 												src={incomecall}
 												alt="incomecall"
 											/>
-										) : (
-											<img
-												className="kindofcall"
-												src={outcall}
-												alt="outcomecall"
-											/>
+											
 										)}
 									</td>
 									<td className="ceilDate">{call.date.split(" ")[1]}</td>
@@ -1175,8 +1173,6 @@ const Main: FC = (): JSX.Element => {
 									<td
 										className="ceilPlayer"
 										onMouseOver={() => {
-											console.log("ID", ID);
-											console.log("call.id", call.id);
 											setID(call.id);
 											if (!!call.time && ID == call.id) {
 												getRecord(call.record, call.partnership_id, setUrl);

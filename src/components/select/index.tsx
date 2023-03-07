@@ -348,7 +348,6 @@ export const Select: FC<any> = ({
 	setArrowState,
 	className,
 	setIn_out,
-	onClick
 }): JSX.Element => {
 	const [isActive, setIsActive] = useState(false);
 
@@ -377,7 +376,7 @@ export const Select: FC<any> = ({
 									setAllItems(e.target.textContent);
 									setIsActive(false);
 									setArrowState(!stateArrow);
-									setIn_out(e.target.textContent === 'Исходящие вызовы' ? 1 : 0)
+									setIn_out(e.target.textContent === 'Исходящие вызовы' ? 1 : e.target.textContent === 'Входящие вызовы' ? 0 : '')
 								}}
 								className="dropdown-item"
 							>
