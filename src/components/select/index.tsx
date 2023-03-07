@@ -347,12 +347,14 @@ export const Select: FC<any> = ({
 	stateArrow,
 	setArrowState,
 	className,
+	setIn_out,
+	onClick
 }): JSX.Element => {
 	const [isActive, setIsActive] = useState(false);
 
 	return (
 		<Selector>
-			<div className={className}>
+			<div className={className} >
 				<div className="dropdown-btn">
 					<span
 						className="selectedData"
@@ -368,13 +370,14 @@ export const Select: FC<any> = ({
 					/>
 				</div>
 				{!!isActive && (
-					<div className="dropdown-content">
+					<div className="dropdown-content" >
 						{constants.map((item: any) => (
 							<div
 								onClick={(e: any) => {
 									setAllItems(e.target.textContent);
 									setIsActive(false);
 									setArrowState(!stateArrow);
+									setIn_out(e.target.textContent === 'Исходящие вызовы' ? 1 : 0)
 								}}
 								className="dropdown-item"
 							>

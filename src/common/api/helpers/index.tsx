@@ -1,14 +1,15 @@
 import axios from "axios";
 
-export const getAllCalls = (setCallsArray: any) => {
+export const getAllCalls = (setCallsArray: any, date_start:any, date_end:any, in_out:any ) => {
 	try {
 		const response = axios({
 			method: "post",
-			url: "https://api.skilla.ru/mango/getList",
+			url: date_start ? (`https://api.skilla.ru/mango/getList?date_start=${date_start}&date_end=${date_end}&in_out=${in_out}`):(`https://api.skilla.ru/mango/getList`),
 			headers: {
 				Authorization: "Bearer testtoken",
 			},
 		}).then((res) => setCallsArray(res.data.results));
+		console.log('url', `https://api.skilla.ru/mango/getList?date_start=${date_start}&date_end=${date_end}&in_out=${in_out}` )
 		return response;
 	} catch (error) {
 		console.log(error);

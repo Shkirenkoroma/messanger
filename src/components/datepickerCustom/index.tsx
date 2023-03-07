@@ -18,7 +18,8 @@ export const DatePickers = ({
 	const [dateEnd, setDateEnd] = useState();
 	setTimeFrom(dateFormat(dateStart, "dd-mm-yyyy"));
 	setTimeTo(dateFormat(dateEnd, "dd-mm-yyyy"));
-useLayoutEffect(()=>{
+	
+	useLayoutEffect(()=>{
 	setTimeFrom('');
 	setTimeTo('');
 }, [])	

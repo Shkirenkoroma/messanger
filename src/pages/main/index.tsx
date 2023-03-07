@@ -252,7 +252,6 @@ const Container = styled.div`
 								align-items: center;
 								color: #005ff8;
 								position: relative;
-
 								&:hover {
 									background-color: #deeafe;
 									transition: ease background-color 800ms;
@@ -493,7 +492,6 @@ const Container = styled.div`
 					background-color: #ffffff;
 					padding: 10px 12px;
 					border-radius: 50px;
-
 					&:hover {
 						background-color: rgb(222, 224, 228);
 						cursor: pointer;
@@ -578,54 +576,45 @@ const Container = styled.div`
 					color: #899cb1;
 					padding: 25px 45px;
 					border-bottom: 1px solid #eaf0fa;
-					
 					.audioplayer {
 						width: 352px;
 						height: 48px;
 						background-color: red;
 					}
-					
 				}
-				td.ceilKindCall{
-						/* padding: 25px 35px 25px 46px; */
-						padding:25px 0;
-						width:98px;
-					}
-					td.ceilDate{
-						/* padding:25px 34px 25px 64px; */
-						width:76px;
-						padding:25px 0;
-						text-align: end;
-					}
-					td.ceilAvatar{
-						/* padding: 25px 4px 25px 74px; */
-						width:119px;
-						padding:25px 0;
-						text-align: end;
-					}
-					td.ceilMobilePhone{
-						/* padding: 25px 1px 25px 70px; */
+				td.ceilKindCall {
+					padding: 25px 0;
+					width: 98px;
+				}
+				td.ceilDate {
+					width: 76px;
+					padding: 25px 0;
 					text-align: end;
-					width:137px;
-					padding:25px 0;
-					}
-					td.ceilSource{
-						/* padding: 25px 32px 25px 68px; */
-						width:150px;
-						padding:25px 0;
-					}
-					td.errors{
-						/* padding: 25px 75px 25px 0px; */
-						text-align: start;
-						width:163px;
-						padding:25px 0;
-					}
-					td.ceilPlayer{
-						/* padding: 25px 50px 25px 0px; */
-						width:250px;
-						text-align: center;
-						padding:25px 0;
-					}
+				}
+				td.ceilAvatar {
+					width: 119px;
+					padding: 25px 0;
+					text-align: end;
+				}
+				td.ceilMobilePhone {
+					text-align: end;
+					width: 137px;
+					padding: 25px 0;
+				}
+				td.ceilSource {
+					width: 150px;
+					padding: 25px 0;
+				}
+				td.errors {
+					text-align: start;
+					width: 163px;
+					padding: 25px 0;
+				}
+				td.ceilPlayer {
+					width: 250px;
+					text-align: center;
+					padding: 25px 0;
+				}
 				td.player {
 					padding: 0;
 				}
@@ -765,18 +754,19 @@ const Main: FC = (): JSX.Element => {
 	const [callsArray, setCallsArray] = useState([]);
 	const [stateArrow, setArrowState] = useState<boolean>(false);
 	const [price, setPrice] = useState<number>(272);
+	const [allTypes, setAllTypes] = useState<string>("Все типы");
 	const [selected, setSelected] = useState<string>("Все организации");
 	const [allEmployers, setAllEmployers] = useState<string>("Все сотрудники");
-	const [allTypes, setAllTypes] = useState<string>("Все типы");
 	const [allCalls, setAllCalls] = useState<string>("Все звонки");
 	const [allSources, setAllSources] = useState<string>("Все источники");
 	const [allMarkes, setAllMarkes] = useState<string>("Все оценки");
 	const [allMistakes, setAllMistakes] = useState<string>("Все ошибки");
 	const [stateRoom, setStateRoom] = useState<boolean>(false);
-	const [stateDatePicker, setStateDatePicker] = useState<string>("3 дня");
+	const [stateDatePicker, setStateDatePicker] = useState<string>("Год");
 	const [isActive, setIsActive] = useState<boolean>(false);
-	const [timeFrom, setTimeFrom] = useState<string>("");
-	const [timeTo, setTimeTo] = useState<string>("");
+	const [date_start, setDate_start] = useState<string>("");
+	const [date_end, setDate_end] = useState<string>("");
+	const [in_out, setIn_out] = useState<number>();
 	const [stateArrowType, setArrowStateType] = useState<boolean>(false);
 	const [stateArrowEmployers, setArrowStateEmployers] =
 		useState<boolean>(false);
@@ -788,10 +778,25 @@ const Main: FC = (): JSX.Element => {
 	const [url, setUrl] = useState("");
 	const [activeField, setActiveField] = useState(false);
 	const [ID, setID] = useState("");
-	useEffect(() => {
-		getAllCalls(setCallsArray);
-	}, []);
 
+	useEffect(() => {
+		getAllCalls(setCallsArray, date_start, date_end, in_out);
+	}, [date_start, date_end, in_out]);
+
+ const handleKindCall = (allTypes:any) => {
+	 if(allTypes === "Входящие вызовы") {
+		 setIn_out(1)
+		 console.log('все верно, входящий', allTypes)
+		 console.log('все верно, вхофвфвфдящий', in_out)
+		} else if (allTypes === "Исходящие вызовы"){
+			setIn_out(0)
+			console.log('все верно, исходящие', allTypes)
+			console.log('все верно, вхофвфвфдящий', in_out)
+}
+
+
+		return
+	}
 	// const handleMouseOver = () => {
 	// 	setIsHovering(true);
 	// };
@@ -814,7 +819,6 @@ const Main: FC = (): JSX.Element => {
 	// 		console.log('tmp', tmp)
 	// 		tmp.play() //simple play of an audio element.
 	// 	 }
-	console.log("callsArray", callsArray);
 	return (
 		<Container>
 			<div className="aside">
@@ -1027,8 +1031,8 @@ const Main: FC = (): JSX.Element => {
 								<div
 									className="datapicker"
 									onClick={() => {
-										setTimeFrom("");
-										setTimeTo("");
+										setDate_start("");
+										setDate_end("");
 										setIsActive(!isActive);
 									}}
 								>
@@ -1044,10 +1048,10 @@ const Main: FC = (): JSX.Element => {
 											setStateDatePicker={setStateDatePicker}
 											isActive={isActive}
 											setIsActive={setIsActive}
-											setTimeFrom={setTimeFrom}
-											setTimeTo={setTimeTo}
-											timeTo={timeTo}
-											timeFrom={timeFrom}
+											setTimeFrom={setDate_start}
+											setTimeTo={setDate_end}
+											timeTo={date_end}
+											timeFrom={date_start}
 										/>
 									</div>
 									<div className="rightarrow">
@@ -1069,6 +1073,8 @@ const Main: FC = (): JSX.Element => {
 								constants={allTypesConstant}
 								className={"AllTypesClass"}
 								stateArrow={stateArrowType}
+								onClick={()=>handleKindCall(allTypes)}
+								setIn_out={setIn_out}
 								setArrowState={setArrowStateType}
 							/>
 							<Select
