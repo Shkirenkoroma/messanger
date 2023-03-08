@@ -1,6 +1,6 @@
 import { changeData, currentData } from "common/utils";
 import { DatePickers } from "components/datepickerCustom";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 
 const DatePickerItem = styled.div`
@@ -23,7 +23,7 @@ const DatePickerItem = styled.div`
 		font-style: normal;
 		font-weight: 700;
 		font-size: 10px;
-		line-height:20px;
+		line-height:10px;
 		text-align: center;
 		color: #005ff8;
 	}
@@ -82,9 +82,19 @@ export const DatePicker = ({
 	timeFrom,
 	timeTo
 }: any): JSX.Element => {
+
+	useLayoutEffect(()=>{
+		setTimeFrom('');
+		setTimeTo('');
+	}, [])	
+
+
+
+
+
 	return (
 		<DatePickerItem style={{width:"50px", textAlign:"center"}} >
-			<div className={ timeTo ? 'selectedDataRange':'selectedData'}>{timeTo ? (`${timeFrom} ${timeTo}`): (`${stateDatePicker}`)}</div>
+			<div className={ timeTo === timeFrom ? 'selectedData':'selectedDataRange'}>{timeTo === timeFrom ? (`${stateDatePicker}`)  :  (`${timeFrom} ${timeTo}`)}</div>
 			{!!isActive && (
 				<div className="dropdown-content" onClick={(e:any)=>{e.stopPropagation()}}>
 					<div

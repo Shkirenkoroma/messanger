@@ -16,7 +16,7 @@ import vector from "assets/svg/alert.svg";
 import face from "assets/png/face.png";
 import moment from "moment";
 import "moment/locale/ru";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useLayoutEffect, useState } from "react";
 import { getAllCalls, getRecord } from "common/api/helpers";
 import { transformPhoneNumber } from "common/utils";
 import incomecall from "assets/png/call.png";
@@ -35,6 +35,7 @@ import leftarrow from "assets/svg/datepicker/arrow_left.svg";
 import rightarrow from "assets/svg/datepicker/arrow_right.svg";
 import iconcalendar from "assets/svg/datepicker/icon-calendar.svg";
 import { Select } from "components/select";
+import { LineWave } from "react-loader-spinner";
 
 interface IItem {
 	img: string;
@@ -526,9 +527,16 @@ const Container = styled.div`
 			border-radius: 8px;
 			overflow-y: scroll;
 			table {
+				position: relative;
 				width: 100%;
 				height: calc(100vh - 10px);
 				border-collapse: collapse;
+				.LineWaveSpinner {
+					position: absolute;
+					right: 565px;
+					top: 285px;
+					width: 150px;
+				}
 				thead {
 					position: fixed;
 					background: #ffffff;
@@ -780,16 +788,16 @@ const Main: FC = (): JSX.Element => {
 	const [ID, setID] = useState("");
 
 	useEffect(() => {
-		getAllCalls(setCallsArray, date_start, date_end, in_out);
-	}, [date_start, date_end, in_out]);
+		getAllCalls(setCallsArray, date_start, date_end, in_out, allTypes);
+	}, [date_start, date_end, in_out, allTypes]);
 
 	const handleKindCall = (allTypes: any) => {
 		if (allTypes === "Входящие вызовы") {
 			setIn_out(1);
 		} else if (allTypes === "Исходящие вызовы") {
 			setIn_out(0);
-		} else if(allTypes === "Все типы"){
-			console.log('allTypes', allTypes)
+		} else if (allTypes === "Все типы") {
+			console.log("allTypes", allTypes);
 			setIn_out(null);
 		}
 	};
@@ -800,6 +808,10 @@ const Main: FC = (): JSX.Element => {
 	// const handleMouseOut = () => {
 	// 	setIsHovering(false);
 	// };
+	useLayoutEffect(() => {
+		setDate_start("");
+		setDate_end("");
+	}, []);
 
 	// 	const handleStop = (recordedBlob) => {
 	// 		const url = URL.createObjectURL(recordedBlob.blob);
@@ -1027,8 +1039,8 @@ const Main: FC = (): JSX.Element => {
 								<div
 									className="datapicker"
 									onClick={() => {
-										setDate_start("");
-										setDate_end("");
+										// setDate_start("");
+										// setDate_end("");
 										setIsActive(!isActive);
 									}}
 								>
@@ -1039,6 +1051,7 @@ const Main: FC = (): JSX.Element => {
 										<div className="calendaricon">
 											<img src={iconcalendar} alt="iconcalendar" />
 										</div>
+
 										<DatePicker
 											stateDatePicker={stateDatePicker}
 											setStateDatePicker={setStateDatePicker}
@@ -1142,61 +1155,74 @@ const Main: FC = (): JSX.Element => {
 									</th>
 								</tr>
 							</thead>
-							{callsArray.map((call: any, id: any) => (
-								<tr className="allcalls" key={call.id}>
-									<td className="ceilKindCall">
-										{call.in_out ? (
-											<img
-											className="kindofcall"
-											src={outcall}
-											alt="outcomecall"
-										/>
-										) : (
 
-											<img
-												className="kindofcall"
-												src={incomecall}
-												alt="incomecall"
-											/>
-											
-										)}
-									</td>
-									<td className="ceilDate">{call.date.split(" ")[1]}</td>
-									<td className="ceilAvatar">
-										<img className="avatar" src={call.person_avatar} />
-									</td>
-									<td className="ceilMobilePhone">
-										{transformPhoneNumber(call.partner_data.phone)}
-									</td>
-									<td className="ceilSource">{call.source}</td>
-									<td className="errors">{call.errors}</td>
-									<td
-										className="ceilPlayer"
-										onMouseOver={() => {
-											setID(call.id);
-											if (!!call.time && ID == call.id) {
-												getRecord(call.record, call.partnership_id, setUrl);
-												setActiveField(true);
+							{callsArray.length ? (
+								callsArray.map((call: any, id: any) => (
+									<tr className="allcalls" key={call.id}>
+										<td className="ceilKindCall">
+											{call.in_out ? (
+												<img
+													className="kindofcall"
+													src={outcall}
+													alt="outcomecall"
+												/>
+											) : (
+												<img
+													className="kindofcall"
+													src={incomecall}
+													alt="incomecall"
+												/>
+											)}
+										</td>
+										<td className="ceilDate">{call.date.split(" ")[1]}</td>
+										<td className="ceilAvatar">
+											<img className="avatar" src={call.person_avatar} />
+										</td>
+										<td className="ceilMobilePhone">
+											{transformPhoneNumber(call.partner_data.phone)}
+										</td>
+										<td className="ceilSource">{call.source}</td>
+										<td className="errors">{call.errors}</td>
+										<td
+											className="ceilPlayer"
+											onMouseOver={() => {
+												setID(call.id);
+												if (!!call.time && ID == call.id) {
+													getRecord(call.record, call.partnership_id, setUrl);
+													setActiveField(true);
+													console.log("activeField", activeField);
+												}
+											}}
+											onMouseOut={() => {
+												setActiveField(false);
 												console.log("activeField", activeField);
-											}
-										}}
-										onMouseOut={() => {
-											setActiveField(false);
-											console.log("activeField", activeField);
-										}}
-									>
-										{activeField ? (
-											<ReactAudioPlayer
-												src={url}
-												controls
-												style={{ width: "245px", height: "34px" }}
-											/>
-										) : (
-											`${moment(call.time * 1000).format("mm:ss")}`
-										)}
-									</td>
-								</tr>
-							))}
+											}}
+										>
+											{activeField ? (
+												<ReactAudioPlayer
+													src={url}
+													controls
+													style={{ width: "245px", height: "34px" }}
+												/>
+											) : (
+												`${moment(call.time * 1000).format("mm:ss")}`
+											)}
+										</td>
+									</tr>
+								))
+							) : (
+								<LineWave
+									height="200"
+									width="150"
+									color="#cdcdcd"
+									ariaLabel="line-wave"
+									wrapperClass="LineWaveSpinner"
+									visible={true}
+									firstLineColor=""
+									middleLineColor=""
+									lastLineColor=""
+								/>
+							)}
 						</table>
 					</section>
 				</main>

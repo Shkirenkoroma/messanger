@@ -22,6 +22,7 @@ export const DatePickers = ({
 	useLayoutEffect(()=>{
 	setTimeFrom('');
 	setTimeTo('');
+	
 }, [])	
 
 	
