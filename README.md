@@ -1,6 +1,6 @@
 # Проект доступен в live-режиме по указанной ссылке: https://shkirenkoroma.github.io/messanger/
 Реализация верстки
-![image](https://user-images.githubusercontent.com/61347452/223968853-46b9beb3-409d-48d7-b7b9-66176af6840c.png)
+![image](https://user-images.githubusercontent.com/61347452/224052612-334b603a-2cc7-4fd9-9040-18e99d1dcbfa.png)
 После реализации базовой верстки добавлены ряд функциональных особенностей;
 ![image](https://user-images.githubusercontent.com/61347452/224002087-d5cbb013-8fd5-4f3e-b561-ce583c941143.png)
 Выбор типа звонков доступен после выбора периода времени, за который необходимо просмотреть вызовы;
