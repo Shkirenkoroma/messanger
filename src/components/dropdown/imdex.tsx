@@ -1,14 +1,12 @@
-import React, { FC, useState } from "react";
+import  { useState } from "react";
 import styled from "styled-components";
 import { HiChevronDown } from "react-icons/hi2";
-
 
 const DropdownItem = styled.div`
 	width: 550px;
 	margin: 100px auto;
 	position: relative;
 	margin-left: 100px;
-
 	.dropdown-btn {
 		padding: 15px 20px;
 		background: #fff;
@@ -23,7 +21,7 @@ const DropdownItem = styled.div`
 		span.selectedData {
 			color: #899cb1;
 			position: absolute;
-    right: 25px;
+			right: 25px;
 		}
 		.chevron {
 			position: absolute;
@@ -56,7 +54,6 @@ const DropdownItem = styled.div`
 			color: #899cb1;
 			&:hover {
 				background: #deeafe;
-
 				color: #005ff8;
 			}
 		}
@@ -70,7 +67,7 @@ export const Dropdown = ({
 	setArrowState,
 }: any): JSX.Element => {
 	const [isActive, setIsActive] = useState(false);
-	console.log("isActive", isActive);
+
 	return (
 		<DropdownItem className="dropdown">
 			<div

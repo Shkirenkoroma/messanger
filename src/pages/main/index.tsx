@@ -6,7 +6,6 @@ import {
 	allEmployersConstant,
 	allMistakesConstant,
 	allSourses,
-	allTypes,
 	allTypesConstant,
 	items,
 } from "assets/constants";
@@ -16,7 +15,7 @@ import vector from "assets/svg/alert.svg";
 import face from "assets/png/face.png";
 import moment from "moment";
 import "moment/locale/ru";
-import { FC, useEffect, useLayoutEffect, useState } from "react";
+import { FC, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { getAllCalls, getRecord } from "common/api/helpers";
 import { transformPhoneNumber } from "common/utils";
 import incomecall from "assets/png/call.png";
@@ -36,7 +35,6 @@ import rightarrow from "assets/svg/datepicker/arrow_right.svg";
 import iconcalendar from "assets/svg/datepicker/icon-calendar.svg";
 import { Select } from "components/select";
 import { LineWave } from "react-loader-spinner";
-
 interface IItem {
 	img: string;
 	alt: string;
@@ -465,7 +463,6 @@ const Container = styled.div`
 					display: flex;
 					align-items: center;
 					justify-content: center;
-
 					.leftarrow {
 						width: 40px;
 					}
@@ -531,6 +528,7 @@ const Container = styled.div`
 				width: 100%;
 				height: calc(100vh - 10px);
 				border-collapse: collapse;
+
 				.LineWaveSpinner {
 					position: absolute;
 					right: 565px;
@@ -782,10 +780,14 @@ const Main: FC = (): JSX.Element => {
 	const [stateArrowSources, setArrowStateSources] = useState<boolean>(false);
 	const [stateArrowMarkes, setArrowStateMarkes] = useState<boolean>(false);
 	const [stateArrowMistake, setArrowStateMistake] = useState<boolean>(false);
-	const [isHovering, setIsHovering] = useState(false);
 	const [url, setUrl] = useState("");
-	const [activeField, setActiveField] = useState(false);
-	const [ID, setID] = useState("");
+	const [activeField, setActiveField] = useState<boolean>(false);
+	const [object, setObject] = useState<any | undefined>(null)
+
+	useLayoutEffect(() => {
+		setDate_start("");
+		setDate_end("");
+	}, []);
 
 	useEffect(() => {
 		getAllCalls(setCallsArray, date_start, date_end, in_out, allTypes);
@@ -801,32 +803,7 @@ const Main: FC = (): JSX.Element => {
 			setIn_out(null);
 		}
 	};
-	// const handleMouseOver = () => {
-	// 	setIsHovering(true);
-	// };
 
-	// const handleMouseOut = () => {
-	// 	setIsHovering(false);
-	// };
-	useLayoutEffect(() => {
-		setDate_start("");
-		setDate_end("");
-	}, []);
-
-	// 	const handleStop = (recordedBlob) => {
-	// 		const url = URL.createObjectURL(recordedBlob.blob);
-	// 		setSrc(url) //setting the url in your state. A hook in this case btw
-	// 	 }
-	//   useEffect(()=>{
-	// 	handlePlay()
-	//   })
-
-	//   const handlePlay = () => {
-	// 	  console.log('url in fn', url)
-	// 		const tmp = new Audio(url); //passing your state (hook)
-	// 		console.log('tmp', tmp)
-	// 		tmp.play() //simple play of an audio element.
-	// 	 }
 	return (
 		<Container>
 			<div className="aside">
@@ -1039,8 +1016,6 @@ const Main: FC = (): JSX.Element => {
 								<div
 									className="datapicker"
 									onClick={() => {
-										// setDate_start("");
-										// setDate_end("");
 										setIsActive(!isActive);
 									}}
 								>
@@ -1051,7 +1026,6 @@ const Main: FC = (): JSX.Element => {
 										<div className="calendaricon">
 											<img src={iconcalendar} alt="iconcalendar" />
 										</div>
-
 										<DatePicker
 											stateDatePicker={stateDatePicker}
 											setStateDatePicker={setStateDatePicker}
@@ -1155,10 +1129,20 @@ const Main: FC = (): JSX.Element => {
 									</th>
 								</tr>
 							</thead>
-
 							{callsArray.length ? (
 								callsArray.map((call: any, id: any) => (
-									<tr className="allcalls" key={call.id}>
+									<tr
+										className="allcalls"
+										key={call.id}
+										onClick={() => {
+											setObject(call)
+											if (!!call.time) {
+												setActiveField(!activeField);
+											}
+											getRecord(call.record, call.partnership_id, setUrl);
+										}}
+										onMouseLeave={() => setActiveField(false)}
+									>
 										<td className="ceilKindCall">
 											{call.in_out ? (
 												<img
@@ -1183,23 +1167,10 @@ const Main: FC = (): JSX.Element => {
 										</td>
 										<td className="ceilSource">{call.source}</td>
 										<td className="errors">{call.errors}</td>
-										<td
-											className="ceilPlayer"
-											onMouseOver={() => {
-												setID(call.id);
-												if (!!call.time && ID == call.id) {
-													getRecord(call.record, call.partnership_id, setUrl);
-													setActiveField(true);
-													console.log("activeField", activeField);
-												}
-											}}
-											onMouseOut={() => {
-												setActiveField(false);
-												console.log("activeField", activeField);
-											}}
-										>
-											{activeField ? (
+										<td className="ceilPlayer">
+											{!!activeField && call.time && call == object? (
 												<ReactAudioPlayer
+													id={call.id}
 													src={url}
 													controls
 													style={{ width: "245px", height: "34px" }}
@@ -1218,9 +1189,6 @@ const Main: FC = (): JSX.Element => {
 									ariaLabel="line-wave"
 									wrapperClass="LineWaveSpinner"
 									visible={true}
-									firstLineColor=""
-									middleLineColor=""
-									lastLineColor=""
 								/>
 							)}
 						</table>

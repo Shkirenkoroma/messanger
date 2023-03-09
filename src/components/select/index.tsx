@@ -17,7 +17,6 @@ const Selector = styled.div`
 			width: 80%;
 			position: relative;
 		}
-
 		.dropdown-content {
 			position: absolute;
 			right: -2px;
@@ -59,7 +58,6 @@ const Selector = styled.div`
 			right: -20px;
 		}
 	}
-
 	.AllEmployersClass {
 		margin-left: 15px;
 		.dropdown-btn {
@@ -73,7 +71,6 @@ const Selector = styled.div`
 			width: 80%;
 			position: relative;
 		}
-
 		.dropdown-content {
 			position: absolute;
 			right: -17px;
@@ -128,7 +125,6 @@ const Selector = styled.div`
 			width: 80%;
 			position: relative;
 		}
-
 		.dropdown-content {
 			position: absolute;
 			right: -10px;
@@ -170,7 +166,6 @@ const Selector = styled.div`
 			right: -20px;
 		}
 	}
-
 	.AllSourcesClass {
 		margin-left: 35px;
 		.dropdown-btn {
@@ -184,7 +179,6 @@ const Selector = styled.div`
 			width: 80%;
 			position: relative;
 		}
-
 		.dropdown-content {
 			position: absolute;
 			right: -40px;
@@ -239,7 +233,6 @@ const Selector = styled.div`
 			width: 80%;
 			position: relative;
 		}
-
 		.dropdown-content {
 			position: absolute;
 			right: -40px;
@@ -353,7 +346,7 @@ export const Select: FC<any> = ({
 
 	return (
 		<Selector>
-			<div className={className} >
+			<div className={className}>
 				<div className="dropdown-btn">
 					<span
 						className="selectedData"
@@ -369,14 +362,20 @@ export const Select: FC<any> = ({
 					/>
 				</div>
 				{!!isActive && (
-					<div className="dropdown-content" >
+					<div className="dropdown-content">
 						{constants.map((item: any) => (
 							<div
 								onClick={(e: any) => {
 									setAllItems(e.target.textContent);
 									setIsActive(false);
 									setArrowState(!stateArrow);
-									setIn_out(e.target.textContent === 'Исходящие вызовы' ? 1 : e.target.textContent === 'Входящие вызовы' ? 0 : '')
+									setIn_out(
+										e.target.textContent === "Исходящие вызовы"
+											? 1
+											: e.target.textContent === "Входящие вызовы"
+											? 0
+											: "",
+									);
 								}}
 								className="dropdown-item"
 							>
