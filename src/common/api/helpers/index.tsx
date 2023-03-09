@@ -6,6 +6,7 @@ export const getAllCalls = (
 	date_end: string,
 	in_out: number | null,
 	allTypes: string,
+	setFilteredUsers:any,
 ) => {
 	try {
 		const response = axios({
@@ -18,7 +19,9 @@ export const getAllCalls = (
 			headers: {
 				Authorization: "Bearer testtoken",
 			},
-		}).then((res) => setCallsArray(res.data.results));
+		}).then((res) => {
+			setFilteredUsers(res.data.results)
+			setCallsArray(res.data.results)});
 		return response;
 	} catch (error) {
 		console.log(error);

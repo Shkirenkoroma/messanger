@@ -15,7 +15,7 @@ import vector from "assets/svg/alert.svg";
 import face from "assets/png/face.png";
 import moment from "moment";
 import "moment/locale/ru";
-import { FC, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { FC, useEffect, useLayoutEffect, useState } from "react";
 import { getAllCalls, getRecord } from "common/api/helpers";
 import { transformPhoneNumber } from "common/utils";
 import incomecall from "assets/png/call.png";
@@ -757,6 +757,7 @@ const Container = styled.div`
 
 const Main: FC = (): JSX.Element => {
 	const [callsArray, setCallsArray] = useState([]);
+	const [filteredUsers, setFilteredUsers] = useState([]);
 	const [stateArrow, setArrowState] = useState<boolean>(false);
 	const [price, setPrice] = useState<number>(272);
 	const [allTypes, setAllTypes] = useState<string>("Все типы");
@@ -781,7 +782,8 @@ const Main: FC = (): JSX.Element => {
 	const [stateArrowMistake, setArrowStateMistake] = useState<boolean>(false);
 	const [url, setUrl] = useState("");
 	const [activeField, setActiveField] = useState<boolean>(false);
-	const [object, setObject] = useState<any | undefined>(null)
+	const [object, setObject] = useState<any | undefined>(null);
+	const [inputValue, setInputValue] = useState<string>("");
 
 	useLayoutEffect(() => {
 		setDate_start("");
@@ -789,8 +791,21 @@ const Main: FC = (): JSX.Element => {
 	}, []);
 
 	useEffect(() => {
-		getAllCalls(setCallsArray, date_start, date_end, in_out, allTypes);
+		getAllCalls(
+			setCallsArray,
+			date_start,
+			date_end,
+			in_out,
+			allTypes,
+			setFilteredUsers,
+		);
 	}, [date_start, date_end, in_out, allTypes]);
+
+	useEffect(() => {
+		if (!inputValue.length) {
+			setFilteredUsers(callsArray);
+		} else setFilteredUsers(getFilteredUsers());
+	}, [inputValue]);
 
 	const handleKindCall = (allTypes: any) => {
 		if (allTypes === "Входящие вызовы") {
@@ -800,6 +815,17 @@ const Main: FC = (): JSX.Element => {
 		} else if (allTypes === "Все типы") {
 			setIn_out(null);
 		}
+	};
+
+	const getFilteredUsers = () => {
+		return callsArray.filter((call: any) => {
+			const userNames = call.errors;
+			const searchWord = inputValue;
+			const isHasMatches = userNames.some((word: string) =>
+				word.startsWith(searchWord),
+			);
+			return isHasMatches;
+		});
 	};
 
 	return (
@@ -1046,6 +1072,8 @@ const Main: FC = (): JSX.Element => {
 								className="header__content__input"
 								type="text"
 								placeholder="Поиск по звонкам"
+								value={inputValue}
+								onChange={(e) => setInputValue(e.target.value)}
 							/>
 							<img className="searchlogo" src={basicsearch} alt="searchlogo" />
 							<Select
@@ -1127,13 +1155,13 @@ const Main: FC = (): JSX.Element => {
 									</th>
 								</tr>
 							</thead>
-							{callsArray.length ? (
-								callsArray.map((call: any, id: any) => (
+							{filteredUsers.length ? (
+								filteredUsers.map((call: any) => (
 									<tr
 										className="allcalls"
 										key={call.id}
 										onClick={() => {
-											setObject(call)
+											setObject(call);
 											if (!!call.time) {
 												setActiveField(!activeField);
 											}
@@ -1166,7 +1194,7 @@ const Main: FC = (): JSX.Element => {
 										<td className="ceilSource">{call.source}</td>
 										<td className="errors">{call.errors}</td>
 										<td className="ceilPlayer">
-											{!!activeField && call.time && call == object? (
+											{!!activeField && call.time && call == object ? (
 												<ReactAudioPlayer
 													id={call.id}
 													src={url}
