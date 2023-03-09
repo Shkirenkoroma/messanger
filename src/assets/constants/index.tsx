@@ -25,7 +25,6 @@ export const items = [
 	{ img: settings, alt: "settings", describe: "Настройка" },
 ];
 
-
 export const allTypesConstant = [
 	{ value: "Все типы", label: "Все типы" },
 	{ value: "Исходящие вызовы", label: "Исходящие вызовы" },

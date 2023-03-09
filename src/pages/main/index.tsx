@@ -528,7 +528,6 @@ const Container = styled.div`
 				width: 100%;
 				height: calc(100vh - 10px);
 				border-collapse: collapse;
-
 				.LineWaveSpinner {
 					position: absolute;
 					right: 565px;
@@ -799,7 +798,6 @@ const Main: FC = (): JSX.Element => {
 		} else if (allTypes === "Исходящие вызовы") {
 			setIn_out(0);
 		} else if (allTypes === "Все типы") {
-			console.log("allTypes", allTypes);
 			setIn_out(null);
 		}
 	};

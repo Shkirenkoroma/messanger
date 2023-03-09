@@ -229,7 +229,6 @@ const Selector = styled.div`
 			display: flex;
 			align-items: center;
 			justify-content: end;
-
 			width: 80%;
 			position: relative;
 		}
@@ -289,7 +288,6 @@ const Selector = styled.div`
 			width: 48%;
 			position: relative;
 		}
-
 		.dropdown-content {
 			position: absolute;
 			right: -35px;
