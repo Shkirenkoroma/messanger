@@ -1,4 +1,4 @@
-### Проект доступен в live-режиме по указанной ссылке: https://shkirenkoroma.github.io/messanger/
+### Live-версия проекта доступна по указанной ссылке: https://shkirenkoroma.github.io/messanger/
 Реализация верстки
 ![image](https://user-images.githubusercontent.com/61347452/224052612-334b603a-2cc7-4fd9-9040-18e99d1dcbfa.png)
 После реализации базовой верстки добавлены ряд функциональных особенностей
